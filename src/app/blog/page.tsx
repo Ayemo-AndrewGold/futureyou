@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -26,12 +28,13 @@ const Blog = async () => {
             >
               <div className="relative w-full h-52 overflow-hidden">
                 <Image
-                  src={post.cover_image}
-                  alt={post.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  loading="lazy"
+                    src={post.cover_image}
+                    alt={post.title}
+                    fill
+                    unoptimized={post.cover_image.includes('127.0.0.1')}
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    loading="lazy"
                 />
 
                 {post.category && (

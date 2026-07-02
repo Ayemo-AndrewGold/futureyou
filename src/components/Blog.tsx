@@ -1,7 +1,13 @@
+
+
 import Link from "next/link";
 import BlogCard from "./BlogCard";
+import { getPosts } from "@/lib/api";
 
-const Blog = () => {
+const Blog = async () => {
+  const posts = await getPosts();
+  const latestPosts = posts.slice(0, 3); // homepage teaser: only the 3 most recent
+
   return (
     <section
       className="w-full max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16"
@@ -14,7 +20,6 @@ const Blog = () => {
         data-aos-delay="100"
       >
         <div>
-          {/* Eyebrow pill */}
           <div className="inline-flex items-center gap-2 bg-[#EEF0FA] border border-[#c7cef0] text-[#293C97] text-xs font-semibold px-4 py-1.5 rounded-full tracking-wide mb-5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#293C97] inline-block" />
             Blog &amp; insights
@@ -31,7 +36,6 @@ const Blog = () => {
           </p>
         </div>
 
-        {/* CTA top-right on desktop */}
         <div className="shrink-0">
           <Link
             href="/blog"
@@ -45,7 +49,11 @@ const Blog = () => {
 
       {/* Cards */}
       <div data-aos="fade-up" data-aos-delay="200">
-        <BlogCard />
+        {latestPosts.length > 0 ? (
+          <BlogCard posts={latestPosts} />
+        ) : (
+          <p className="text-sm text-[#888]">No posts published yet.</p>
+        )}
       </div>
     </section>
   );

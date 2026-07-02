@@ -22,7 +22,7 @@ const Hero = () => {
           {/* Eyebrow pill */}
           <div className="flex items-center gap-2 bg-[#EEF0FA] border border-[#c7cef0] text-[#293C97] text-xs font-semibold px-4 py-1.5 rounded-full tracking-wide">
             <span className="w-1.5 h-1.5 rounded-full bg-[#293C97] inline-block" />
-            Loan &amp; Business Coaching
+            ✨Coaching • Consulting • Growth Capital
           </div>
 
           {/* Headline */}
@@ -38,9 +38,7 @@ const Hero = () => {
 
           {/* Body */}
           <p className="font-montserrat text-base sm:text-lg text-[#555] leading-relaxed max-w-[480px]">
-            You don't have to stay stuck in who you are. Unlock your next
-            chapter, transform your life or business, and step into the
-            empowered, fulfilled, future ready version of you.
+            We help individuals and businesses gain clarity, build winning strategies, and access the capital they need to create lasting transformation
           </p>
 
           {/* CTAs */}

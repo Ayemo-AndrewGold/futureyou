@@ -76,7 +76,7 @@ const MeetCoach: React.FC = () => {
                   text-white text-sm font-semibold
                   tracking-wide transition-colors duration-200
                 ">
-                  Meet your coach
+                  Get Loan support
                 </button>
               </Link>
             </div>

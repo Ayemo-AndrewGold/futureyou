@@ -12,8 +12,13 @@ const Nav: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const pathname = usePathname();
 
-  const toggleMenu = (): void => setMenuOpen((prev) => !prev);
+  // const toggleMenu = (): void => setMenuOpen((prev) => !prev);
   const closeMenu = (): void => setMenuOpen(false);
+
+    const toggleMenu = (): void => {
+    console.log("toggleMenu fired, current state:", menuOpen);
+    setMenuOpen((prev) => !prev);
+  };
 
   useEffect((): (() => void) => {
     const handleScroll = (): void => {
@@ -23,6 +28,18 @@ const Nav: React.FC = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Lock body scroll while the mobile menu is open
+  useEffect((): (() => void) => {
+    if (menuOpen) {
+      const original = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = original;
+      };
+    }
+    return () => {};
+  }, [menuOpen]);
 
   return (
     <header
@@ -71,12 +88,14 @@ const Nav: React.FC = () => {
         </ul>
 
         {/* Mobile Hamburger */}
-        <div className="lg:hidden z-50">
+        <div className="lg:hidden relative z-[60]">
           <button
+            type="button"
             onClick={toggleMenu}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
-            className="flex flex-col gap-[5px] w-8 h-8 items-center justify-center"
+            aria-controls="mobile-menu"
+            className="relative flex flex-col gap-[5px] w-8 h-8 items-center justify-center"
           >
             <span
               className={`h-[2px] w-6 bg-black transition-transform duration-300 ${
@@ -101,11 +120,12 @@ const Nav: React.FC = () => {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
+            id="mobile-menu"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed top-0 right-0 h-full w-2/4 max-w-xs bg-white z-40 shadow-lg"
+            className="fixed top-0 right-0 h-full w-2/4 max-w-xs bg-white z-50 shadow-lg"
           >
             <div className="p-6 pt-24 flex flex-col gap-6 font-[lato] font-semibold">
               {navLinks.map(({ href, label }) => (
@@ -130,7 +150,7 @@ const Nav: React.FC = () => {
       {/* Overlay */}
       {menuOpen && (
         <div
-          className="fixed inset-0 bg-black/30 z-30 lg:hidden"
+          className="fixed inset-0 bg-black/30 z-40 lg:hidden"
           onClick={closeMenu}
         />
       )}

@@ -12,7 +12,9 @@ import TransformationPath from "@/components/TransformationPath";
 import WorkSpace from "@/components/WorkSpace";
 import Image from "next/image";
 
+
 export default function HomePage() {
+
   return (
     <div className="w-full overflow-x-hidden">
       <Header />
