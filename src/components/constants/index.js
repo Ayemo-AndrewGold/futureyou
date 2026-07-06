@@ -25,18 +25,18 @@ export const coachCards = [
   {
     id: 1,
     title: 'Loan and Business Support',
-    text: 'Get access to the capital, tools, and investor connections you need to grow your business — from micro to scalable.',
+    text: 'Personalized guidance to help individuals and leaders unlock their full potential.',
     imgSet: {
       mobile: coachingMentorship_mobile,
       tablet: coachingMentorship_tablet,
       desktop: coachingMentorship_desktop,
     },
-    label: 'Loan'
+    label: 'Coaching'
   },
   {
     id: 2,
-    title: 'Coaching & Mentorship',
-    text: 'Be matched with a coach who understands your journey.',
+    title: 'Coaching',
+    text: 'Personalized guidance to help individuals and leaders unlock their full potential.',
     imgSet: {
       mobile: coachingMentorship_mobile,
       tablet: coachingMentorship_tablet,
@@ -47,7 +47,7 @@ export const coachCards = [
   {
     id: 3,
     title: 'Growth Programs',
-    text: 'Join our expert-led programs designed to accelerate your personal and business goals with practical guidance.',
+    text: 'Practical business strategies that drive growth, efficiency, and long-term success.',
     imgSet: {
       mobile: coachingMentorship_mobile,
       tablet: coachingMentorship_tablet,

@@ -5,10 +5,10 @@ import Link from "next/link";
 import { Play } from "lucide-react";
 
 const checklistItems = [
-  "Real stories from real people",
-  "Clear direction, not confusion",
-  "Growth backed by mentorship & strategy",
-  "Practical guidance you can act on immediately",
+  "Personalized Coaching",
+  "Strategic Business Consulting",
+  "Flexible Growth Capital",
+  "Holistic Support for Lasting Success",
 ];
 
 const About = () => {
@@ -101,14 +101,14 @@ const About = () => {
       >
         <div>
           <h3 className="font-lato font-extrabold text-[1.8rem] sm:text-[2.2rem] text-[#0E0E1D] leading-tight tracking-tight mb-4">
-            Real Stories.{" "}
-            <span className="text-[#293C97]">Real Growth.</span>
+            A Vision for Lasting{" "}
+            <span className="text-[#293C97]">Transformation.</span>
+            
           </h3>
 
           <p className="font-montserrat text-base text-[#555] leading-relaxed">
-            FutureYou helps people gain clarity, build confidence, and take
-            intentional steps toward careers, businesses, and lives they're
-            proud of.
+            Future You exists to help individuals and businesses move beyond limitations through 
+            coaching, consulting, and growth capital creating meaningful, lasting transformation.
           </p>
         </div>
 
@@ -133,14 +133,14 @@ const About = () => {
             href="/start-journey"
             className="inline-flex items-center gap-2 bg-[#293C97] hover:bg-[#1e2d85] text-white text-sm font-semibold px-6 py-3 rounded-lg transition-all duration-200 shadow-sm shadow-[#293C97]/20"
           >
-            Start your journey
+            Get Started Today
             <span>→</span>
           </Link>
           <Link
             href="/about-us"
             className="inline-flex items-center gap-2 text-[#293C97] border-[1.5px] border-[#293C97] hover:bg-[#293C97] hover:text-white text-sm font-semibold px-6 py-3 rounded-lg transition-all duration-200"
           >
-            Learn more
+            Discover More
           </Link>
         </div>
       </div>

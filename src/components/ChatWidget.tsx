@@ -76,12 +76,12 @@ export default function ChatWidget() {
   };
 
   return (
-    <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
+    <div className="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-3 pointer-events-none">
 
       {/* Chat panel */}
       {open && (
         <div
-          className="w-[340px] max-w-[90vw] h-[480px] max-h-[70vh] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col border animate-chatPop origin-bottom-right"
+          className="w-[340px] max-w-[90vw] h-[480px] max-h-[70vh] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col border animate-chatPop origin-bottom-right pointer-events-auto"
           style={{ borderColor: BORDER }}
         >
           {/* Header */}
@@ -232,7 +232,7 @@ export default function ChatWidget() {
       <button
         onClick={() => setOpen((prev) => !prev)}
         aria-label={open ? "Close chat" : "Open chat"}
-        className="relative w-14 h-14 rounded-full flex items-center justify-center text-white shadow-xl hover:scale-105 active:scale-95 transition-transform duration-200"
+        className="relative w-14 h-14 rounded-full flex items-center justify-center text-white shadow-xl hover:scale-105 active:scale-95 transition-transform duration-200 pointer-events-auto"
         style={{
           backgroundColor: open ? PRIMARY_DARK : PRIMARY,
         }}

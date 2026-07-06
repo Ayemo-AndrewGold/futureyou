@@ -1,4 +1,4 @@
-"use client";
+
 import Blog from "@/components/Blog";
 import Community from "@/components/Community";
 import Footer from "@/components/Footer";

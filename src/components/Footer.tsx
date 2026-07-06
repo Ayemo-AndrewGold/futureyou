@@ -66,7 +66,8 @@ const Footer = () => {
             Newsletter
           </h1>
           <p className="text-[14px] mb-3 mt-3">
-            Get transformation tips, success stories, funding opportunities, and exclusive content delivered to your inbox.
+            Get practical insights, transformation stories, expert advice, and updates on coaching, 
+            consulting, and growth capital delivered straight to your inbox.
           </p>
 
           <div className="flex justify-between items-center border border-[#293C97] rounded-lg p-2 w-full">

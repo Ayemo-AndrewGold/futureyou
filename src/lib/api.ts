@@ -2,6 +2,14 @@ import { PostDetail, PostListItem } from "./types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
+// if (!API_URL) {
+//   throw new Error("NEXT_PUBLIC_API_URL is not defined in .env.local");
+// }
+
+// console.log("API URL:", API_URL);
+
+// console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
+
 export async function getPosts(): Promise<PostListItem[]> {
   const res = await fetch(`${API_URL}/api/blog/posts/`, {
     next: { revalidate: 60 }, // ISR: refetch at most once a minute

@@ -1,3 +1,5 @@
+'use client';
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -5,7 +7,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative w-full min-h-screen flex items-center overflow-hidden"
+      className="relative w-full min-h-screen flex items-center overflow-hidden isolate"
     >
       {/* Subtle background accent */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#f5f6ff] via-white to-white -z-10" />
@@ -17,28 +19,31 @@ const Hero = () => {
         <div
           className="order-2 xl:order-1 w-full xl:w-1/2 flex flex-col items-start gap-6"
           data-aos="fade-right"
+          data-aos-disable-interaction="true"
           data-aos-delay="100"
         >
           {/* Eyebrow pill */}
           <div className="flex items-center gap-2 bg-[#EEF0FA] border border-[#c7cef0] text-[#293C97] text-xs font-semibold px-4 py-1.5 rounded-full tracking-wide">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#293C97] inline-block" />
-            ✨Coaching • Consulting • Growth Capital
+            <span className="w-1.5 h-1.5  rounded-full bg-[#293C97] inline-block" />
+            Coaching • Consulting • Capital Solutions
           </div>
 
           {/* Headline */}
           <div>
             <h1 className="font-lato font-extrabold text-[2.6rem] sm:text-[3.2rem] lg:text-[3.8rem] text-[#0E0E1D] leading-[1.08] tracking-tight">
-              See Who You
+              Build the Future
             </h1>
             <h1 className="font-lato font-extrabold text-[2.6rem] sm:text-[3.2rem] lg:text-[3.8rem] leading-[1.08] tracking-tight">
-              Can{" "}
-              <span className="text-[#293C97]">Become.</span>
+              You{" "}
+              <span className="text-[#293C97]">Deserve.</span>
             </h1>
           </div>
 
           {/* Body */}
           <p className="font-montserrat text-base sm:text-lg text-[#555] leading-relaxed max-w-[480px]">
-            We help individuals and businesses gain clarity, build winning strategies, and access the capital they need to create lasting transformation
+            At FutureYou, we empower individuals, professionals, and businesses through expert coaching, 
+            strategic consulting, and growth capital, helping you unlock your potential and 
+            build lasting success
           </p>
 
           {/* CTAs */}
@@ -48,7 +53,7 @@ const Hero = () => {
               aria-label="Start your journey with FutureYou"
               className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 bg-[#293C97] hover:bg-[#1e2d85] text-white text-sm font-semibold px-6 py-3.5 rounded-lg transition-all duration-200 whitespace-nowrap shadow-sm shadow-[#293C97]/30"
             >
-              Start your journey
+              Get Started Today
               <span className="text-base">→</span>
             </Link>
             <Link
@@ -56,12 +61,12 @@ const Hero = () => {
               aria-label="Apply for Business Support"
               className="flex-1 sm:flex-initial inline-flex items-center justify-center bg-white hover:bg-gray-50 text-[#293C97] text-sm font-semibold px-6 py-3.5 rounded-lg border-[1.5px] border-[#293C97] transition-all duration-200 whitespace-nowrap"
             >
-              Apply for Loan
+              See How We Help
             </Link>
           </div>
 
           {/* Social proof stats */}
-          <div className="flex items-center gap-6 pt-2">
+          <div className="flex hidden items-center gap-6 pt-2">
             {[
               { value: "500+", label: "Lives transformed" },
               { value: "98%", label: "Client satisfaction" },
@@ -96,12 +101,12 @@ const Hero = () => {
 
           {/* Floating badge — bottom left */}
           <div className="absolute bottom-3 sm:bottom-4 left-[-20px] sm:left-8 xl:-left-4 z-10 bg-white border border-gray-100 rounded-xl px-1 sm:px-3 sm:py-1 py-1 sm:py-4 flex items-center gap-3 shadow-md">
-            <div className="w-9 h-9 rounded-full bg-[#EEF0FA] flex items-center justify-center shrink-0">
+            <div className="sm:w-9 sm:h-9 w-8 h-8 rounded-full bg-[#EEF0FA] flex items-center justify-center shrink-0">
               <span className="text-base">⭐</span>
             </div>
             <div>
               <p className="text-xs font-bold text-[#0E0E1D] leading-none">Top rated coach</p>
-              <p className="text-[11px] text-[#888] mt-0.5">★★★★★ 5.0</p>
+              {/* <p className="text-[11px] text-[#888] mt-0.5">Future-Focused Solutions 5.0</p> */}
             </div>
           </div>
 

@@ -66,7 +66,7 @@ const TransformPathCard = () => {
               href="/coaching"
               className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#293C97] mt-auto group-hover:gap-3 transition-all duration-200"
             >
-              Learn more
+              Start Your Journey
               <span className="text-base transition-transform duration-200 group-hover:translate-x-1">→</span>
             </Link>
           </div>

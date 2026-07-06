@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import { Lato, Montserrat } from "next/font/google";
 import ChatWidget from "@/components/ChatWidget";
+import AOSInit from "@/components/AosInit";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -42,6 +43,7 @@ export default function RootLayout({
           position="top-right" 
           toastOptions={{ duration: 3000 }} 
         />
+        <AOSInit />
         <ChatWidget />
       </body>
     </html>

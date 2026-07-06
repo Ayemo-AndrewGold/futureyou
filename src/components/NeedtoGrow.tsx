@@ -40,10 +40,10 @@ const NeedToGrow = () => {
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
         <div>
           <p className="text-sm font-semibold text-[#293C97] uppercase tracking-widest mb-2">
-            Our Services
+           About Future You
           </p>
           <h2 className="font-lato font-bold text-3xl sm:text-4xl text-[#0E0E1D] leading-tight max-w-lg">
-            Everything you need to grow <br className="hidden sm:block" /> in one place.
+            Helping You Become the Future <br className="hidden sm:block" /> Version of Yourself.
           </h2>
         </div>
 

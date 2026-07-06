@@ -56,23 +56,23 @@ const StartJourneyNow = () => {
             </div>
 
             <h2 className="font-lato font-extrabold text-[1.7rem] sm:text-[2.2rem] lg:text-[2.6rem] text-white leading-[1.1] tracking-tight">
-              Your journey to transformation{" "}
-              <span className="text-blue-300">starts now.</span>
+              Your Future Starts{" "}
+              <span className="text-blue-300">with One Decision.</span>
+               
             </h2>
 
             <p className="font-montserrat text-sm sm:text-base text-white/75 leading-relaxed max-w-lg">
-              Whether you're rebuilding your life, growing your business, or
-              discovering your next chapter, FutureYou is here to walk that
-              path with you.
+              Whether you're pursuing personal growth, building a business, or seeking your next 
+              opportunity, Future You is here to guide you every step of the way.
             </p>
 
             {/* Trust signals */}
-            <div className="flex flex-wrap items-center gap-4 mt-1">
+            {/* <div className="flex flex-wrap items-center gap-4 mt-1">
               <div className="flex items-center gap-2">
                 <span className="text-yellow-400 text-xs">★★★★★</span>
                 <span className="text-white/60 text-xs">500+ lives transformed</span>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Right: CTAs */}

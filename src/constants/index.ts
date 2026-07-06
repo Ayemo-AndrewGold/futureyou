@@ -49,10 +49,12 @@ import {
 
 export const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/startjourney", label: "Apply for Loan" },
-  { href: "/coaching", label: "Coaching & Consulting" },
-  { href: "/aboutus", label: "About Us" },
-  { href: "/career", label: "Career" },
+  { href: "/startjourney", label: "Services" },
+  // { href: "/coaching", label: "Coaching" },
+  { href: "/blog", label: "Blog" },
+  { href: "/aboutus", label: "About" },
+  { href: "/contactus", label: "Contact" },
+  { href: "/career", label: "Careers" },
 ];
 
 /* =========================
@@ -61,23 +63,23 @@ export const navLinks = [
 
 export const coachCards = [
   {
-    id: "loan",
-    title: "Loan and Business Support",
-    text: "Get access to capital, tools, and investor connections.",
+    id: "Coaching",
+    title: "COACHING",
+    text: "Personalized guidance to help individuals and leaders unlock their full potential.",
     img: loanImg,
     label: "Loan",
   },
   {
-    id: "mentorship",
-    title: "Coaching & Mentorship",
-    text: "Be matched with a coach who understands your journey.",
+    id: "Consulting",
+    title: "CONSULTING",
+    text: "Practical business strategies that drive growth, efficiency, and long-term success.",
     img: mentorship,
     label: "Mentorship",
   },
   {
-    id: "growth",
-    title: "Growth Programs",
-    text: "Expert-led programs designed to accelerate growth.",
+    id: "Growth Capital",
+    title: "GROWTH CAPITAL",
+    text: "Flexible funding designed to help businesses grow with confidence.",
     img: growth,
     label: "Growth Support",
   },
@@ -91,38 +93,38 @@ export const transformCards = [
   {
     id: 1,
     img: finEmpowered,
-    title: "Underfunded → Financially Empowered",
-    text: "Access soft loans, investor tools, and expert coaching.",
+    title: "Business Growth → Financial Success",
+    text: "Access strategic coaching, business consulting, and growth capital to expand your business with confidence",
   },
   {
     id: 2,
     img: joblessEmp,
     title: "Jobless → Employed",
-    text: "Find clarity, build skills, and land the right job.",
+    text: "Discover your strengths, build career-ready skills, and prepare for meaningful employment opportunities.",
   },
   {
     id: 3,
     img: empSelfEmp,
     title: "Employed → Self-Employed",
-    text: "Start and grow your own business with support.",
+    text: "Turn your expertise into a thriving business with mentorship, strategic planning, and funding support.",
   },
   {
     id: 4,
     img: addictRestored,
-    title: "Addiction → Restored",
-    text: "Healing, accountability, and dignity for a new start.",
+    title: "Stuck → Purpose-Driven",
+    text: "Overcome personal barriers, gain clarity, and move forward with confidence through transformational coaching.",
   },
   {
     id: 5,
     img: ideaInvest,
     title: "Idea → Investor-Ready Startup",
-    text: "Validate ideas and meet the right investors.",
+    text: "Refine your business idea, build a scalable model, and prepare to attract funding and investment opportunities.",
   },
   {
     id: 6,
     img: singMarried,
-    title: "Personal Growth & Relationships",
-    text: "Build emotional and relational maturity.",
+    title: "Potential → Purpose",
+    text: "Develop the mindset, leadership, and confidence needed to create meaningful impact in every area of life.",
   },
 ];
 
@@ -134,31 +136,31 @@ export const StartJourneyCards = [
   {
     id: "loan",
     img: journeyIcon1,
-    title: "Loan & Business Support",
-    text: "loans, grants, and coaching to grow your business.",
+    title: "Coaching",
+    text: "Build confidence, gain clarity, and unlock your full potential through personalized coaching and mentorship.",
     pathUpClose: "/path-up-close-business",
   },
   {
     id: "growth",
     img: leafIcon,
-    title: "Personal Growth",
-    text: "Heal, grow, and become your best self.",
+    title: "Growth Capital",
+    text: "Access flexible funding designed to help individuals and businesses implement their next stage of growth.",
     pathUpClose: "/path-up-close-growth",
   },
   {
     id: "recovery",
     img: journeyIcon3,
-    title: "Special Recovery",
-    text: "Deep coaching and healing support.",
+    title: "Transformation Pathways",
+    text: "Explore tailored pathways for career growth, entrepreneurship, leadership, and personal transformation.",
     pathUpClose: "/path-up-close-recovery",
   },
-  {
-    id: "career",
-    img: journeyIcon4,
-    title: "Career Change",
-    text: "Gain clarity and new career direction.",
-    pathUpClose: "/path-up-close-career",
-  },
+  // {
+  //   id: "career",
+  //   img: journeyIcon4,
+  //   title: "Career Change",
+  //   text: "Gain clarity and new career direction.",
+  //   pathUpClose: "/path-up-close-career",
+  // },
 ];
 
 /* =========================
@@ -235,37 +237,36 @@ export const FutureYouJourneyCards = [
   {
     id: 1,
     img: whereHeaded,
-    title: 'Choose Where You’re Headed',
-    text: 'Whether you’re looking to rediscover your purpose, grow your business, break out of survival mode, or rewrite your life story entirely, the first step is choosing the path that reflects where you are and where you want to go.',
+    title: 'Choose Your Transformation Path',
+    text: "Select the journey that best matches your goals whether it's personal growth, career advancement, business expansion, or access to growth capital.",
     
   },
   {
     id: 2,
     img: shareStory,
     title: ' Share Your Story',
-    text: 'Take a few moments to tell us about yourself, where you are right now, what challenges you’re facing, and where you hope to be. This simple form helps us understand your story, so we can connect you with the right coach, the right tools, and the right opportunities tailored to your journey.',
+    text: "Tell us about your current situation, your goals, and the challenges you're facing. This helps us understand your needs and create the best path forward.",
     
   },
   {
     id: 3,
     img: matchedCoach,
     title: 'Get Matched with a Coach',
-    text: 'You won’t walk this journey alone. From the moment you sign up, you’ll be matched with a dedicated coach or mentor who understands your background, your struggles, and your vision.',
+    text: "You'll be paired with the right coach, consultant, or mentor who will guide you with personalized support throughout your transformation journey.",
     
   },
   {
     id: 4,
     img: applyRealSupport,
-    title: 'Apply for Real Support',
-    text: 'As you move through your journey completing coaching sessions, hitting personal milestones, or progressing through your learning path you begin to unlock real financial opportunities. Whether it’s a low-interest transformation loan, a small grant to support your recovery or startup.',
+    title: 'Access the Right Support',
+    text: "As you make progress, you'll gain access to the services that best fit your needs from expert consulting and coaching to growth capital, funding opportunities, and strategic business support.",
     
   },
   {
     id: 5,
     img: earnFuture,
-    title: 'Earn Your Future You Badge',
-    text: 'At the end of your journey, you won’t just walk away with new knowledge or funding you’ll emerge with a deeper sense of identity, purpose, and direction. You’ll receive a personalized ‘Future You’ certification that validates your growth, your resilience, and your commitment to change.',
-    
+    title: 'Become Your Future You',
+    text: "Complete your journey with greater confidence, stronger skills, clearer direction, and the recognition of your growth. Your transformation doesn't end here it becomes the foundation for your future.",
   },
 ]
 
@@ -274,21 +275,21 @@ export const WhyWeExistCard = [
    {
     id: 1,
     img : ExistIcon,
-    text: 'To guide people through intentional transformation with truth, clarity, and consistent support.',
+    text: 'To empower individuals and businesses with the clarity, strategy, and support they need to become the best version of themselves.',
 
   },
  
   {
     id: 2,
     img : ExistIcon,
-    text: 'A world where people don’t stay stuck in their past, but rise into purpose',
+    text: 'To build a future where people, businesses, and communities thrive through purposeful growth and lasting transformation.',
 
   },
 
   {
     id: 3,
     img: ExistIcon,
-    text: 'We will walk with you — from wherever you are to who you’re meant to be',
+    text: 'We\'ll walk alongside you with expert guidance, practical solutions, and unwavering support every step of your transformation journey.',
   },
 ]
 
@@ -296,19 +297,19 @@ export const CommunityCards = [
   {
     img: whereHeaded,
     title: 'Choose Where You’re Headed',
-    text: 'Our community isn’t just about conversation. It’s about accountability, encouragement, and honest connection. Whether you’re overcoming personal challenges or scaling your startup, you’re never doing it alone',
+    text: "Through meaningful connections, mentorship, coaching sessions, networking opportunities, and shared experiences, you'll find the encouragement, accountability, and practical support needed to keep moving forward. Whether you're building a business, advancing your career, or pursuing personal growth, you'll always have a community walking beside you.",
     
   },
   {
     img: shareStory,
     title: ' Share Your Story',
-    text: 'These milestones highlight years of commitment to academic support, collaborative research, technical exhibitions, leadership development, and social impact. Whether it’s awards won, partnerships formed, or departments united under one banner, we are more than an association we are a force shaping the future of Development',
+    text: "Every success story strengthens our community. Every milestone inspires someone else to begin their own journey. Together, we're creating a network of people who are transforming their lives, building stronger businesses, and making lasting impact in their communities.",
 
   },
   {
     img: matchedCoach,
     title: 'Get Matched with a Coach',
-    text: 'As we continue to break new ground, these numbers will only grow and so will our legacy',
+    text: "Every success story strengthens our community. Every milestone inspires someone else to begin their own journey. Together, we're creating a network of people who are transforming their lives, building stronger businesses, and making lasting impact in their communities.",
     
   },
 ]
@@ -430,22 +431,21 @@ export const AboutUsHelpTransform = [
   {
     id: 1,
     img: whereHeaded,
-    title: 'Guidance Weekly coaching, clear steps',
-    text: 'Transformation begins with direction. Through weekly coaching sessions and structured pathways, you’ll never have to wonder what to do next. We break big goals into small, achievable steps and walk with you as you take each one',
+    title: 'Coaching',
+    text: 'Gain clarity, build confidence, and achieve your goals through one-on-one coaching tailored to your journey.',
     
   },
   {
     id: 2,
     img: shareStory,
-    title: ' Support A real coach, real people, real conversations',
-    text: 'You’re not doing this alone. Whether you’re recovering, rebuilding, or starting fresh, you’ll have someone in your corner a coach who listens, a community that gets it, and spaces where your voice matters. Transformation needs truth, and truth needs trust.',
-    
+    title: 'Consulting',
+    text: 'Strategic business, financial, and HR consulting designed to help you make better decisions and scale effectively.'
   },
   {
     id: 3,
     img: matchedCoach,
-    title: 'Get Matched with a Coach',
-    text: 'You won’t walk this journey alone. From the moment you sign up, you’ll be matched with a dedicated coach or mentor who understands your background, your struggles, and your vision.',
+    title: 'Growth Capital',
+    text: 'Access flexible funding solutions that help you implement your plans and accelerate sustainable growth.',
     
   },
 ]

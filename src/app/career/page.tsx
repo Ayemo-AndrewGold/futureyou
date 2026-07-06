@@ -1,7 +1,7 @@
 "use client";
 
 import Footer from "@/components/Footer";
-import Nav from "@/components/Nav";
+import Header from "@/components/Header";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -36,7 +36,7 @@ const Career = () => {
 
   return (
     <div className="w-full min-h-screen bg-white overflow-x-hidden">
-      <Nav />
+      <Header />
 
       {/* ── Hero header ── */}
       <section className="w-full max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16 pt-28 pb-6">

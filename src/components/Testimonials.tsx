@@ -17,17 +17,17 @@ const Testimonials = () => {
         {/* Eyebrow pill */}
         <div className="inline-flex items-center gap-2 bg-[#EEF0FA] border border-[#c7cef0] text-[#293C97] text-xs font-semibold px-4 py-1.5 rounded-full tracking-wide mb-5">
           <span className="w-1.5 h-1.5 rounded-full bg-[#293C97] inline-block" />
-          Our story
+          Why Future You
         </div>
 
         <h2 className="font-lato font-extrabold text-[2rem] sm:text-[2.6rem] lg:text-[3rem] text-[#0E0E1D] leading-[1.1] tracking-tight mb-4">
-          Why People Trust{" "}
-          <span className="text-[#293C97]">FutureYou</span>
+          Transformation You Can See.{" "} <br></br>
+          <span className="text-[#293C97]">Results You Can Trust.</span>
         </h2>
 
         <p className="font-montserrat text-base sm:text-lg text-[#555] leading-relaxed max-w-2xl">
-          This isn't motivation it's transformation. Real people, real
-          results, real change.
+          We help individuals and businesses move from potential to progress through expert 
+          coaching, strategic consulting, and growth capital.
         </p>
       </div>
 

@@ -58,83 +58,105 @@ export default function PostInteractions({
   };
 
   return (
-    <div className="mt-12 border-t border-gray-100 pt-8">
-      {/* Reactions */}
-      <div className="flex gap-3 mb-10">
-        {EMOJIS.map((emoji) => (
-          <button
-            key={emoji}
-            onClick={() => handleReact(emoji)}
-            className={`flex items-center gap-1 px-3 py-1.5 rounded-full border text-sm transition-colors ${
-              userReaction === emoji
-                ? 'bg-[#293C97] text-white border-[#293C97]'
-                : 'bg-white text-[#333] border-gray-200 hover:border-[#293C97]'
-            }`}
-          >
-            <span>{emoji}</span>
-            <span>{reactionCounts[emoji] || 0}</span>
-          </button>
-        ))}
-      </div>
-
-      {/* Comments list */}
-      <h2 className="font-lato font-bold text-xl mb-4">Comments ({comments.length})</h2>
-      <div className="flex flex-col gap-4 mb-10">
-        {comments.length === 0 && (
-          <p className="text-sm text-[#888]">No comments yet. Be the first to share your thoughts.</p>
-        )}
-        {comments.map((c) => (
-          <div key={c.id} className="border border-gray-100 rounded-xl p-4">
-            <p className="font-semibold text-sm text-[#0E0E1D]">{c.author_name}</p>
-            <p className="text-sm text-[#666] mt-1">{c.content}</p>
+    <div className=" space-y-8 ">
+      <section className="rounded-[1.5rem] border border-gray-100 bg-[#FAFBFF] p-5 shadow-sm sm:p-6">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p className="text-sm font-semibold text-[#293C97]">How did this article feel?</p>
+            <p className="text-sm text-[#6b7280]">Choose a reaction to let the author know.</p>
           </div>
-        ))}
-      </div>
+          <div className="flex flex-wrap gap-2">
+            {EMOJIS.map((emoji) => (
+              <button
+                key={emoji}
+                onClick={() => handleReact(emoji)}
+                className={`flex items-center gap-2 rounded-full border px-3.5 py-2 text-sm font-medium transition-all ${
+                  userReaction === emoji
+                    ? 'border-[#293C97] bg-[#293C97] text-white shadow-sm'
+                    : 'border-gray-200 bg-white text-[#333] hover:border-[#293C97] hover:text-[#293C97]'
+                }`}
+              >
+                <span className="text-base">{emoji}</span>
+                <span>{reactionCounts[emoji] || 0}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      {/* Comment form */}
-      <h2 className="font-lato font-bold text-xl mb-4">Leave a comment</h2>
-      {submitted ? (
-        <p className="text-sm text-green-700 bg-green-50 border border-green-200 rounded-xl p-4">
-          Thanks! Your comment is awaiting moderation and will appear once approved.
-        </p>
-      ) : (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-3 max-w-md">
-          <input
-            type="text"
-            placeholder="Your name"
-            required
-            maxLength={100}
-            value={form.author_name}
-            onChange={(e) => setForm({ ...form, author_name: e.target.value })}
-            className="border border-gray-200 rounded-lg px-3 py-2 text-sm"
-          />
-          <input
-            type="email"
-            placeholder="Your email (not shown publicly)"
-            required
-            value={form.author_email}
-            onChange={(e) => setForm({ ...form, author_email: e.target.value })}
-            className="border border-gray-200 rounded-lg px-3 py-2 text-sm"
-          />
-          <textarea
-            placeholder="Your comment"
-            required
-            minLength={3}
-            rows={4}
-            value={form.content}
-            onChange={(e) => setForm({ ...form, content: e.target.value })}
-            className="border border-gray-200 rounded-lg px-3 py-2 text-sm"
-          />
-          {error && <p className="text-sm text-red-600">{error}</p>}
-          <button
-            type="submit"
-            disabled={submitting}
-            className="self-start bg-[#293C97] text-white text-sm font-semibold px-5 py-2 rounded-lg disabled:opacity-50"
-          >
-            {submitting ? 'Posting...' : 'Post Comment'}
-          </button>
-        </form>
-      )}
+      <section className="rounded-[1.5rem] border border-gray-100 bg-white p-5 shadow-sm sm:p-6">
+        <div className="mb-5 flex items-center justify-between">
+          <div>
+            <h2 className="font-lato text-xl font-bold text-[#0E0E1D]">Comments ({comments.length})</h2>
+            <p className="text-sm text-[#6b7280]">Join the conversation and share your perspective.</p>
+          </div>
+        </div>
+
+        <div className="mb-6 flex flex-col gap-3">
+          {comments.length === 0 && (
+            <div className="rounded-2xl border border-dashed border-gray-200 bg-[#FAFBFF] p-4 text-sm text-[#888]">
+              No comments yet. Be the first to share your thoughts.
+            </div>
+          )}
+          {comments.map((c) => (
+            <div key={c.id} className="rounded-2xl border border-gray-100 bg-[#FCFCFF] p-4">
+              <div className="mb-2 flex items-center gap-2">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#EEF0FA] text-sm font-semibold text-[#293C97]">
+                  {c.author_name.charAt(0).toUpperCase()}
+                </div>
+                <p className="font-semibold text-sm text-[#0E0E1D]">{c.author_name}</p>
+              </div>
+              <p className="text-sm leading-7 text-[#666]">{c.content}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="rounded-[1.25rem] border border-gray-100 bg-[#FAFBFF] p-4 sm:p-5">
+          <h3 className="mb-4 font-lato text-lg font-semibold text-[#0E0E1D]">Leave a comment</h3>
+          {submitted ? (
+            <p className="rounded-2xl border border-green-200 bg-green-50 p-4 text-sm text-green-700">
+              Thanks! Your comment is awaiting moderation and will appear once approved.
+            </p>
+          ) : (
+            <form onSubmit={handleSubmit} className="grid gap-3 md:grid-cols-2">
+              <input
+                type="text"
+                placeholder="Your name"
+                required
+                maxLength={100}
+                value={form.author_name}
+                onChange={(e) => setForm({ ...form, author_name: e.target.value })}
+                className="rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-sm text-[#111827] outline-none transition focus:border-[#293C97] focus:ring-2 focus:ring-[#293C97]/10"
+              />
+              <input
+                type="email"
+                placeholder="Your email"
+                required
+                value={form.author_email}
+                onChange={(e) => setForm({ ...form, author_email: e.target.value })}
+                className="rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-sm text-[#111827] outline-none transition focus:border-[#293C97] focus:ring-2 focus:ring-[#293C97]/10"
+              />
+              <textarea
+                placeholder="Write your comment"
+                required
+                minLength={3}
+                rows={4}
+                value={form.content}
+                onChange={(e) => setForm({ ...form, content: e.target.value })}
+                className="md:col-span-2 rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-sm text-[#111827] outline-none transition focus:border-[#293C97] focus:ring-2 focus:ring-[#293C97]/10"
+              />
+              {error && <p className="md:col-span-2 text-sm text-red-600">{error}</p>}
+              <button
+                type="submit"
+                disabled={submitting}
+                className="md:col-span-2 inline-flex w-fit items-center justify-center rounded-full bg-[#293C97] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#1f2f79] disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {submitting ? 'Posting...' : 'Post Comment'}
+              </button>
+            </form>
+          )}
+        </div>
+      </section>
     </div>
   );
 }

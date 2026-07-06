@@ -74,32 +74,33 @@ const StartJourneyPage: React.FC = () => {
           data-aos-delay="50"
         >
           <h1 className="font-lato font-extrabold text-3xl sm:text-4xl lg:text-[2.8rem] text-[#0E0E1D] leading-tight tracking-tight mb-4">
-            What kind of transformation{" "}
-            <span className="text-[#293C97]">are you seeking?</span>
+            Our{" "}
+            <span className="text-[#293C97]">Services</span>
+             
           </h1>
           <p className="font-montserrat text-base sm:text-lg text-[#555] leading-relaxed">
-            Choose the journey that reflects where you are now. We'll guide
-            you from there.
+           Every transformation is unique. Whether you're growing personally, strengthening 
+           your business, or seeking funding, Future You has the right support for your journey.
           </p>
         </div>
 
         {/* ── Cards ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full mb-8">
-          {StartJourneyCards.map((card, index) => {
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-[980px] mb-8 justify-center mx-auto">
+          {StartJourneyCards.slice(0, 3).map((card, index) => {
             const isSelected = selectedCard?.title === card.title;
 
             return (
               <button
                 key={card.id ?? index}
                 type="button"
+                // data-aos="fade-up"
+                // data-aos-delay={`${index * 60}`}
                 onClick={() =>
                   setSelectedCard({
                     title: card.title,
                     pathUpClose: card.pathUpClose,
                   })
                 }
-                data-aos="fade-up"
-                data-aos-delay={index * 80}
                 className={`relative text-left rounded-2xl p-6 flex flex-col items-start gap-4 transition-all duration-200 border ${
                   isSelected
                     ? "bg-white border-[#293C97] shadow-lg shadow-[#293C97]/10 -translate-y-1"
@@ -146,7 +147,7 @@ const StartJourneyPage: React.FC = () => {
         </div>
 
         {/* ── Selection hint ── */}
-        <div className="mb-8 h-7 flex items-center justify-center">
+        <div className="mb-4 h-7 flex items-center justify-center">
           {selectedCard ? (
             <span className="inline-flex items-center gap-2 text-xs font-semibold text-[#293C97] bg-[#EEF0FA] border border-[#c7cef0] px-4 py-1.5 rounded-full">
               <span className="w-1.5 h-1.5 rounded-full bg-[#293C97] inline-block" />

@@ -8,7 +8,7 @@ const AboutUsHelpTransformComponent = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="w-full max-w-[1440px] mx-auto flex flex-col md:flex-row gap-12 py-16 px-4 sm:px-8">
+    <section className="w-full max-w-[1440px] mx-auto flex flex-col md:flex-row gap-12 px-4 sm:px-8">
       {/* Left Side with IDs and Text */}
       <div className="w-full md:w-1/2 flex flex-col gap-10">
         {AboutUsHelpTransform.map(({ id, title, text }, index) => (

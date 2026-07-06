@@ -15,20 +15,21 @@ const FutureYouJourney = () => {
         {/* Eyebrow pill — matches site design language */}
         <div className="inline-flex items-center gap-2 bg-[#EEF0FA] border border-[#c7cef0] text-[#293C97] text-xs font-semibold px-4 py-1.5 rounded-full tracking-wide mb-5">
           <span className="w-1.5 h-1.5 rounded-full bg-[#293C97] inline-block" />
-          How it works
+          How it Works
         </div>
 
         <h2
           id="future-you-journey-heading"
           className="font-lato font-extrabold text-[2rem] sm:text-[2.6rem] lg:text-[3rem] text-[#0E0E1D] leading-[1.1] tracking-tight mb-4"
         >
-          How the FutureYou{" "}
-          <span className="text-[#293C97]">Journey Works</span>
+          Five Simple Steps to Your{" "}
+          <span className="text-[#293C97]">Future You</span>
+         
         </h2>
 
         <p className="font-montserrat text-base sm:text-lg text-[#555] leading-relaxed max-w-2xl">
-          Transformation doesn't have to be overwhelming. Here's how we help
-          you grow one step at a time.
+          We make transformation simple. From your first conversation to achieving your goals, 
+          our step-by-step approach provides the guidance, strategy, and support you need to succeed.
         </p>
       </div>
 

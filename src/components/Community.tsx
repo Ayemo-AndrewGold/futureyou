@@ -18,14 +18,14 @@ const Community = () => {
         </div>
 
         <h2 className="font-lato font-extrabold text-[2rem] sm:text-[2.6rem] lg:text-[3rem] text-[#0E0E1D] leading-[1.1] tracking-tight mb-4">
-          Join a Community of People{" "}
-          <span className="text-[#293C97]">Just Like You</span>
+          Grow Together.{" "}
+          <span className="text-[#293C97]">Succeed Together.</span>
         </h2>
 
         <p className="font-montserrat text-base sm:text-lg text-[#555] leading-relaxed max-w-2xl">
-          Transformation doesn't happen in isolation. We've built a thriving
-          support system of peers, mentors, and success stories you can grow
-          with and grow into.
+          At Future You, transformation is more than a personal journey, it's a shared experience. 
+          Our community brings together individuals, entrepreneurs, professionals, and leaders who 
+          are committed to learning, growing, and helping one another succeed.
         </p>
       </div>
 

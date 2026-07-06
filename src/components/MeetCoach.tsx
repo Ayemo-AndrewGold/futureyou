@@ -57,9 +57,10 @@ const MeetCoach: React.FC = () => {
             {/* Title row with accent line */}
             <div className="flex items-center gap-3">
               <span className="block h-[2px] w-8 bg-[#293C97] rounded-full flex-shrink-0" />
-              <h3 className="font-lato font-semibold text-[1.05rem] text-[#0E0E1D] leading-snug">
+              <h3 className="font-lato font-bold text-[1.05rem] text-[#0E0E1D] leading-snug">
                 {title}
               </h3>
+              <span className="block h-[2px] w-8 bg-[#293C97] rounded-full flex-shrink-0" />
             </div>
 
             {/* Description */}
@@ -76,7 +77,7 @@ const MeetCoach: React.FC = () => {
                   text-white text-sm font-semibold
                   tracking-wide transition-colors duration-200
                 ">
-                  Get Loan support
+                  Get Started Today
                 </button>
               </Link>
             </div>

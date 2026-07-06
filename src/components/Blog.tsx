@@ -1,5 +1,4 @@
-
-
+import React from "react";
 import Link from "next/link";
 import BlogCard from "./BlogCard";
 import { getPosts } from "@/lib/api";
@@ -26,13 +25,14 @@ const Blog = async () => {
           </div>
 
           <h2 className="font-lato font-extrabold text-[1.9rem] sm:text-[2.4rem] lg:text-[2.8rem] text-[#0E0E1D] leading-[1.1] tracking-tight mb-3 max-w-xl">
-            Insights, Stories &amp; Tools to{" "}
-            <span className="text-[#293C97]">Fuel Your Growth</span>
+            Insights That{" "}
+            <span className="text-[#293C97]">Inspire Growth.</span>
+             
           </h2>
 
           <p className="font-montserrat text-base text-[#555] leading-relaxed max-w-lg">
-            From personal breakthroughs to business funding wins real
-            stories, expert advice, and inspiration.
+            Discover practical advice, expert perspectives, and inspiring stories to help you grow 
+            personally, professionally, and in business.
           </p>
         </div>
 
@@ -41,7 +41,7 @@ const Blog = async () => {
             href="/blog"
             className="inline-flex items-center gap-2 bg-[#293C97] hover:bg-[#1e2d85] text-white text-sm font-semibold px-6 py-3 rounded-lg transition-all duration-200 whitespace-nowrap shadow-sm shadow-[#293C97]/20"
           >
-            See more stories
+            Explore All Articles
             <span>→</span>
           </Link>
         </div>

@@ -1,19 +1,26 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { navLinks } from "@/constants";
 
-const Nav: React.FC = () => {
+const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
 
-  const toggleMenu = () => setMenuOpen((prev) => !prev);
-  const closeMenu = () => setMenuOpen(false);
+  const toggleMenu = (): void => setMenuOpen((prev) => !prev);
+  const closeMenu = (): void => setMenuOpen(false);
+
+  // Needed because createPortal requires document.body, which isn't
+  // available during SSR
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -21,16 +28,35 @@ const Nav: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll while drawer is open
+  useEffect(() => {
+    if (menuOpen) {
+      const original = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = original;
+      };
+    }
+  }, [menuOpen]);
+
+  // Close drawer automatically if window is resized up to desktop width
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) setMenuOpen(false);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full z-[9999] transition-all duration-300 ${
         isScrolled
           ? "bg-white/90 backdrop-blur-md border-b border-gray-200/80 h-[60px]"
           : "bg-white h-[68px]"
       }`}
     >
       <nav className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 h-full flex items-center justify-between">
-
         {/* Logo */}
         <Link href="/" onClick={closeMenu} className="shrink-0 flex items-center">
           <Image
@@ -43,7 +69,7 @@ const Nav: React.FC = () => {
           />
         </Link>
 
-        {/* Desktop links — centered */}
+        {/* Desktop links */}
         <ul className="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
           {navLinks.map(({ href, label }: { href: string; label: string }) => {
             const isActive = pathname === href;
@@ -68,7 +94,7 @@ const Nav: React.FC = () => {
         </ul>
 
         {/* Desktop CTAs */}
-        <div className="hidden lg:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-3 shrink-0">
           <Link
             href="/contactus"
             className="text-[0.885rem] font-bold text-[#293C97] border-[1.5px] border-[#293C97] px-5 py-[8px] rounded-lg hover:bg-[#293C97] hover:text-white transition-all duration-200"
@@ -84,43 +110,60 @@ const Nav: React.FC = () => {
           </Link>
         </div>
 
-        {/* Hamburger */}
+        {/* Hamburger — forced to always stay on-screen and clickable */}
         <button
+          type="button"
           onClick={toggleMenu}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
-          className="lg:hidden flex flex-col justify-center items-center w-9 h-9 gap-[5px] rounded-md hover:bg-gray-100 transition-colors"
+          aria-controls="mobile-drawer"
+          className="lg:hidden relative z-[210] pointer-events-auto shrink-0 flex flex-col justify-center items-center w-9 h-9 gap-[5px] rounded-md hover:bg-gray-100 active:bg-gray-200 transition-colors"
         >
-          <span className={`w-5 h-[1.5px] bg-[#0E0E1D] rounded-full transition-all duration-300 origin-center ${menuOpen ? "rotate-45 translate-y-[6.5px]" : ""}`} />
-          <span className={`h-[1.5px] bg-[#0E0E1D] rounded-full transition-all duration-300 ${menuOpen ? "w-0 opacity-0" : "w-5 opacity-100"}`} />
-          <span className={`w-5 h-[1.5px] bg-[#0E0E1D] rounded-full transition-all duration-300 origin-center ${menuOpen ? "-rotate-45 -translate-y-[6.5px]" : ""}`} />
+          <span
+            className={`w-5 h-[1.5px] bg-[#0E0E1D] rounded-full transition-all duration-300 origin-center ${
+              menuOpen ? "rotate-45 translate-y-[6.5px]" : ""
+            }`}
+          />
+          <span
+            className={`h-[1.5px] bg-[#0E0E1D] rounded-full transition-all duration-300 ${
+              menuOpen ? "w-0 opacity-0" : "w-5 opacity-100"
+            }`}
+          />
+          <span
+            className={`w-5 h-[1.5px] bg-[#0E0E1D] rounded-full transition-all duration-300 origin-center ${
+              menuOpen ? "-rotate-45 -translate-y-[6.5px]" : ""
+            }`}
+          />
         </button>
       </nav>
 
-      {/* Mobile drawer */}
-      <AnimatePresence>
-        {menuOpen && (
+      {/* Overlay + Drawer are portaled to document.body so that NOTHING
+          this <header> does to itself (backdrop-blur, filter, transform,
+          etc.) can ever hijack their `fixed` positioning again. Without
+          this, adding backdrop-blur-md on scroll creates a new containing
+          block for these fixed children, collapsing them into the header's
+          own (60px-tall) box instead of the full viewport. */}
+      {mounted &&
+        createPortal(
           <>
             {/* Overlay */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-black/40 z-40 lg:hidden"
+            <div
               onClick={closeMenu}
+              aria-hidden="true"
+              className={`fixed inset-0 bg-black/40 z-[99998] lg:hidden transition-opacity duration-300 ease-out ${
+                menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+              }`}
             />
 
             {/* Drawer */}
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ duration: 0.25, ease: [0.32, 0.72, 0, 1] }}
-              className="fixed top-0 right-0 h-full w-[280px] bg-white z-50 flex flex-col shadow-2xl"
+            <div
+              id="mobile-drawer"
+              className={`fixed top-0 right-0 h-full w-[280px] bg-white z-[100000] flex flex-col shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] lg:hidden ${
+                menuOpen ? "translate-x-0" : "translate-x-full"
+              }`}
             >
               {/* Drawer header */}
-              <div className="flex items-center justify-between px-5 h-[68px] border-b border-gray-100 shrink-0">
+              <div className="flex items-center justify-between px-5 h-[61px] border-b border-gray-100 shrink-0">
                 <Image
                   src="/images/headerLogo.svg"
                   alt="FutureYou Limited"
@@ -129,6 +172,7 @@ const Nav: React.FC = () => {
                   className="object-contain"
                 />
                 <button
+                  type="button"
                   onClick={closeMenu}
                   aria-label="Close menu"
                   className="w-8 h-8 flex items-center justify-center rounded-md text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition-colors text-lg"
@@ -139,14 +183,19 @@ const Nav: React.FC = () => {
 
               {/* Nav links */}
               <div className="flex flex-col gap-1 px-4 pt-4 flex-1">
-                {navLinks.map(({ href, label }) => {
+                {navLinks.map(({ href, label }, index) => {
                   const isActive = pathname === href;
                   return (
                     <Link
                       key={label}
                       href={href}
                       onClick={closeMenu}
-                      className={`flex items-center text-[0.9rem] font-semibold py-[10px] px-3 rounded-lg transition-colors duration-150 ${
+                      style={{
+                        transitionDelay: menuOpen ? `${100 + index * 60}ms` : "0ms",
+                      }}
+                      className={`flex items-center text-[0.9rem] font-semibold py-[10px] px-3 rounded-lg transition-all duration-300 ease-out ${
+                        menuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
+                      } ${
                         isActive
                           ? "text-[#293C97] bg-[#EEF0FA]"
                           : "text-[#1a1a2e] hover:text-[#293C97] hover:bg-gray-50"
@@ -166,24 +215,38 @@ const Nav: React.FC = () => {
                 <Link
                   href="/contactus"
                   onClick={closeMenu}
-                  className="text-sm font-semibold text-center text-[#293C97] border-[1.5px] border-[#293C97] py-[10px] rounded-lg hover:bg-[#293C97] hover:text-white transition-all duration-200"
+                  style={{
+                    transitionDelay: menuOpen
+                      ? `${100 + navLinks.length * 60}ms`
+                      : "0ms",
+                  }}
+                  className={`text-sm font-semibold text-center text-[#293C97] border-[1.5px] border-[#293C97] py-[10px] rounded-lg hover:bg-[#293C97] hover:text-white transition-all duration-300 ease-out ${
+                    menuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
+                  }`}
                 >
                   Contact us
                 </Link>
                 <Link
                   href="/startjourney"
                   onClick={closeMenu}
-                  className="text-sm font-semibold text-center text-white bg-[#293C97] py-[10px] rounded-lg hover:bg-[#1e2d85] transition-all duration-200"
+                  style={{
+                    transitionDelay: menuOpen
+                      ? `${160 + navLinks.length * 60}ms`
+                      : "0ms",
+                  }}
+                  className={`text-sm font-semibold text-center text-white bg-[#293C97] py-[10px] rounded-lg hover:bg-[#1e2d85] transition-all duration-300 ease-out ${
+                    menuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
+                  }`}
                 >
                   Get started →
                 </Link>
               </div>
-            </motion.div>
-          </>
+            </div>
+          </>,
+          document.body
         )}
-      </AnimatePresence>
     </header>
   );
 };
 
-export default Nav;
+export default Header;
