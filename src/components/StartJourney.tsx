@@ -70,7 +70,7 @@ const StartJourneyPageCard = () => {
           className={`flex-1 min-w-[45%] py-3.5 px-4 ${
             selectedCard ? "cursor-pointer" : "cursor-not-allowed"
           }`}
-          disabled={!selectedCard}
+          isDisabled={!selectedCard}
           onClick={() => {
             if (!selectedCard) return;
 

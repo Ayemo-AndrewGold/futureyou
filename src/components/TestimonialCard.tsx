@@ -70,7 +70,7 @@ const TestimonialSlider: React.FC = () => {
             {/* Mobile */}
             <div className="flex md:hidden items-center gap-4">
               <Image
-                src={testimonial.img2}
+                src={testimonial.img}
                 alt={`${testimonial.name} mobile`}
                 width={64}
                 height={64}
