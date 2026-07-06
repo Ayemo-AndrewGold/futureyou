@@ -60,34 +60,26 @@ const ContactUsPage = () => {
     <div className="min-h-screen bg-white">
       <Header />
       {/* ── Hero band ── */}
-      <section className="relative w-full overflow-hidden bg-[#293C97] px-5 sm:px-10 lg:px-16 pt-25 pb-10">
-    {/* Background Image */}
-      <div className="absolute inset-0 -z-10">
-        <Image
-          src="/images/contact.jpg" // Replace with your background image
-          alt="Future You Background"
-          fill
-          priority
-          className="object-cover"
-        />
-
+      <section className="relative w-full overflow-hidden px-5 sm:px-10 lg:px-16 pt-25 pb-20">    {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/contact.jpg"
+            alt="Future You Background"
+            fill
+            priority
+            className="object-cover"
+          />
           {/* Overlay for readability */}
-          {/* Overlay for readability */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-white/80 to-[#293C97]/20" />
+          <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/80 to-[#293C97]/20" />
         </div>
 
-        {/* Decorative Blur Accent */}
-        <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-[#293C97]/10 rounded-full blur-3xl -z-10" />
-        {/* Decorative Blur Accent */}
-        <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-[#293C97]/10 rounded-full blur-3xl -z-10" />
-        <div
+          {/* Decorative Blur Accent */}
+        <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-[#293C97]/10 rounded-full blur-3xl z-0" />        <div
           aria-hidden
           className="pointer-events-none absolute -top-16 -right-16 w-[280px] h-[280px] rounded-full border border-white/10"
         />
 
-        
-
-        <div className="relative max-w-[1280px] mx-auto">
+        <div className="relative z-10 max-w-[1280px] mx-auto">
           {/* Eyebrow */}
           <div
             className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white/80 text-xs font-semibold px-4 py-1.5 rounded-full tracking-widest uppercase mb-6"
@@ -107,10 +99,6 @@ const ContactUsPage = () => {
             <br />
             <span className="relative inline-block">
               you move forward.
-              <span
-                aria-hidden
-                className="absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-[#25D366]"
-              />
             </span>
           </h1>
 
@@ -126,7 +114,7 @@ const ContactUsPage = () => {
       </section>
 
       {/* ── Form + contact info ── */}
-      <section className="w-full px-5 pt-8 sm:px-10 lg:px-16  bg-[#F6F8FF]">
+      <section className="w-full px-5 sm:px-10 lg:px-16  bg-[#F6F8FF]">
         <div className="max-w-[1280px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[1.35fr_1fr] gap-10 lg:gap-14 -mt-16 relative z-10">
 
@@ -247,17 +235,17 @@ const ContactUsPage = () => {
               data-aos="fade-up"
               data-aos-delay="100"
             >
-              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#293C97] mb-1">
+              {/* <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#293C97] mb-1">
                 Contact details
               </p>
               <h2 className="font-lato font-extrabold text-xl text-[#0E0E1D] mb-2">
                 Reach us directly
-              </h2>
+              </h2> */}
 
               {/* Email */}
               <a
                 href="mailto:info@futureyoulimited.com"
-                className="group flex items-center gap-4 bg-white rounded-2xl border border-gray-100 p-5 hover:border-[#293C97]/40 hover:shadow-[0_4px_20px_rgba(41,60,151,0.08)] transition-all duration-200"
+                className="group  flex items-center gap-4 bg-white rounded-2xl border border-gray-100 p-5 hover:border-[#293C97]/40 hover:shadow-[0_4px_20px_rgba(41,60,151,0.08)] transition-all duration-200"
               >
                 <div className="w-11 h-11 rounded-xl bg-[#EEF0FA] flex items-center justify-center shrink-0 group-hover:bg-[#293C97] transition-colors duration-200">
                   <HiOutlineMail className="w-5 h-5 text-[#293C97] group-hover:text-white transition-colors duration-200" />
@@ -301,7 +289,7 @@ const ContactUsPage = () => {
               </div>
 
               {/* WhatsApp CTA */}
-              <a
+              {/* <a
                 href={`https://wa.me/${WHATSAPP_NUMBER}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -321,7 +309,7 @@ const ContactUsPage = () => {
                 <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
                   <HiOutlineArrowRight className="w-4 h-4" />
                 </div>
-              </a>
+              </a> */}
             </div>
           </div>
         </div>

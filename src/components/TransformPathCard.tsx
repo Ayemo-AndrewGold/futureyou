@@ -63,7 +63,7 @@ const TransformPathCard = () => {
 
             {/* Learn more link */}
             <Link
-              href="/coaching"
+              href="/startjourney"
               className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#293C97] mt-auto group-hover:gap-3 transition-all duration-200"
             >
               Start Your Journey

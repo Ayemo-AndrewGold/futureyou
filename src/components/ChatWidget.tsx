@@ -11,11 +11,11 @@ const BORDER = "#E5E7F2";
 
 const WHATSAPP_NUMBER = "2348124106198"; // 👉 international format, no + or spaces
 
-const quickOptions = [
-  "How do I get started?",
-  "I want to apply for business support",
-  "Talk to a human agent",
-];
+// const quickOptions = [
+//   "How do I get started?",
+//   "I want to apply for business support",
+//   "Talk to a human agent",
+// ];
 
 interface ChatMessage {
   id: number;
@@ -57,7 +57,7 @@ export default function ChatWidget() {
         ...prev,
         {
           id: Date.now() + 1,
-          text: "Thanks for reaching out! Tap below to continue this on WhatsApp — our team will respond right away.",
+          text: "Thanks for reaching out! Tap below to continue this on WhatsApp, our team will respond right away.",
           sender: "bot",
         },
       ]);
@@ -172,7 +172,7 @@ export default function ChatWidget() {
             )}
 
             {/* Quick options */}
-            {!hasInteracted && !typing && (
+            {/* {!hasInteracted && !typing && (
               <div className="flex flex-col gap-2 mt-1">
                 {quickOptions.map((option) => (
                   <button
@@ -185,7 +185,7 @@ export default function ChatWidget() {
                   </button>
                 ))}
               </div>
-            )}
+            )} */}
 
             {/* WhatsApp continue CTA — appears after first exchange */}
             {hasInteracted && !typing && (

@@ -25,7 +25,7 @@ const Blog = async () => {
             priority
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-[linear-gradient(110deg,_rgba(3,7,18,0.82)_0%,_rgba(3,7,18,0.62)_100%,_rgba(41,60,151,0.45)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(110deg,_rgba(3,7,18,0.85)_0%,_rgba(3,7,18,0.99)_100%,_rgba(41,60,151,0.25)_100%)]" />
         </div>
 
         <div className="mx-auto flex w-full max-w-screen-xl flex-col items-start gap-6 px-6 pb-12 pt-28 sm:px-10 sm:pb-16 sm:pt-36 lg:px-16 lg:pb-20">
@@ -65,8 +65,8 @@ const Blog = async () => {
               data-aos="fade-up"
               data-aos-delay="140"
             >
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white">What you’ll find</p>
               <div className="mt-4 space-y-3 text-sm text-slate-100">
+                <p className="text-sm text-center font-semibold uppercase tracking-[0.2em] text-white">What you’ll find</p>
                 <div className="flex items-start gap-3 rounded-2xl bg-white/10 p-3 backdrop-blur-sm">
                   <span className="mt-0.5 h-2.5 w-2.5 rounded-full bg-[#7dd3fc]" />
                   <span>Practical insight for growth, leadership, and personal evolution.</span>
@@ -91,7 +91,7 @@ const Blog = async () => {
       </section>
 
       {/* Newsletter CTA */}
-      <NewsletterSignup />
+      {/* <NewsletterSignup /> */}
 
       {/* Footer */}
       <div className="relative w-full min-h-[420px] overflow-hidden">

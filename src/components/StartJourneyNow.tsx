@@ -82,7 +82,7 @@ const StartJourneyNow = () => {
             data-aos-delay="200"
           >
             <Link
-              href="/start-journey"
+              href="/startjourney"
               className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-100 text-[#293C97] text-sm font-bold px-7 py-3.5 rounded-xl transition-all duration-200 shadow-lg whitespace-nowrap"
             >
               Start your journey

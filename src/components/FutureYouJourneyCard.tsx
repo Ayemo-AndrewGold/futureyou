@@ -122,7 +122,7 @@ const FutureYouJourneyCard: React.FC = () => {
               </p>
 
               <Link
-                href="/coaching"
+                href="/startjourney"
                 className="inline-flex items-center gap-2 text-sm font-semibold text-[#293C97] mt-2 group w-fit"
               >
                 Explore Paths

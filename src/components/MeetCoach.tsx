@@ -70,7 +70,7 @@ const MeetCoach: React.FC = () => {
 
             {/* CTA button pushed to bottom */}
             <div className="mt-auto pt-3">
-              <Link href="/coaching">
+              <Link href="/startjourney">
                 <button className="
                   w-full py-3 rounded-lg
                   bg-[#293C97] hover:bg-[#1e2e7a]

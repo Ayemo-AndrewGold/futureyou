@@ -103,6 +103,7 @@ const NeedToGrow = () => {
           onClick={scrollLeft}
           aria-label="Previous"
           disabled={activeIndex === 0}
+          
           className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-[#0E0E1D] disabled:opacity-30 transition-all"
         >
           ←

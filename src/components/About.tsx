@@ -130,14 +130,14 @@ const About = () => {
         {/* CTAs */}
         <div className="flex flex-wrap gap-3 justify-center lg:justify-start pt-2">
           <Link
-            href="/start-journey"
+            href="/startjourney"
             className="inline-flex items-center gap-2 bg-[#293C97] hover:bg-[#1e2d85] text-white text-sm font-semibold px-6 py-3 rounded-lg transition-all duration-200 shadow-sm shadow-[#293C97]/20"
           >
             Get Started Today
             <span>→</span>
           </Link>
           <Link
-            href="/about-us"
+            href="/aboutus"
             className="inline-flex items-center gap-2 text-[#293C97] border-[1.5px] border-[#293C97] hover:bg-[#293C97] hover:text-white text-sm font-semibold px-6 py-3 rounded-lg transition-all duration-200"
           >
             Discover More

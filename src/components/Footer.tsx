@@ -120,10 +120,10 @@ const Footer = () => {
             <li className="mb-4 text-[#1B1819] font-normal"><a href="#">Explore</a></li>
             <li><a href="/aboutus">About Future You</a></li>
             <li><a href="/coaching">Coaching & Mentorship</a></li>
-            <li><a href="/learning-hub">Learning Hub</a></li>
-            <li><a href="/start-journey">Apply for Support</a></li>
-            <li><a href="/co-working">Co-Working Space</a></li>
-            <li><a href="/join-our-team">Join Our Team</a></li>
+            {/* <li><a href="/learning-hub">Learning Hub</a></li> */}
+            <li><a href="/startjourney">Apply for Support</a></li>
+            {/* <li><a href="/co-working">Co-Working Space</a></li> */}
+            <li><a href="/career">Join Our Team</a></li>
           </ul>
         </div>
 
@@ -132,8 +132,8 @@ const Footer = () => {
           <ul className="text-[#0E0E1D]">
             <li className="mb-4 text-[#1B1819] font-normal"><a href="#">Help & Legal</a></li>
             <li><a href="#">FAQs</a></li>
-            <li><Link href="/contact-us" className="hover:text-[#293C97] transition-colors duration-300">Contact Us</Link></li>
-            <li><Link href="/terms-and-conditions" className="hover:text-[#293C97] transition-colors duration-300">Terms and Conditions</Link></li>
+            <li><Link href="/contactus" className="hover:text-[#293C97] transition-colors duration-300">Contact Us</Link></li>
+            <li><Link href="/privacypolicy" className="hover:text-[#293C97] transition-colors duration-300">Terms and Conditions</Link></li>
             <li>
               <button onClick={() => setShowPrivacy(true)} className="hover:text-[#293C97] transition-colors duration-300">
                 Privacy Policy
@@ -185,7 +185,7 @@ const Footer = () => {
 
       {/* Bottom bar */}
       <div className="flex flex-row sm:flex-row justify-between text-white w-full text-[13px]">
-        <p className="text-[#fff]">2025 Future You. All rights reserved.</p>
+        <p className="text-[#fff]">2026 Future You. All rights reserved.</p>
         <p className="text-end">
           <button onClick={() => setShowPrivacy(true)} className="hover:underline">
             Privacy
