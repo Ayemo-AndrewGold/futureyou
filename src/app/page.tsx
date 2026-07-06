@@ -11,6 +11,7 @@ import Testimonials from "@/components/Testimonials";
 import TransformationPath from "@/components/TransformationPath";
 import WorkSpace from "@/components/WorkSpace";
 import Image from "next/image";
+import NewsletterSection from "@/components/NewsletterSection ";
 
 
 export default function HomePage() {
@@ -22,6 +23,8 @@ export default function HomePage() {
         <Hero />
       </section>
 
+      <NewsletterSection />
+
       <section className="max-w-[1440px] mx-auto px-4 sm:px-16 overflow-x-hidden">
         <NeedtoGrow />
       </section>
@@ -30,7 +33,7 @@ export default function HomePage() {
         <TransformationPath />
       </section>
 
-      <section className="pt-10 max-w-[1440px] mx-auto px-4 sm:px-16 overflow-x-hidden">
+      <section className="pt-5 max-w-[1440px] mx-auto px-4 sm:px-16 overflow-x-hidden">
         <FutureYouJourney />
       </section>
 
@@ -42,15 +45,15 @@ export default function HomePage() {
         <Community />
       </section>
 
-      <section className="sm:py-24 pt-8 max-w-[1440px] mx-auto px-4 sm:px-16 overflow-x-hidden">
+      <section className="sm:py-24 pt-2 max-w-[1440px] mx-auto px-4 sm:px-16 overflow-x-hidden">
         <Testimonials />
       </section>
 
-      <section className="sm:py-17 pt-20 max-w-[1440px] mx-auto px-4 sm:px-16 overflow-x-hidden">
+      <section className="sm:py-17 max-w-[1440px] mx-auto px-4 sm:px-16 overflow-x-hidden">
         <Blog />
       </section>
       
-      <section className="sm:py-26 py-12 max-w-[1440px] mx-auto px-4 sm:px-16 overflow-x-hidden">
+      <section className="sm:py-26 max-w-[1440px] mx-auto px-4 sm:px-16 overflow-x-hidden">
         <StartJourneyNow />
       </section>
 

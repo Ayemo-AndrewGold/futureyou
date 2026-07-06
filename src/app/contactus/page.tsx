@@ -1,5 +1,6 @@
 "use client";
 
+
 import { useState } from "react";
 import {
   HiOutlineUser,
@@ -11,6 +12,7 @@ import {
   HiOutlineCheckCircle,
 } from "react-icons/hi";
 import Header from "@/components/Header";
+import Image from "next/image";
 
 const WHATSAPP_NUMBER = "2348124106198";
 
@@ -59,15 +61,31 @@ const ContactUsPage = () => {
       <Header />
       {/* ── Hero band ── */}
       <section className="relative w-full overflow-hidden bg-[#293C97] px-5 sm:px-10 lg:px-16 pt-25 pb-10">
-        {/* Decorative circle */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -top-32 -right-32 w-[480px] h-[480px] rounded-full border border-white/10"
+    {/* Background Image */}
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src="/images/contact.jpg" // Replace with your background image
+          alt="Future You Background"
+          fill
+          priority
+          className="object-cover"
         />
+
+          {/* Overlay for readability */}
+          {/* Overlay for readability */}
+          <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-white/80 to-[#293C97]/20" />
+        </div>
+
+        {/* Decorative Blur Accent */}
+        <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-[#293C97]/10 rounded-full blur-3xl -z-10" />
+        {/* Decorative Blur Accent */}
+        <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-[#293C97]/10 rounded-full blur-3xl -z-10" />
         <div
           aria-hidden
           className="pointer-events-none absolute -top-16 -right-16 w-[280px] h-[280px] rounded-full border border-white/10"
         />
+
+        
 
         <div className="relative max-w-[1280px] mx-auto">
           {/* Eyebrow */}
@@ -108,7 +126,7 @@ const ContactUsPage = () => {
       </section>
 
       {/* ── Form + contact info ── */}
-      <section className="w-full px-5 sm:px-10 lg:px-16 py-16 bg-[#F6F8FF]">
+      <section className="w-full px-5 pt-8 sm:px-10 lg:px-16  bg-[#F6F8FF]">
         <div className="max-w-[1280px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[1.35fr_1fr] gap-10 lg:gap-14 -mt-16 relative z-10">
 

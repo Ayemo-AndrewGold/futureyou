@@ -40,3 +40,15 @@ export interface PostDetail extends PostListItem {
   comments: Comment[];
   reactions: Reaction[];
 }
+
+export interface NewsletterSubscriber {
+  id?: number;
+  email: string;
+  subscribed_at?: string;
+  is_active?: boolean;
+}
+
+export interface NewsletterResponse {
+  message: string;
+  email: string;
+}

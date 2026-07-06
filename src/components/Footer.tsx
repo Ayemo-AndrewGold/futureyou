@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaFacebook, FaLinkedin, FaTiktok, FaInstagram } from "react-icons/fa";
 import toast from "react-hot-toast";
+import { subscribeToNewsletter } from "@/lib/api";
 import Image from "next/image";
 import Button from "./Button";
 import Link from "next/link";
@@ -12,33 +13,41 @@ const Footer = () => {
   const [email, setEmail] = useState("");
 
   const handleSubscribe = async () => {
-    if (!email) {
-      toast.error("Please enter a valid email!", { duration: 4000 });
+    const trimmedEmail = email.trim();
+
+    if (!trimmedEmail) {
+      toast.error("Please enter your email address.");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(trimmedEmail)) {
+      toast.error("Please enter a valid email address.");
       return;
     }
 
     try {
       await toast.promise(
-        fetch(
-          "https://assets.mailerlite.com/jsonp/1752280/forms/163493962391225880/subscribe",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ fields: { email } }),
-          }
-        ),
+        subscribeToNewsletter({
+          email: trimmedEmail,
+        }),
         {
           loading: "Subscribing...",
-          success: () => {
+          success: (res) => {
             setEmail("");
-            return "Thank you for subscribing! 🎉";
+            return typeof res === "object" && res !== null && "message" in res
+              ? (res as { message: string }).message
+              : "Subscription successful!";
           },
-          error: "Subscription failed. Please try again.",
-        },
-        { duration: 4000 }
+          error: (err) =>
+            err instanceof Error
+              ? err.message
+              : "Subscription failed. Please try again.",
+        }
       );
-    } catch (error) {
-      toast.error("Something went wrong. Try again!", { duration: 4000 });
+    } catch {
+      // toast.promise already handles errors
     }
   };
 
@@ -66,25 +75,33 @@ const Footer = () => {
             Newsletter
           </h1>
           <p className="text-[14px] mb-3 mt-3">
-            Get practical insights, transformation stories, expert advice, and updates on coaching, 
+            Get practical insights, transformation stories, expert advice, and updates on coaching,
             consulting, and growth capital delivered straight to your inbox.
           </p>
 
-          <div className="flex justify-between items-center border border-[#293C97] rounded-lg p-2 w-full">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSubscribe();
+            }}
+            className="flex justify-between items-center border border-[#293C97] rounded-lg p-2 w-full"
+          >
             <input
               type="email"
+              autoComplete="email"
               placeholder="Enter your email"
+              required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="flex-1 outline-none px-4 py-2 text-sm text-[#0E0E1D]"
             />
             <Button
+              type="submit"
               label="Subscribe"
               bgcolor="bg-[#293C97] text-white"
               className="py-2 px-4 text-[13px] font-semibold"
-              onClick={handleSubscribe}
             />
-          </div>
+          </form>
         </div>
 
         {/* Logo for larger screens */}
@@ -101,7 +118,7 @@ const Footer = () => {
         <div className="text-[13px] font-semibold w-[45%] sm:w-auto" data-aos="fade-up" data-aos-delay="300">
           <ul>
             <li className="mb-4 text-[#1B1819] font-normal"><a href="#">Explore</a></li>
-            <li><a href="/about-us">About Future You</a></li>
+            <li><a href="/aboutus">About Future You</a></li>
             <li><a href="/coaching">Coaching & Mentorship</a></li>
             <li><a href="/learning-hub">Learning Hub</a></li>
             <li><a href="/start-journey">Apply for Support</a></li>
@@ -185,10 +202,13 @@ const Footer = () => {
             <p className="text-gray-700 text-sm leading-relaxed">
               FutureYou values your privacy. We collect limited personal and usage information to provide and improve our services. Your data is never sold and is protected with appropriate security measures. By using our services, you agree to our data practices.
               <br /><br />
-              <Link href="/privacypolicy"
-              target="_blank" 
-              rel="noopener noreferrer"
-               className="text-blue-500 hover:underline" onClick={() => setShowPrivacy(false)}>
+              <Link
+                href="/privacypolicy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:underline"
+                onClick={() => setShowPrivacy(false)}
+              >
                 Read Full Privacy Policy
               </Link>
             </p>

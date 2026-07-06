@@ -1,4 +1,4 @@
-import { PostDetail, PostListItem } from "./types";
+import { PostDetail, PostListItem, NewsletterSubscriber, NewsletterResponse } from "./types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -63,4 +63,44 @@ export function formatDate(dateString: string | null): string {
     month: "long",
     day: "numeric",
   });
+}
+
+export async function subscribeToNewsletter(
+  data: NewsletterSubscriber
+): Promise<NewsletterResponse> {
+  const res = await fetch(`${API_URL}/api/newsletter/subscribe/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email: data.email.trim().toLowerCase() }),
+  });
+
+  const response = await res.json();
+
+  if (!res.ok) {
+    throw new Error(response.message || 'Subscription failed');
+  }
+
+  return response;
+}
+
+export async function unsubscribeFromNewsletter(
+  email: string
+): Promise<{ message: string }> {
+  const res = await fetch(`${API_URL}/api/newsletter/unsubscribe/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email: email.trim().toLowerCase() }),
+  });
+
+  const response = await res.json();
+
+  if (!res.ok) {
+    throw new Error(response.message || 'Unsubscribe failed');
+  }
+
+  return response;
 }

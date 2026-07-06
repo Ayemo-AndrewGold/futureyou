@@ -23,10 +23,10 @@ const Hero = () => {
           data-aos-delay="100"
         >
           {/* Eyebrow pill */}
-          <div className="flex items-center gap-2 bg-[#EEF0FA] border border-[#c7cef0] text-[#293C97] text-xs font-semibold px-4 py-1.5 rounded-full tracking-wide">
+          {/* <div className="flex items-center gap-2 bg-[#EEF0FA] border border-[#c7cef0] text-[#293C97] text-xs font-semibold px-4 py-1.5 rounded-full tracking-wide">
             <span className="w-1.5 h-1.5  rounded-full bg-[#293C97] inline-block" />
             Coaching • Consulting • Capital Solutions
-          </div>
+          </div> */}
 
           {/* Headline */}
           <div>
@@ -117,7 +117,7 @@ const Hero = () => {
         loop
         muted
         playsInline
-        className="w-full max-w-[460px] sm:max-w-[560px] xl:max-w-[640px] h-auto object-contain relative z-0 rounded-2xl"
+        className="w-full max-w-[560px] sm:max-w-[600px] xl:max-w-[660px] h-auto object-contain relative z-0 rounded-2xl"
         style={{ filter: "none" }}
         onLoadedMetadata={(e) => {
           // ✅ Slow the video to 75% of normal speed
