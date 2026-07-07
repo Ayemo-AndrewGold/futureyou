@@ -7,6 +7,8 @@ import Header from "@/components/Header";
 import BlogExplorer from "@/components/BlogExplorer";
 import NewsletterSignup from "@/components/NewsletterSignup";
 
+export const dynamic = 'force-dynamic';
+
 const Blog = async () => {
   const allPosts = await getPosts();
   const posts = allPosts.filter((post) => post.published_at !== null);

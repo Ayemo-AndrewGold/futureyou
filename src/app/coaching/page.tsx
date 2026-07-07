@@ -5,6 +5,8 @@ import Link from "next/link";
 import Blog from "@/components/Blog";
 import Header from "@/components/Header";
 
+export const dynamic = 'force-dynamic';
+
 /* ── Types ── */
 interface Testimonial {
   img:  | string;
