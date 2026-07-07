@@ -2,6 +2,12 @@ import { PostDetail, PostListItem, NewsletterSubscriber, NewsletterResponse } fr
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
+if (!API_URL) {
+  throw new Error(
+    "NEXT_PUBLIC_API_URL is not defined. Please add it to your environment variables."
+  );
+}
+
 // if (!API_URL) {
 //   throw new Error("NEXT_PUBLIC_API_URL is not defined in .env.local");
 // }
