@@ -3,6 +3,8 @@ import Link from "next/link";
 import BlogCard from "./BlogCard";
 import { getPosts } from "@/lib/api";
 
+export const dynamic = 'force-dynamic';
+
 const Blog = async () => {
   const posts = await getPosts();
   const latestPosts = posts.slice(0, 3); // homepage teaser: only the 3 most recent
