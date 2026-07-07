@@ -1,36 +1,61 @@
 import { PostDetail, PostListItem, NewsletterSubscriber, NewsletterResponse } from "./types";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = process.env.NEXT_PUBLIC_API_URL || process.env.API_URL;
+const hasApiUrl = Boolean(API_URL);
 
-if (!API_URL) {
-  throw new Error(
-    "NEXT_PUBLIC_API_URL is not defined. Please add it to your environment variables."
+if (!hasApiUrl) {
+  console.warn(
+    "WARNING: NEXT_PUBLIC_API_URL is not defined. API fetches will return fallback values."
   );
 }
 
-// if (!API_URL) {
-//   throw new Error("NEXT_PUBLIC_API_URL is not defined in .env.local");
-// }
+const DEFAULT_FETCH_TIMEOUT_MS = 5000;
 
-// console.log("API URL:", API_URL);
-
-// console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
+async function fetchWithTimeout(input: RequestInfo, init?: RequestInit) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), DEFAULT_FETCH_TIMEOUT_MS);
+  try {
+    return await fetch(input, { ...init, signal: controller.signal });
+  } finally {
+    clearTimeout(timeoutId);
+  }
+}
 
 export async function getPosts(): Promise<PostListItem[]> {
-  const res = await fetch(`${API_URL}/api/blog/posts/`, {
-    next: { revalidate: 60 }, // ISR: refetch at most once a minute
-  });
-  if (!res.ok) throw new Error("Failed to fetch posts");
-  return res.json();
+  try {
+    const res = await fetchWithTimeout(`${API_URL}/api/blog/posts/`, {
+      next: { revalidate: 60 }, // ISR: refetch at most once a minute
+    } as RequestInit);
+
+    if (!res.ok) {
+      console.error("getPosts() returned non-OK status:", res.status, res.statusText);
+      return [];
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error("getPosts() failed:", error);
+    return [];
+  }
 }
 
 export async function getPost(slug: string): Promise<PostDetail | null> {
-  const res = await fetch(`${API_URL}/api/blog/posts/${slug}/`, {
-    next: { revalidate: 60 },
-  });
-  if (res.status === 404) return null;
-  if (!res.ok) throw new Error("Failed to fetch post");
-  return res.json();
+  try {
+    const res = await fetchWithTimeout(`${API_URL}/api/blog/posts/${slug}/`, {
+      next: { revalidate: 60 },
+    } as RequestInit);
+
+    if (res.status === 404) return null;
+    if (!res.ok) {
+      console.error("getPost() returned non-OK status:", res.status, res.statusText);
+      return null;
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error("getPost() failed:", error);
+    return null;
+  }
 }
 
 export async function postComment(
