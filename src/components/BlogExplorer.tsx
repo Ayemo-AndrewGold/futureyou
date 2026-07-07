@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { formatDate } from "@/lib/api";
@@ -25,10 +25,12 @@ interface BlogExplorerProps {
 }
 
 const ALL_CATEGORY = "All";
+const POSTS_PER_PAGE = 9; // matches the 3-column grid — 3 full rows per page
 
 const BlogExplorer: React.FC<BlogExplorerProps> = ({ posts }) => {
   const [query, setQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState(ALL_CATEGORY);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const categories = useMemo(() => {
     const names = posts
@@ -56,6 +58,31 @@ const BlogExplorer: React.FC<BlogExplorerProps> = ({ posts }) => {
   // is searching or filtering, pin their results instead of a fixed pick.
   const featured = !isFiltering ? posts[0] : null;
   const gridPosts = !isFiltering ? filteredPosts.slice(1) : filteredPosts;
+
+  const totalPages = Math.max(1, Math.ceil(gridPosts.length / POSTS_PER_PAGE));
+
+  // Whenever the search term or category changes, the underlying result set
+  // changes shape — jump back to page 1 so nobody lands on an empty page.
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [query, activeCategory]);
+
+  // If posts shrink (e.g. category change) and current page no longer exists, clamp it.
+  useEffect(() => {
+    if (currentPage > totalPages) setCurrentPage(totalPages);
+  }, [totalPages, currentPage]);
+
+  const paginatedPosts = useMemo(() => {
+    const start = (currentPage - 1) * POSTS_PER_PAGE;
+    return gridPosts.slice(start, start + POSTS_PER_PAGE);
+  }, [gridPosts, currentPage]);
+
+  const goToPage = (page: number) => {
+    if (page < 1 || page > totalPages || page === currentPage) return;
+    setCurrentPage(page);
+    // Scroll the grid back into view so the new page doesn't render off-screen
+    document.getElementById("blog-grid-top")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <>
@@ -175,7 +202,7 @@ const BlogExplorer: React.FC<BlogExplorerProps> = ({ posts }) => {
 
       {/* Latest articles */}
       <div className="flex flex-col gap-8">
-        <div className="flex items-center gap-2.5" data-aos="fade-up">
+        <div id="blog-grid-top" className="flex items-center gap-2.5 scroll-mt-24" data-aos="fade-up">
           <span className="block w-8 h-[3px] bg-[#293C97] rounded-full" />
           <h3 className="font-lato font-extrabold text-lg sm:text-xl text-[#0E0E1D] tracking-tight">
             {isFiltering ? "Search results" : "Latest Articles"}
@@ -209,62 +236,149 @@ const BlogExplorer: React.FC<BlogExplorerProps> = ({ posts }) => {
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {gridPosts.map((post, index) => (
-              <Link
-                key={post.id}
-                href={`/blog/${post.slug}`}
-                className="group flex flex-col bg-white border border-gray-100 rounded-2xl overflow-hidden hover:border-[#c7cef0] hover:shadow-xl hover:shadow-[#293C97]/8 hover:-translate-y-1.5 transition-all duration-300 will-change-transform"
-                data-aos="fade-up"
-                data-aos-delay={Math.min(index * 60, 240)}
-              >
-                <div className="relative w-full h-52 overflow-hidden">
-                  <Image
-                    src={post.cover_image}
-                    alt={post.title}
-                    fill
-                    unoptimized={post.cover_image.includes("127.0.0.1")}
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    loading="lazy"
-                  />
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {paginatedPosts.map((post, index) => (
+                <Link
+                  key={post.id}
+                  href={`/blog/${post.slug}`}
+                  className="group flex flex-col bg-white border border-gray-100 rounded-2xl overflow-hidden hover:border-[#c7cef0] hover:shadow-xl hover:shadow-[#293C97]/8 hover:-translate-y-1.5 transition-all duration-300 will-change-transform"
+                  data-aos="fade-up"
+                  data-aos-delay={Math.min(index * 60, 240)}
+                >
+                  <div className="relative w-full h-52 overflow-hidden">
+                    <Image
+                      src={post.cover_image}
+                      alt={post.title}
+                      fill
+                      unoptimized={post.cover_image.includes("127.0.0.1")}
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      loading="lazy"
+                    />
 
-                  {post.category && (
-                    <span className="absolute top-3 left-3 text-[11px] font-semibold text-[#293C97] bg-white/90 backdrop-blur-sm border border-[#c7cef0] px-3 py-1 rounded-full">
-                      {post.category.name}
-                    </span>
-                  )}
-
-                  <div className="absolute top-3 right-3 w-7 h-7 rounded-lg bg-[#293C97] flex items-center justify-center text-white text-xs opacity-0 group-hover:opacity-100 group-hover:rotate-45 transition-all duration-300">
-                    ↗
-                  </div>
-                </div>
-
-                <div className="flex flex-col gap-3 p-5 flex-1">
-                  <h3 className="font-lato font-bold text-[0.95rem] text-[#0E0E1D] leading-snug">
-                    {post.title}
-                  </h3>
-
-                  <p className="font-montserrat text-sm text-[#666] leading-relaxed line-clamp-3">
-                    {post.excerpt}
-                  </p>
-
-                  <div className="flex items-center justify-between mt-auto pt-1">
-                    <p className="text-xs text-[#888]">{formatDate(post.published_at)}</p>
-                    <span className="inline-flex items-center gap-1 text-[#293C97] font-semibold text-sm">
-                      Read
-                      <span className="transition-transform duration-300 group-hover:translate-x-1">
-                        →
+                    {post.category && (
+                      <span className="absolute top-3 left-3 text-[11px] font-semibold text-[#293C97] bg-white/90 backdrop-blur-sm border border-[#c7cef0] px-3 py-1 rounded-full">
+                        {post.category.name}
                       </span>
-                    </span>
+                    )}
+
+                    <div className="absolute top-3 right-3 w-7 h-7 rounded-lg bg-[#293C97] flex items-center justify-center text-white text-xs opacity-0 group-hover:opacity-100 group-hover:rotate-45 transition-all duration-300">
+                      ↗
+                    </div>
                   </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+
+                  <div className="flex flex-col gap-3 p-5 flex-1">
+                    <h3 className="font-lato font-bold text-[0.95rem] text-[#0E0E1D] leading-snug">
+                      {post.title}
+                    </h3>
+
+                    <p className="font-montserrat text-sm text-[#666] leading-relaxed line-clamp-3">
+                      {post.excerpt}
+                    </p>
+
+                    <div className="flex items-center justify-between mt-auto pt-1">
+                      <p className="text-xs text-[#888]">{formatDate(post.published_at)}</p>
+                      <span className="inline-flex items-center gap-1 text-[#293C97] font-semibold text-sm">
+                        Read
+                        <span className="transition-transform duration-300 group-hover:translate-x-1">
+                          →
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            {totalPages > 1 && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={goToPage}
+              />
+            )}
+          </>
         )}
       </div>
     </>
+  );
+};
+
+interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+}
+
+// Builds a page-number list with ellipses, e.g. 1 ... 4 5 6 ... 12
+function getPageList(current: number, total: number): (number | "ellipsis")[] {
+  const pages: (number | "ellipsis")[] = [];
+  const window = 1; // how many pages to show on each side of current
+
+  const start = Math.max(2, current - window);
+  const end = Math.min(total - 1, current + window);
+
+  pages.push(1);
+  if (start > 2) pages.push("ellipsis");
+  for (let i = start; i <= end; i++) pages.push(i);
+  if (end < total - 1) pages.push("ellipsis");
+  if (total > 1) pages.push(total);
+
+  return pages;
+}
+
+const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPageChange }) => {
+  const pageList = getPageList(currentPage, totalPages);
+
+  return (
+    <nav
+      aria-label="Blog pagination"
+      className="flex items-center justify-center gap-1.5 sm:gap-2 pt-4"
+    >
+      <button
+        type="button"
+        onClick={() => onPageChange(currentPage - 1)}
+        disabled={currentPage === 1}
+        aria-label="Previous page"
+        className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-gray-200 flex items-center justify-center text-[#0E0E1D] hover:border-[#293C97] hover:text-[#293C97] disabled:opacity-30 disabled:hover:border-gray-200 disabled:hover:text-[#0E0E1D] disabled:cursor-not-allowed transition-all duration-200"
+      >
+        ←
+      </button>
+
+      {pageList.map((page, i) =>
+        page === "ellipsis" ? (
+          <span key={`ellipsis-${i}`} className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center text-[#888] text-sm">
+            …
+          </span>
+        ) : (
+          <button
+            key={page}
+            type="button"
+            onClick={() => onPageChange(page)}
+            aria-label={`Page ${page}`}
+            aria-current={page === currentPage ? "page" : undefined}
+            className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full text-sm font-semibold transition-all duration-200 ${
+              page === currentPage
+                ? "bg-[#293C97] text-white shadow-sm shadow-[#293C97]/25"
+                : "text-[#3a3a4a] hover:bg-[#293C97]/10 hover:text-[#293C97]"
+            }`}
+          >
+            {page}
+          </button>
+        )
+      )}
+
+      <button
+        type="button"
+        onClick={() => onPageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
+        aria-label="Next page"
+        className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-gray-200 flex items-center justify-center text-[#0E0E1D] hover:border-[#293C97] hover:text-[#293C97] disabled:opacity-30 disabled:hover:border-gray-200 disabled:hover:text-[#0E0E1D] disabled:cursor-not-allowed transition-all duration-200"
+      >
+        →
+      </button>
+    </nav>
   );
 };
 

@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         port: "8000",
         pathname: "/media/**",
       },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/**",
+      },
       // add your production domain here once deployed, e.g.
       // { protocol: "https", hostname: "api.futureyou.com", pathname: "/media/**" },
     ],
