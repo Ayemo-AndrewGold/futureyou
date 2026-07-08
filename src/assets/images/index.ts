@@ -43,8 +43,6 @@ import danielImg
 export{
   headerLogo,
   heroImage,
-  coachingMentorship,
-  LoanImage,
   applyRealSupport,
   earnFuture,
   matchedCoach,
