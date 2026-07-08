@@ -112,18 +112,19 @@ const Hero = () => {
 
              {/* Hero video */}
           <video
-            src="/videos/herovid.mp4"
             autoPlay
-            loop
             muted
+            loop
             playsInline
-            className="w-full max-w-[560px] sm:max-w-[600px] xl:max-w-[660px] h-auto object-contain relative z-0 rounded-[5px]"
-            style={{ filter: "none" }}
+            preload="auto"
+            poster="/images/heroImage.webp"
+            className="w-full max-w-[560px] sm:max-w-[600px] xl:max-w-[660px] h-auto object-contain rounded-[5px]"
             onLoadedMetadata={(e) => {
-              // ✅ Slow the video to 75% of normal speed
-              (e.target as HTMLVideoElement).playbackRate = 0.75;
+              e.currentTarget.playbackRate = 0.75;
             }}
-          />                 
+          >
+            <source src="/videos/herovid.mp4" type="video/mp4" />
+          </video>              
        </div>
 
       </div>
