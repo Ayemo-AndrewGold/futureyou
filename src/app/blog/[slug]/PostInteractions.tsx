@@ -59,7 +59,7 @@ export default function PostInteractions({
 
   return (
     <div className=" space-y-8 ">
-      <section className="rounded-[1.5rem] border border-gray-100 bg-[#FAFBFF] p-5 shadow-sm sm:p-6">
+      <section className="rounded-[1.5rem] border border-gray-100 bg-[#FAFBFF] p-2 shadow-sm sm:p-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <p className="text-sm font-semibold text-[#293C97]">How did this article feel?</p>
@@ -84,7 +84,7 @@ export default function PostInteractions({
         </div>
       </section>
 
-      <section className="rounded-[1.5rem] border border-gray-100 bg-white p-5 shadow-sm sm:p-6">
+      <section className="rounded-[1.5rem] border border-gray-100 bg-white p-2 shadow-sm sm:p-6">
         <div className="mb-5 flex items-center justify-between">
           <div>
             <h2 className="font-lato text-xl font-bold text-[#0E0E1D]">Comments ({comments.length})</h2>
@@ -111,8 +111,8 @@ export default function PostInteractions({
           ))}
         </div>
 
-        <div className="rounded-[1.25rem] border border-gray-100 bg-[#FAFBFF] p-4 sm:p-5">
-          <h3 className="mb-4 font-lato text-lg font-semibold text-[#0E0E1D]">Leave a comment</h3>
+        <div className="rounded-[1.25rem] border border-gray-100 bg-[#FAFBFF] sm:py-4 sm:px-4 px-1 sm:p-5">
+          <h3 className="mb-4 font-lato text-lg mt-1 font-semibold text-[#0E0E1D]">Leave a comment</h3>
           {submitted ? (
             <p className="rounded-2xl border border-green-200 bg-green-50 p-4 text-sm text-green-700">
               Thanks! Your comment is awaiting moderation and will appear once approved.
@@ -126,7 +126,7 @@ export default function PostInteractions({
                 maxLength={100}
                 value={form.author_name}
                 onChange={(e) => setForm({ ...form, author_name: e.target.value })}
-                className="rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-sm text-[#111827] outline-none transition focus:border-[#293C97] focus:ring-2 focus:ring-[#293C97]/10"
+                className="rounded-xl border border-gray-200 bg-white px-2 py-2.5 text-sm text-[#111827] outline-none transition focus:border-[#293C97] focus:ring-2 focus:ring-[#293C97]/10"
               />
               <input
                 type="email"
@@ -134,7 +134,7 @@ export default function PostInteractions({
                 required
                 value={form.author_email}
                 onChange={(e) => setForm({ ...form, author_email: e.target.value })}
-                className="rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-sm text-[#111827] outline-none transition focus:border-[#293C97] focus:ring-2 focus:ring-[#293C97]/10"
+                className="rounded-xl border border-gray-200 bg-white px-2 py-2.5 text-sm text-[#111827] outline-none transition focus:border-[#293C97] focus:ring-2 focus:ring-[#293C97]/10"
               />
               <textarea
                 placeholder="Write your comment"
@@ -143,7 +143,7 @@ export default function PostInteractions({
                 rows={4}
                 value={form.content}
                 onChange={(e) => setForm({ ...form, content: e.target.value })}
-                className="md:col-span-2 rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-sm text-[#111827] outline-none transition focus:border-[#293C97] focus:ring-2 focus:ring-[#293C97]/10"
+                className="md:col-span-2 rounded-xl border border-gray-200 bg-white px-2 py-2.5 text-sm text-[#111827] outline-none transition focus:border-[#293C97] focus:ring-2 focus:ring-[#293C97]/10"
               />
               {error && <p className="md:col-span-2 text-sm text-red-600">{error}</p>}
               <button

@@ -13,7 +13,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-[#f5f6ff] via-white to-white -z-10" />
       <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-[#293C97]/5 rounded-full blur-3xl -z-10" />
 
-      <div className="w-full max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16 py-24 xl:py-0 flex flex-col xl:flex-row items-center gap-12 xl:gap-8">
+      <div className="w-full max-w-screen-xl mx-auto px-3 sm:px-10 lg:px-10 py-24 xl:py-0 flex flex-col xl:flex-row items-center gap-12 xl:gap-8">
 
         {/* ── Text column ── */}
         <div
@@ -94,36 +94,36 @@ const Hero = () => {
           data-aos-delay="200"
         >
           {/* Floating badge — top right */}
-          <div className="absolute top-2 sm:top-8 right-[-15px] sm:right-4 sm:right-8 xl:-right-2 z-10 bg-[#293C97] text-white rounded-xl px-4 py-3 shadow-lg">
+          {/* <div className="absolute top-2 sm:top-8 right-[-15px] sm:right-4 sm:right-8 xl:-right-2 z-10 bg-[#293C97] text-white rounded-xl px-4 py-3 hidden sm:flex  shadow-lg">
             <p className="text-xs font-bold leading-none">New session</p>
             <p className="text-[11px] text-[#c5cae9] mt-0.5">Available now</p>
-          </div>
+          </div> */}
 
           {/* Floating badge — bottom left */}
-          <div className="absolute bottom-3 sm:bottom-4 left-[-20px] sm:left-8 xl:-left-4 z-10 bg-white border border-gray-100 rounded-xl px-1 sm:px-3 sm:py-1 py-1 sm:py-4 flex items-center gap-3 shadow-md">
+          <div className="absolute hidden sm:flex bottom-3 sm:bottom-4 left-[-20px] sm:left-8 xl:-left-4 z-10 bg-white border border-gray-100 rounded-xl px-1 sm:px-3 sm:py-1 py-1 sm:py-4 flex items-center gap-3 shadow-md">
             <div className="sm:w-9 sm:h-9 w-8 h-8 rounded-full bg-[#EEF0FA] flex items-center justify-center shrink-0">
               <span className="text-base">⭐</span>
             </div>
             <div>
               <p className="text-xs font-bold text-[#0E0E1D] leading-none">Top rated coach</p>
-              {/* <p className="text-[11px] text-[#888] mt-0.5">Future-Focused Solutions 5.0</p> */}
+              <p className="text-[11px] text-[#888] mt-0.5">Future-Focused Solutions</p>
             </div>
           </div>
 
              {/* Hero video */}
-      <video
-        src="/videos/herovid.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="w-full max-w-[560px] sm:max-w-[600px] xl:max-w-[660px] h-auto object-contain relative z-0 rounded-2xl"
-        style={{ filter: "none" }}
-        onLoadedMetadata={(e) => {
-          // ✅ Slow the video to 75% of normal speed
-          (e.target as HTMLVideoElement).playbackRate = 0.75;
-        }}
-      />                 
+          <video
+            src="/videos/herovid.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full max-w-[560px] sm:max-w-[600px] xl:max-w-[660px] h-auto object-contain relative z-0 rounded-[5px]"
+            style={{ filter: "none" }}
+            onLoadedMetadata={(e) => {
+              // ✅ Slow the video to 75% of normal speed
+              (e.target as HTMLVideoElement).playbackRate = 0.75;
+            }}
+          />                 
        </div>
 
       </div>

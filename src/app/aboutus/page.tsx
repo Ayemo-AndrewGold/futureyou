@@ -14,18 +14,13 @@ const AboutUsPage = () => {
     <div className="w-full min-h-screen overflow-x-hidden">
       <Header />
 
-      <main className="w-full max-w-screen-xl mx-auto pt-20 pb-16 px-6 sm:px-10 lg:px-16">
+      <main className="w-full max-w-screen-xl mx-auto pt-22 pb-16 px-2 sm:px-10 lg:px-16">
 
         {/* ── Intro ── */}
         <section
           className="flex flex-col gap-6 mb-5"
           data-aos="fade-up"
         >
-          {/* Eyebrow pill */}
-          <div className="inline-flex items-center gap-2 bg-[#EEF0FA] border border-[#c7cef0] text-[#293C97] text-xs font-semibold px-4 py-1.5 rounded-full tracking-wide w-fit">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#293C97] inline-block" />
-            About FutureYou
-          </div>
 
           <h1 className="font-lato font-extrabold text-[2.2rem] sm:text-[3rem] lg:text-[3.4rem] text-[#0E0E1D] leading-[1.08] tracking-tight max-w-3xl">
             Helping You Become the{" "}
@@ -66,7 +61,7 @@ const AboutUsPage = () => {
           </h2>
 
           {/* Stats/cards strip */}
-          <div className="bg-[#293C97] rounded-2xl p-6 sm:p-8 overflow-x-auto">
+          <div className="bg-[#293C97] sm:rounded-2xl rounded-[5px] p-2 sm:p-6 sm:p-8 overflow-x-auto">
             <AboutUsCard />
           </div>
         </section>

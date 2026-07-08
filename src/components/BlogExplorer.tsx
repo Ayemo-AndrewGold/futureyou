@@ -150,7 +150,7 @@ const BlogExplorer: React.FC<BlogExplorerProps> = ({ posts }) => {
       {featured && (
         <Link
           href={`/blog/${featured.slug}`}
-          className="group grid grid-cols-1 lg:grid-cols-2 gap-0 bg-white border border-gray-100 rounded-3xl overflow-hidden hover:shadow-xl hover:shadow-[#293C97]/10 transition-all duration-500"
+          className="group grid grid-cols-1 lg:grid-cols-2 gap-0 bg-white rounded-[7px] overflow-hidden hover:shadow-xl hover:shadow-[#293C97]/10 transition-all duration-500"
           data-aos="fade-up"
           data-aos-delay="100"
         >
@@ -172,7 +172,7 @@ const BlogExplorer: React.FC<BlogExplorerProps> = ({ posts }) => {
             )}
           </div>
 
-          <div className="flex flex-col justify-center gap-4 p-8 sm:p-10 lg:p-12 order-2">
+          <div className="flex flex-col justify-center gap-4 py-8 sm:py-10 lg:p-12 order-2">
             <div className="flex items-center gap-2.5">
               <span className="block w-8 h-[3px] bg-[#293C97] rounded-full" />
               <span className="text-xs font-bold text-[#293C97] uppercase tracking-widest">
@@ -242,7 +242,7 @@ const BlogExplorer: React.FC<BlogExplorerProps> = ({ posts }) => {
                 <Link
                   key={post.id}
                   href={`/blog/${post.slug}`}
-                  className="group flex flex-col bg-white border border-gray-100 rounded-2xl overflow-hidden hover:border-[#c7cef0] hover:shadow-xl hover:shadow-[#293C97]/8 hover:-translate-y-1.5 transition-all duration-300 will-change-transform"
+                  className="group flex flex-col bg-white rounded-[7px] overflow-hidden hover:border-[#c7cef0] hover:shadow-xl hover:shadow-[#293C97]/8 hover:-translate-y-1.5 transition-all duration-300 will-change-transform"
                   data-aos="fade-up"
                   data-aos-delay={Math.min(index * 60, 240)}
                 >
@@ -268,7 +268,7 @@ const BlogExplorer: React.FC<BlogExplorerProps> = ({ posts }) => {
                     </div>
                   </div>
 
-                  <div className="flex flex-col gap-3 p-5 flex-1">
+                  <div className="flex flex-col gap-3 py-5 flex-1">
                     <h3 className="font-lato font-bold text-[0.95rem] text-[#0E0E1D] leading-snug">
                       {post.title}
                     </h3>

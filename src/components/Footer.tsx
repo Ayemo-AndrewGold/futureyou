@@ -53,10 +53,10 @@ const Footer = () => {
 
   return (
     <section
-      className="px-4 sm:px-16 pt-10 flex flex-col items-center gap-8 relative"
+      className="px-2 sm:px-16 pt-10 flex flex-col items-center gap-8 relative"
       data-aos="fade-up"
     >
-      <div className="bg-[#FFFFFF] w-full max-w-[1440px] p-5 flex flex-wrap justify-between gap-8 rounded-lg relative">
+      <div className="bg-[#FFFFFF] w-full max-w-[1440px] py-5 px-3 sm:px-5 flex flex-wrap justify-between gap-8 rounded-lg relative">
 
         {/* Logo for small screens */}
         <div className="block sm:hidden" data-aos="fade-up" data-aos-delay="100">

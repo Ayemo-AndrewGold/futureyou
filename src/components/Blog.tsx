@@ -11,14 +11,14 @@ const Blog = async () => {
 
   return (
     <section
-      className="w-full max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16"
-      data-aos="fade-up"
+      className="w-full max-w-screen-xl mx-auto px-3 sm:px-10 lg:px-16 overflow-hidden"
+      // data-aos="fade-up"
     >
       {/* Header row */}
       <div
         className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12"
-        data-aos="fade-up"
-        data-aos-delay="100"
+        // data-aos="fade-up"
+        // data-aos-delay="100"
       >
         <div>
           <div className="inline-flex items-center gap-2 bg-[#EEF0FA] border border-[#c7cef0] text-[#293C97] text-xs font-semibold px-4 py-1.5 rounded-full tracking-wide mb-5">

@@ -6,7 +6,7 @@ import Link from "next/link";
 const StartJourneyNow = () => {
   return (
     <section
-      className="w-full max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16"
+      className="w-full max-w-screen-xl mx-auto sm:px-10 lg:px-16"
       data-aos="fade-up"
     >
       <div className="relative w-full rounded-2xl overflow-hidden min-h-[280px] sm:min-h-[340px] flex items-center">
@@ -42,7 +42,7 @@ const StartJourneyNow = () => {
 
         {/* Content */}
         <div
-          className="relative z-10 w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8 px-8 sm:px-12 lg:px-16 py-10 sm:py-14"
+          className="relative z-10 w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8 px-2 sm:px-12 lg:px-16 py-10 sm:py-14"
           data-aos="fade-up"
           data-aos-delay="100"
         >

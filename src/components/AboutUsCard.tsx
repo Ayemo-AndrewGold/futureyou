@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const AboutUsCard = () => {
   return (
-    <section className="w-full max-w-5xl flex flex-col gap-8 py-6">
+    <section className="w-full max-w-5xl flex flex-col gap-8 sm:py-6">
       {WhyWeExistCard.map(({ id, text, img }) => (
         <div key={id} className="flex items-center gap-4 sm:gap-8">
           

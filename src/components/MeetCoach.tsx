@@ -32,7 +32,7 @@ const MeetCoach: React.FC = () => {
             min-w-[85%] sm:min-w-[60%] lg:min-w-[38%]
             max-w-[85%] sm:max-w-[60%] lg:max-w-[38%]
             flex-shrink-0 snap-start
-            bg-white border border-gray-100 rounded-2xl
+            bg-white rounded-[8px]
             overflow-hidden flex flex-col
           "
         >
@@ -52,7 +52,7 @@ const MeetCoach: React.FC = () => {
           </div>
 
           {/* Card body */}
-          <div className="flex flex-col gap-3 p-5 flex-1">
+          <div className="flex flex-col gap-3 py-5 flex-1">
 
             {/* Title row with accent line */}
             <div className="flex items-center gap-3">
@@ -69,7 +69,7 @@ const MeetCoach: React.FC = () => {
             </p>
 
             {/* CTA button pushed to bottom */}
-            <div className="mt-auto pt-3">
+            <div className="mt-auto">
               <Link href="/startjourney">
                 <button className="
                   w-full py-3 rounded-lg

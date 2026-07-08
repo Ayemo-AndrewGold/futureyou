@@ -39,7 +39,7 @@ const Career = () => {
       <Header />
 
       {/* ── Hero header ── */}
-      <section className="w-full max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16 pt-28 pb-6">
+      <section className="w-full max-w-screen-xl mx-auto PX-3 sm:px-10 lg:px-16 pt-25">
         <div
           className="max-w-2xl mx-auto text-center mb-14"
           data-aos="fade-up"
@@ -74,7 +74,7 @@ const Career = () => {
       </section>
 
       {/* ── Main content ── */}
-      <section className="w-full max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16 pb-24">
+      <section className="w-full max-w-screen-xl mx-auto px-2 sm:px-10 lg:px-16 pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
           {/* ── Image column ── */}

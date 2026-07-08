@@ -28,7 +28,7 @@ const CommunityCard: React.FC = () => {
             key={index}
             data-aos="fade-up"
             data-aos-delay={index * 100}
-            className="bg-white border border-gray-100 rounded-xl px-5 py-4 shadow-sm hover:border-[#293C97]/20 hover:shadow-md transition-all duration-200"
+            className="bg-white border border-gray-100 rounded-xl px-2 sm:px-6 sm:py-4 py-1 shadow-sm hover:border-[#293C97]/20 hover:shadow-md transition-all duration-200"
           >
             <p className="font-montserrat text-sm text-[#555] leading-relaxed">
               {text}
@@ -36,6 +36,7 @@ const CommunityCard: React.FC = () => {
           </div>
         ))}
       </div>
+
 
       {/* Stats grid */}
       <div

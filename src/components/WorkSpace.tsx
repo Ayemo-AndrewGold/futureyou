@@ -8,17 +8,17 @@ const features = ["Fast Wi-Fi", "Private desks", "Meeting rooms", "Community eve
 const WorkSpace = () => {
   return (
     <section
-      className="w-full max-w-screen-xl mx-auto lg:px-16 sm:py-18"
+      className="w-full max-w-screen-xl mx-auto pt-8 lg:px-1 mb-10 sm:mb-20 overflow-hidden"
       aria-label="Co-working space section"
-      data-aos="fade-up"
+      // data-aos="fade-up"
     >
-      <div className="flex flex-col xl:flex-row rounded-2xl overflow-hidden border border-gray-100 shadow-sm min-h-[480px]">
+      <div className="flex flex-col xl:flex-row rounded-xl overflow-hidden border border-gray-100 shadow-sm min-h-[480px]">
 
         {/* ── Text column ── */}
         <div
-          className="flex-1 flex flex-col justify-center gap-6 p-8 sm:p-12 bg-white"
+          className="flex-1 flex flex-col justify-center gap-6 py-4 px-4 sm:p-12 bg-white"
           data-aos="fade-right"
-          data-aos-delay="100"
+          // data-aos-delay="100"
         >
           {/* Eyebrow pill */}
           <div className="inline-flex items-center gap-2 bg-[#EEF0FA] border border-[#c7cef0] text-[#293C97] text-xs font-semibold px-4 py-1.5 rounded-full tracking-wide w-fit">

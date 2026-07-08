@@ -3,11 +3,13 @@ import TransformPathCard from "./TransformPathCard";
 const TransformationPath = () => {
   return (
     <section
-      className="w-full max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16 py-3 overflow-hidden mb-10 sm:mb-15"
-      data-aos="fade-up"
+      className="w-full max-w-screen-xl mx-auto py-3 overflow-hidden mb-10 sm:mb-15"
+      // data-aos="fade-up"
     >
       {/* Header */}
-      <div className="mb-12" data-aos="fade-up" data-aos-delay="100">
+      <div className="mb-12" 
+        // data-aos="fade-up" data-aos-delay="100"
+      >
 
         {/* Eyebrow pill */}
         <div className="inline-flex items-center gap-2 bg-[#EEF0FA] border border-[#c7cef0] text-[#293C97] text-xs font-semibold px-4 py-1.5 rounded-full tracking-wide mb-5">
@@ -30,7 +32,9 @@ const TransformationPath = () => {
       </div>
 
       {/* Cards */}
-      <div data-aos="fade-up" data-aos-delay="150">
+      <div 
+        // data-aos="fade-up" data-aos-delay="150"
+      >
         <TransformPathCard />
       </div>
     </section>

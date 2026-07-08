@@ -30,7 +30,7 @@ const TransformPathCard = () => {
             key={id}
             data-aos="fade-up"
             data-aos-delay={index * 80}
-            className={`group relative flex flex-col gap-4 p-6 rounded-2xl border transition-all duration-300 hover:shadow-md hover:-translate-y-1 will-change-transform ${
+            className={`group relative flex flex-col gap-4 sm:py-6 py-2 px-3 sm:px-6 rounded-2xl border transition-all duration-300 hover:shadow-md hover:-translate-y-1 will-change-transform ${
               accent.bg
             } ${
               isHighlighted

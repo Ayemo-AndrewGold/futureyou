@@ -14,6 +14,8 @@ import {
 import Header from "@/components/Header";
 import Image from "next/image";
 
+import  Footer from "@/components/Footer";
+
 const WHATSAPP_NUMBER = "2348124106198";
 
 interface ContactForm {
@@ -60,7 +62,7 @@ const ContactUsPage = () => {
     <div className="min-h-screen bg-white">
       <Header />
       {/* ── Hero band ── */}
-      <section className="relative w-full overflow-hidden px-5 sm:px-10 lg:px-16 pt-25 pb-20">    {/* Background Image */}
+      <section className="relative w-full overflow-hidden px-3 sm:px-10 lg:px-16 pt-25 pb-20">    {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/contact.jpg"
@@ -114,13 +116,13 @@ const ContactUsPage = () => {
       </section>
 
       {/* ── Form + contact info ── */}
-      <section className="w-full px-5 sm:px-10 lg:px-16  bg-[#F6F8FF]">
+      <section className="w-full px-2 sm:px-10 lg:px-16  bg-[#F6F8FF]">
         <div className="max-w-[1280px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[1.35fr_1fr] gap-10 lg:gap-14 -mt-16 relative z-10">
 
             {/* ── Form card ── */}
             <div
-              className="bg-white rounded-2xl shadow-[0_4px_32px_rgba(41,60,151,0.10)] p-7 sm:p-10"
+              className="bg-white rounded-2xl shadow-[0_4px_32px_rgba(41,60,151,0.10)] py-4 px-2 sm:p-10"
               data-aos="fade-up"
             >
               <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#293C97] mb-1">
@@ -245,7 +247,7 @@ const ContactUsPage = () => {
               {/* Email */}
               <a
                 href="mailto:info@futureyoulimited.com"
-                className="group  flex items-center gap-4 bg-white rounded-2xl border border-gray-100 p-5 hover:border-[#293C97]/40 hover:shadow-[0_4px_20px_rgba(41,60,151,0.08)] transition-all duration-200"
+                className="group  flex items-center gap-4 bg-white rounded-2xl border border-gray-100 py-5 px-2 hover:border-[#293C97]/40 hover:shadow-[0_4px_20px_rgba(41,60,151,0.08)] transition-all duration-200"
               >
                 <div className="w-11 h-11 rounded-xl bg-[#EEF0FA] flex items-center justify-center shrink-0 group-hover:bg-[#293C97] transition-colors duration-200">
                   <HiOutlineMail className="w-5 h-5 text-[#293C97] group-hover:text-white transition-colors duration-200" />
@@ -262,7 +264,7 @@ const ContactUsPage = () => {
               {/* Phone */}
               <a
                 href="tel:08169159291"
-                className="group flex items-center gap-4 bg-white rounded-2xl border border-gray-100 p-5 hover:border-[#293C97]/40 hover:shadow-[0_4px_20px_rgba(41,60,151,0.08)] transition-all duration-200"
+                className="group flex items-center gap-4 bg-white rounded-2xl border border-gray-100 py-5 px-2 hover:border-[#293C97]/40 hover:shadow-[0_4px_20px_rgba(41,60,151,0.08)] transition-all duration-200"
               >
                 <div className="w-11 h-11 rounded-xl bg-[#EEF0FA] flex items-center justify-center shrink-0 group-hover:bg-[#293C97] transition-colors duration-200">
                   <HiOutlinePhone className="w-5 h-5 text-[#293C97] group-hover:text-white transition-colors duration-200" />
@@ -275,7 +277,7 @@ const ContactUsPage = () => {
               </a>
 
               {/* Address */}
-              <div className="flex items-start gap-4 bg-white rounded-2xl border border-gray-100 p-5">
+              <div className="flex items-start gap-4 bg-white rounded-2xl border border-gray-100 py-5 px-2">
                 <div className="w-11 h-11 rounded-xl bg-[#EEF0FA] flex items-center justify-center shrink-0">
                   <HiOutlineLocationMarker className="w-5 h-5 text-[#293C97]" />
                 </div>
@@ -316,7 +318,7 @@ const ContactUsPage = () => {
       </section>
 
       {/* ── Map section ── */}
-      <section className="w-full px-5 sm:px-10 lg:px-16 py-16 bg-white">
+      <section className="w-full px-2 sm:px-10 lg:px-16 pt-18 bg-white">
         <div className="max-w-[1280px] mx-auto">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8" data-aos="fade-up">
             <div>
@@ -334,7 +336,7 @@ const ContactUsPage = () => {
           </div>
 
           <div
-            className="relative w-full aspect-[16/7] rounded-2xl overflow-hidden shadow-[0_4px_32px_rgba(0,0,0,0.08)] ring-1 ring-gray-200"
+            className="relative w-full aspect-[16/7] rounded-[2px] overflow-hidden shadow-[0_4px_32px_rgba(0,0,0,0.08)] ring-1 ring-gray-200"
             data-aos="fade-up"
             data-aos-delay="100"
           >
@@ -348,6 +350,22 @@ const ContactUsPage = () => {
           </div>
         </div>
       </section>
+            {/* Footer */}
+      <div className="relative w-full overflow-hidden pb-3">
+        <Image 
+          src="/images/footer.webp" 
+          alt="footer background"
+          fill
+          className="object-cover object-top pointer-events-none select-none"
+          loading="lazy"
+          decoding="async"
+          priority={false}
+          fetchPriority="low"
+        />
+        <div className="relative z-10">
+          <Footer />
+        </div>
+      </div>
     </div>
   );
 };

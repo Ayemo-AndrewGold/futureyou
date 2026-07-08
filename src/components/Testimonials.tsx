@@ -5,17 +5,17 @@ import About from "./About";
 const Testimonials = () => {
   return (
     <section
-      className="w-full max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16 pt-10 sm:pt-20"
-      data-aos="fade-up"
+      className="w-full max-w-screen-xl mx-auto px-3 sm:px-10 lg:px-16 pt-3 pb-10 sm:1 sm:pt-20 overflow-hidden"
+      // data-aos="fade-up"
     >
       {/* Header */}
       <div
-        className="flex flex-col items-center text-center mb-14"
-        data-aos="fade-up"
-        data-aos-delay="100"
+        className="flex flex-col items-center text-center mb-13"
+        // data-aos="fade-up"
+        // data-aos-delay="100"
       >
         {/* Eyebrow pill */}
-        <div className="inline-flex items-center gap-2 bg-[#EEF0FA] border border-[#c7cef0] text-[#293C97] text-xs font-semibold px-4 py-1.5 rounded-full tracking-wide mb-5">
+        <div className="inline-flex items-center gap-2 bg-[#EEF0FA] border border-[#c7cef0] text-[#293C97] text-xs font-semibold px-3 py-1.5 rounded-full tracking-wide mb-5">
           <span className="w-1.5 h-1.5 rounded-full bg-[#293C97] inline-block" />
           Why Future You
         </div>

@@ -31,7 +31,7 @@ const Slug = async ({ params }: { params: Promise<{ slug: string }> }) => {
     <>
       
       <Header />
-      <article className="max-w-[48rem] mx-auto px-6 py-20 sm:py-28">
+      <article className="max-w-[48rem] mx-auto sm:px-6 px-2 py-20 sm:py-28">
         {/* Back link */}
         <Link
           href="/blog"

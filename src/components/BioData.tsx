@@ -245,7 +245,7 @@ const buildWhatsAppMessage = (): string => {
 
   // ── Main form ──
   return (
-    <section className="min-h-screen bg-[#f8f9ff] px-4 sm:px-6 pt-10 pb-16">
+    <section className="min-h-screen bg-[#f8f9ff] px-2 sm:px-6 pt-10 pb-16">
       <div className="max-w-2xl mx-auto">
 
         <div data-aos="fade-down">
@@ -268,7 +268,7 @@ const buildWhatsAppMessage = (): string => {
 
         {/* Form card */}
         <div
-          className="bg-white border border-gray-100 rounded-2xl shadow-sm p-6 sm:p-8"
+          className="bg-white border border-gray-100 rounded-2xl shadow-sm p-2 sm:p-8"
           data-aos="fade-up"
           data-aos-delay="80"
         >

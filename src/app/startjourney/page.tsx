@@ -26,7 +26,7 @@ const StartJourneyPage: React.FC = () => {
   };
 
   return (
-    <section className="min-h-screen bg-[#f8f9ff] px-4 sm:px-10 pt-3 pb-3">
+    <section className="min-h-screen bg-[#f8f9ff] px-2 sm:px-10 pt-3 pb-3">
       <div className="max-w-[1280px] mx-auto flex flex-col items-center">
 
         {/* ── Step progress indicator ── */}

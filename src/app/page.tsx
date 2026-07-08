@@ -19,46 +19,46 @@ export default function HomePage() {
   return (
     <div className="w-full overflow-x-hidden">
       <Header />
-      <section className="pb-5 max-w-[1440px] mx-auto px-4 sm:px-12 overflow-x-hidden">
+      <section className="pb-5 max-w-[1440px] mx-auto overflow-x-hidden">
         <Hero />
       </section>
 
       <NewsletterSection />
 
-      <section className="max-w-[1440px] mx-auto px-4 sm:px-16 overflow-x-hidden">
+      <section className="max-w-[1440px] mx-auto px-3 sm:px-16 overflow-x-hidden">
         <NeedtoGrow />
       </section>
 
-      <section className="max-w-[1440px] mx-auto px-4 sm:px-16 overflow-x-hidden">
+      <section className="max-w-[1440px] mx-auto px-3 sm:px-16 overflow-x-hidden">
         <TransformationPath />
       </section>
 
-      <section className="pt-5 max-w-[1440px] mx-auto px-4 sm:px-16 overflow-x-hidden">
+      <section className="pt-5 max-w-[1440px] mx-auto px-2 sm:px-16 overflow-x-hidden">
         <FutureYouJourney />
       </section>
 
-      <section className="bg-transparent sm:bg-[#EDEDED] max-w-[1440px] mx-auto px-4 sm:px-16 overflow-x-hidden">
+      <section className="bg-transparent sm:bg-[#EDEDED] max-w-[1440px] mx-auto sm:px-16 overflow-x-hidden">
         <WorkSpace />
       </section>
 
-      <section className="py-10 max-w-[1440px] mx-auto px-4 sm:px-16 overflow-x-hidden">
+      <section className="py-10 max-w-[1440px] mx-auto px-1 sm:px-16 overflow-x-hidden">
         <Community />
       </section>
 
-      <section className="sm:py-24 pt-2 max-w-[1440px] mx-auto px-4 sm:px-16 overflow-x-hidden">
+      <section className="sm:py-8 pt-2 max-w-[1440px] mx-auto sm:px-16 overflow-x-hidden">
         <Testimonials />
       </section>
 
-      <section className="sm:py-17 max-w-[1440px] mx-auto px-4 sm:px-16 overflow-x-hidden">
+      <section className="sm:py-14 py-10 max-w-[1440px] mx-auto sm:px-16 overflow-x-hidden">
         <Blog />
       </section>
       
-      <section className="sm:py-26 max-w-[1440px] mx-auto px-4 sm:px-16 overflow-x-hidden">
+      <section className="sm:py-26 pb-10 max-w-[1440px] mx-auto px-4 sm:px-16 overflow-x-hidden">
         <StartJourneyNow />
       </section>
 
       {/* Footer */}
-      <div className="relative w-full overflow-hidden pb-8">
+      <div className="relative w-full overflow-hidden pb-3">
         <Image 
           src="/images/footer.webp" 
           alt="footer background"

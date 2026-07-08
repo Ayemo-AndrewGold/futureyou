@@ -29,7 +29,7 @@ const Blog = async () => {
           <div className="absolute inset-0 bg-[linear-gradient(110deg,_rgba(3,7,18,0.85)_0%,_rgba(3,7,18,0.99)_100%,_rgba(41,60,151,0.25)_100%)]" />
         </div>
 
-        <div className="mx-auto flex w-full max-w-screen-xl flex-col items-start gap-6 px-6 pb-12 pt-28 sm:px-10 sm:pb-16 sm:pt-36 lg:px-16 lg:pb-20">
+        <div className="mx-auto flex w-full max-w-screen-xl flex-col items-start gap-6 px-2 pb-12 pt-28 sm:px-10 sm:pb-16 sm:pt-36 lg:px-16 lg:pb-20">
           <div
             className="flex items-center gap-2 rounded-full border border-white/20 bg-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-white backdrop-blur-sm"
             data-aos="fade-up"
@@ -87,7 +87,7 @@ const Blog = async () => {
       </section>
 
       {/* Explorer: search, filters, featured, grid */}
-      <section className="w-full max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16 mt-5 pb-20 flex flex-col gap-10">
+      <section className="w-full max-w-screen-xl mx-auto px-2 sm:px-10 lg:px-16 mt-5 pb-20 flex flex-col gap-10">
         <BlogExplorer posts={posts as any} />
       </section>
 

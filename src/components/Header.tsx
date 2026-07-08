@@ -56,7 +56,7 @@ const Header: React.FC = () => {
           : "bg-white h-[68px]"
       }`}
     >
-      <nav className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 h-full flex items-center justify-between">
+      <nav className="max-w-[1440px] mx-auto px-2 sm:px-12 lg:px-20 h-full flex items-center justify-between">
         {/* Logo */}
         <Link href="/" onClick={closeMenu} className="shrink-0 flex items-center">
           <Image

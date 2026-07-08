@@ -5,12 +5,13 @@ import FutureYouJourneyCard from "./FutureYouJourneyCard";
 const FutureYouJourney = () => {
   return (
     <section
-      className="w-full max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16 sm:py-24 overflow-hidden"
-      data-aos="fade-up"
+      className="w-full max-w-screen-xl mx-auto px-2 sm:px-10 lg:px-16 sm:py-24 overflow-hidden"
+      // data-aos="fade-up"
       aria-labelledby="future-you-journey-heading"
     >
       {/* Header */}
-      <div className="mb-14" data-aos="fade-up" data-aos-delay="100">
+      <div className=" " // data-aos="fade-up" data-aos-delay="100"
+      >
 
         {/* Eyebrow pill — matches site design language */}
         <div className="inline-flex items-center gap-2 bg-[#EEF0FA] border border-[#c7cef0] text-[#293C97] text-xs font-semibold px-4 py-1.5 rounded-full tracking-wide mb-5">

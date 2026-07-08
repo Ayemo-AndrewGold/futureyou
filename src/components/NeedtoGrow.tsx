@@ -34,7 +34,7 @@ const NeedToGrow = () => {
   }, [activeIndex]);
 
   return (
-    <section className="w-full mb-16 sm:mb-28">
+    <section className="w-full mb-15 sm:mb-20">
 
       {/* Header row */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">

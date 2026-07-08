@@ -62,7 +62,7 @@ const FutureYouJourneyCard: React.FC = () => {
             ref={(el) => {
               cardRefs.current[index] = el;
             }}
-            className={`flex flex-col md:flex-row gap-10 xl:gap-20 items-center py-14 ${
+            className={`flex flex-col md:flex-row gap-10 xl:gap-20 items-center py-5 ${
               !isEven ? "md:flex-row-reverse" : ""
             }`}
           >
