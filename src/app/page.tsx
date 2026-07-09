@@ -13,6 +13,7 @@ import WorkSpace from "@/components/WorkSpace";
 import Image from "next/image";
 import NewsletterSection from "@/components/NewsletterSection ";
 
+export const dynamic = 'force-dynamic';
 
 export default function HomePage() {
 
