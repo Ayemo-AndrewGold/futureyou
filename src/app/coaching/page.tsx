@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Footer from "@/components/Footer";
 import Link from "next/link";
-import Blog from "@/components/Blog";
+// import Blog from "@/components/Blog";
 import Header from "@/components/Header";
 
 export const dynamic = 'force-dynamic';
@@ -248,9 +248,9 @@ const CoachingPage: React.FC = () => {
       </section>
 
       {/* ── Blog ── */}
-      <div className="w-full max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16 mb-16">
+      {/* <div className="w-full max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16 mb-16">
         <Blog />
-      </div>
+      </div> */}
 
       {/* ── Footer ── */}
       <div className="relative w-full min-h-[420px] overflow-hidden">

@@ -1,5 +1,4 @@
 
-import Blog from "@/components/Blog";
 import Community from "@/components/Community";
 import Footer from "@/components/Footer";
 import FutureYouJourney from "@/components/FutureYouJourney";
@@ -13,7 +12,6 @@ import WorkSpace from "@/components/WorkSpace";
 import Image from "next/image";
 import NewsletterSection from "@/components/NewsletterSection ";
 
-export const dynamic = 'force-dynamic';
 
 export default function HomePage() {
 
@@ -50,9 +48,9 @@ export default function HomePage() {
         <Testimonials />
       </section>
 
-      <section className="sm:py-14 py-10 max-w-[1440px] mx-auto sm:px-16 overflow-x-hidden">
+      {/* <section className="sm:py-14 py-10 max-w-[1440px] mx-auto sm:px-16 overflow-x-hidden">
         <Blog />
-      </section>
+      </section> */}
       
       <section className="sm:py-26 pb-10 max-w-[1440px] mx-auto px-4 sm:px-16 overflow-x-hidden">
         <StartJourneyNow />
