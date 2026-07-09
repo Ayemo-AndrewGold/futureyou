@@ -1,6 +1,5 @@
 'use client';
 
-import Image from "next/image";
 import Link from "next/link";
 
 const Hero = () => {
@@ -110,7 +109,7 @@ const Hero = () => {
             </div>
           </div>
 
-             {/* Hero video */}
+             {/* This is Hero video */}
           <video
             autoPlay
             muted
