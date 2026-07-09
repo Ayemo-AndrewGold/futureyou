@@ -1,6 +1,5 @@
 import headerLogo from './headerLogo.svg';
 import heroImage from './heroImage.webp';
-import coachingMentorship from './coachingMentorship.webp';
 import applyRealSupport from './applyRealSupport.webp'; 
 import matchedCoach from './matchedCoach.png'; 
 import shareStory from './shareStory.png'; 

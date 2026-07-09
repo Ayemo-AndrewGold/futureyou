@@ -4,19 +4,15 @@
 
 
 import {
-  LoanImage,
-  coachingMentorship,
   matchedCoach,
   whereHeaded,
   applyRealSupport,
-  danielImg,
   shareStory,
   earnFuture,
   fatimaImage,
   blog1,
   blog2,
   blog3,
-  fatimaImg,
   ucheImg,
   chrisImg,
   loanImg,
@@ -35,7 +31,6 @@ import {
   blogArrow,
   journeyIcon1,
   journeyIcon3,
-  journeyIcon4,
   dayPress,
   weeklyPress,
   monthlyPress,
