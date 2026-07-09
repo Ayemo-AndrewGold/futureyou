@@ -14,7 +14,7 @@ import blog1 from './blog1.png';
 import blog2 from './blog2.png';
 import blog3 from './blog3.png';
 import journeyBackground from './journeyBackground.png';
-import footer from './footer.webp';
+import footer from './footer.png';
 import aboutusImage from './aboutusImage.webp';
 import workSpaceLine from './workSpaceLine.svg';
 import fatimaImg from './fatimaImg.svg';
