@@ -9,7 +9,7 @@ if (!hasApiUrl) {
   );
 }
 
-const DEFAULT_FETCH_TIMEOUT_MS = 5000;
+const DEFAULT_FETCH_TIMEOUT_MS = 65000; // 65 seconds — Render free tier cold start can take 30-60s
 
 async function fetchWithTimeout(input: RequestInfo, init?: RequestInit) {
   const controller = new AbortController();
