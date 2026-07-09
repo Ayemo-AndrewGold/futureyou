@@ -117,7 +117,7 @@ const Hero = () => {
             loop
             playsInline
             preload="auto"
-            poster="/images/heroImage.webp"
+            poster="/images/heroImage.png"
             className="w-full max-w-[560px] sm:max-w-[600px] xl:max-w-[660px] h-auto object-contain rounded-[5px]"
             onLoadedMetadata={(e) => {
               e.currentTarget.playbackRate = 0.75;
