@@ -20,7 +20,7 @@ const Blog = async () => {
       <section className="relative w-full overflow-hidden" data-aos="fade-up" >
         <div className="absolute inset-0 -z-10">
           <Image
-            src="/images/future.jpeg"
+            src="https://res.cloudinary.com/yaovkmpi/image/upload/v1784040845/future_r4ss4x.jpg"
             alt="Blog hero background"
             fill
             priority
