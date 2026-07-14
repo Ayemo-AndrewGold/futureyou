@@ -89,7 +89,7 @@ const Hero = () => {
         {/* ── Image column ── */}
         <div
           className="order-1 xl:order-2 w-full xl:w-1/2 flex justify-center items-center sm:mt-20 xl:mt-0 relative"
-          data-aos="zoom-in"
+          data-aos="fade-left"
           data-aos-delay="200"
         >
           {/* Floating badge — top right */}
@@ -120,6 +120,7 @@ const Hero = () => {
             onLoadedMetadata={(e) => {
               e.currentTarget.playbackRate = 0.75;
             }}
+            
           >
             <source src="https://res.cloudinary.com/yaovkmpi/video/upload/v1784012596/herovideo_rsq5ti.mp4" type="video/mp4"  />
           </video>              
