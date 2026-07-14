@@ -83,7 +83,7 @@ const Career = () => {
             data-aos="fade-right"
           >
             <Image
-              src="/images/futureyouCareerImg.webp"
+              src="https://res.cloudinary.com/yaovkmpi/image/upload/v1784037522/futureyouCareerImg_ugc8hb.webp"
               alt="FutureYou team at work"
               fill
               className="object-cover"

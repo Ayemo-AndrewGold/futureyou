@@ -78,7 +78,7 @@ const WorkSpace = () => {
           data-aos-delay="200"
         >
           <Image
-            src="/images/workSpace.webp"      // 👈 your actual workspace image
+            src="https://res.cloudinary.com/yaovkmpi/image/upload/v1784037526/workSpace_mj221e.webp"      // 👈 your actual workspace image
             alt="FutureYou co-working space interior"
             fill
             className="object-cover"
