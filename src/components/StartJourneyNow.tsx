@@ -14,7 +14,7 @@ const StartJourneyNow = () => {
         {/* Background image — desktop */}
         <div className="hidden sm:block absolute inset-0">
           <Image
-            src="/images/journeyBackground.webp"
+            src="https://res.cloudinary.com/yaovkmpi/image/upload/v1784037525/journeyBackground_bxxnkl.png"
             alt="Journey background"
             fill
             className="object-cover object-center"
@@ -25,7 +25,7 @@ const StartJourneyNow = () => {
         {/* Background image — mobile */}
         <div className="block sm:hidden absolute inset-0">
           <Image
-            src="/images/startJourney.webp"
+            src="https://res.cloudinary.com/yaovkmpi/image/upload/v1784037525/startJourney_ozr81q.png"
             alt="Journey background"
             fill
             className="object-cover object-center"

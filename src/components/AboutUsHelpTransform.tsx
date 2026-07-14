@@ -54,6 +54,8 @@ const AboutUsHelpTransformComponent = () => {
             <Image
               key={id}
               src={img}
+              width={500}
+              height={500}
               alt=""
               loading="lazy"
               className={`absolute inset-0 w-full h-full object-cover rounded-md transition-opacity duration-700 ${

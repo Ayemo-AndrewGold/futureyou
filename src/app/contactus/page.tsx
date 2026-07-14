@@ -65,7 +65,7 @@ const ContactUsPage = () => {
       <section className="relative w-full overflow-hidden px-3 sm:px-10 lg:px-16 pt-25 pb-20">    {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/contact.jpg"
+            src="https://res.cloudinary.com/yaovkmpi/image/upload/v1784040845/future_r4ss4x.jpg"
             alt="Future You Background"
             fill
             priority

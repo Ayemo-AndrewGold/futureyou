@@ -57,7 +57,9 @@ const About = () => {
         <div className="relative rounded-2xl overflow-hidden shadow-lg bg-black aspect-video">
           <video
             ref={videoRef}
-            src="/videos/aboutfutureyou.mp4"
+            src="https://res.cloudinary.com/yaovkmpi/video/upload/v1784012087/aboutfutureyou_gh4mwf.mp4"
+            title="Future You - About Us"
+            tabIndex={-1}
             playsInline
             loop
             preload="metadata"
