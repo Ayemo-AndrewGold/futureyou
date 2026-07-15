@@ -12,11 +12,11 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-[#f5f6ff] via-white to-white -z-10" />
       <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-[#293C97]/5 rounded-full blur-3xl -z-10" />
 
-      <div className="w-full max-w-screen-xl mx-auto px-3 sm:px-10 lg:px-10 py-24 xl:py-0 flex flex-col xl:flex-row items-center gap-12 xl:gap-8">
+      <div className="w-full max-w-screen-xl mx-auto px-3 sm:px-10 lg:px-10 py-24 lg:py-0 flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
 
         {/* ── Text column ── */}
         <div
-          className="order-2 xl:order-1 w-full xl:w-1/2 flex flex-col items-start gap-6"
+          className="order-2 lg:order-1 w-full lg:w-1/2 flex flex-col items-start gap-6"
           data-aos="fade-right"
           data-aos-disable-interaction="true"
           data-aos-delay="100"
@@ -88,18 +88,18 @@ const Hero = () => {
 
         {/* ── Image column ── */}
         <div
-          className="order-1 xl:order-2 w-full xl:w-1/2 flex justify-center items-center sm:mt-20 xl:mt-0 relative"
+          className="order-1 lg:order-2 w-full lg:w-1/2 flex justify-center items-center sm:mt-20 lg:mt-0 relative"
           data-aos="fade-left"
           data-aos-delay="200"
         >
           {/* Floating badge — top right */}
-          {/* <div className="absolute top-2 sm:top-8 right-[-15px] sm:right-4 sm:right-8 xl:-right-2 z-10 bg-[#293C97] text-white rounded-xl px-4 py-3 hidden sm:flex  shadow-lg">
+          {/* <div className="absolute top-2 sm:top-8 right-[-15px] sm:right-4 sm:right-8 lg:-right-2 z-10 bg-[#293C97] text-white rounded-xl px-4 py-3 hidden sm:flex  shadow-lg">
             <p className="text-xs font-bold leading-none">New session</p>
             <p className="text-[11px] text-[#c5cae9] mt-0.5">Available now</p>
           </div> */}
 
           {/* Floating badge — bottom left */}
-          <div className="absolute hidden sm:flex bottom-3 sm:bottom-4 left-[-20px] sm:left-8 xl:-left-4 z-10 bg-white border border-gray-100 rounded-xl px-1 sm:px-3 sm:py-1 py-1 sm:py-4 flex items-center gap-3 shadow-md">
+          <div className="absolute hidden sm:flex bottom-3 sm:bottom-4 left-[-20px] sm:left-8 lg:-left-4 z-10 bg-white border border-gray-100 rounded-xl px-1 sm:px-3 sm:py-1 py-1 sm:py-4 flex items-center gap-3 shadow-md">
             <div className="sm:w-9 sm:h-9 w-8 h-8 rounded-full bg-[#EEF0FA] flex items-center justify-center shrink-0">
               <span className="text-base">⭐</span>
             </div>
@@ -116,7 +116,7 @@ const Hero = () => {
             loop
             playsInline
             preload="auto"
-            className="w-full max-w-[7600px] sm:max-w-[700px] xl:max-w-[760px] h-auto object-contain rounded-[5px]"
+            className="w-full max-w-[7600px] sm:max-w-[700px] lg:max-w-[760px] h-auto object-contain rounded-[5px]"
             onLoadedMetadata={(e) => {
               e.currentTarget.playbackRate = 0.75;
             }}

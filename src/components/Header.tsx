@@ -97,7 +97,7 @@ const Header: React.FC = () => {
         <div className="hidden lg:flex items-center gap-3 shrink-0">
           <Link
             href="/contactus"
-            className="text-[0.885rem] font-bold text-[#293C97] border-[1.5px] border-[#293C97] px-5 py-[8px] rounded-lg hover:bg-[#293C97] hover:text-white transition-all duration-200"
+            className="text-[0.885rem] xl:flex hidden font-bold text-[#293C97] border-[1.5px] border-[#293C97] px-5 py-[8px] rounded-lg hover:bg-[#293C97] hover:text-white transition-all duration-200"
           >
             Contact us
           </Link>
@@ -105,7 +105,7 @@ const Header: React.FC = () => {
             href="/startjourney"
             className="text-[0.885rem] font-bold text-white bg-[#293C97] px-5 py-[8px] rounded-lg hover:bg-[#1e2d85] transition-all duration-200 flex items-center gap-1.5"
           >
-            Get started
+            Get Started
             <span className="text-[0.75rem]">→</span>
           </Link>
         </div>
