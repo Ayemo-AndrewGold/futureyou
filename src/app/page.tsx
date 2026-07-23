@@ -36,13 +36,10 @@ export default function HomePage() {
         <FutureYouJourney />
       </section>
 
-      <section className="bg-transparent sm:bg-[#EDEDED] max-w-[1440px] mx-auto sm:px-16 overflow-x-hidden">
-        <WorkSpace />
-      </section>
 
-      <section className="py-10 max-w-[1440px] mx-auto px-1 sm:px-16 overflow-x-hidden">
+      {/* <section className="py-10 max-w-[1440px] mx-auto px-1 sm:px-16 overflow-x-hidden">
         <Community />
-      </section>
+      </section> */}
 
       <section className="sm:py-8 pt-2 max-w-[1440px] mx-auto sm:px-16 overflow-x-hidden">
         <Testimonials />

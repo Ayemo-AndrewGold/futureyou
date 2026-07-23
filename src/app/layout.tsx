@@ -5,6 +5,7 @@ import { Toaster } from "react-hot-toast";
 import { Lato, Montserrat } from "next/font/google";
 import ChatWidget from "@/components/ChatWidget";
 import AOSInit from "@/components/AosInit";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -118,6 +119,7 @@ export default function RootLayout({
           toastOptions={{ duration: 4000 }} 
         />
         <AOSInit />
+        <ScrollToTop />
         <ChatWidget />
       </body>
     </html>
