@@ -182,7 +182,7 @@ const Hero = () => {
               </Link>
 
               <Link
-                href="/startjourney"
+                href="/aboutus"
                 aria-label="See how FutureYou helps"
                 className="flex-1 inline-flex items-center justify-center bg-white/10 hover:bg-white/20 active:scale-[0.97] backdrop-blur-sm text-white text-xs sm:text-base font-semibold px-3 sm:px-8 py-3 sm:py-4 rounded-xl border border-white/25 hover:border-white/40 transition-all duration-200 whitespace-nowrap"
               >
