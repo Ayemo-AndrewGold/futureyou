@@ -6,6 +6,8 @@ import { Lato, Montserrat } from "next/font/google";
 import ChatWidget from "@/components/ChatWidget";
 import AOSInit from "@/components/AosInit";
 import ScrollToTop from "@/components/ScrollToTop";
+import AnnouncementBar from "@/components/AnnouncementBar";
+import EventPopup from "@/components/EventPopup";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -109,18 +111,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${lato.variable} ${montserrat.variable}`}>
-      <body
-        className= "antialiased"
-      >
+      <body className="antialiased">
+        <AnnouncementBar />
         {children}
-        {/* Toast container */}
-        <Toaster 
-          position="top-right" 
-          toastOptions={{ duration: 4000 }} 
-        />
+        <Toaster position="top-right" toastOptions={{ duration: 4000 }} />
         <AOSInit />
         <ScrollToTop />
         <ChatWidget />
+        <EventPopup />
       </body>
     </html>
   );

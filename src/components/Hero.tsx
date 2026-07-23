@@ -9,30 +9,19 @@ import { motion, AnimatePresence } from 'framer-motion';
    covering education, coaching, career & success
 ───────────────────────────────────────────────*/
 const SLIDES = [
+
+
   {
-    src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80',
-    alt: 'Students collaborating in a modern learning environment',
-  },
-  // {
-  //   src: 'https://images.unsplash.com/photo-1573497491765-dccce02b29df?auto=format&fit=crop&w=1600&q=80',
-  //   alt: 'Professional coaching session',
-  // },
-  // {
-  //   src: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1600&q=80',
-  //   alt: 'Career growth and professional success',
-  // },
-  {
-    src: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80',
+    src: 'https://res.cloudinary.com/yaovkmpi/image/upload/v1784807463/futu_izegrp.avif',
     alt: 'Online learning and digital education',
+  },
+  {
+    src: 'https://res.cloudinary.com/yaovkmpi/image/upload/v1784807463/fam_jn9lop.avif',
+    alt: 'Students collaborating in a modern learning environment',
   },
 ];
 
-/* ─── Credential pills shown below CTAs ─────*/
-const CREDENTIALS = [
-  { icon: '🎓', label: 'Expert Coaches' },
-  { icon: '🤝', label: 'Trusted Consulting' },
-  { icon: '🚀', label: 'Proven Results' },
-];
+
 
 /* ─── Animation helpers ──────────────────────*/
 const ease = [0.25, 0.46, 0.45, 0.94] as [number, number, number, number];

@@ -50,6 +50,7 @@ export const navLinks = [
   { href: "/aboutus", label: "About" },
   { href: "/contactus", label: "Contact" },
   { href: "/career", label: "Careers" },
+  { href: "/event", label: "Event" },
 ];
 
 /* =========================

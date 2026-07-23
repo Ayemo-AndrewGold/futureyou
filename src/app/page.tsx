@@ -10,7 +10,7 @@ import Testimonials from "@/components/Testimonials";
 import TransformationPath from "@/components/TransformationPath";
 import WorkSpace from "@/components/WorkSpace";
 import Image from "next/image";
-import NewsletterSection from "@/components/NewsletterSection ";
+// import NewsletterSection from "@/components/NewsletterSection ";
 
 
 export default function HomePage() {
@@ -22,7 +22,7 @@ export default function HomePage() {
         <Hero />
       </section>
 
-      <NewsletterSection />
+      {/* <NewsletterSection /> */}
 
       <section className="max-w-[1440px] mx-auto px-3 sm:px-16 overflow-x-hidden">
         <NeedtoGrow />

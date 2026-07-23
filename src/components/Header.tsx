@@ -168,15 +168,15 @@ const Header: React.FC = () => {
         {/* ── Desktop CTAs ── */}
         <div className="hidden lg:flex items-center gap-3 shrink-0">
           {/* Ghost / text CTA */}
-          <Link
+          {/* <Link
             href="/contactus"
             className="inline-flex items-center text-[0.875rem] font-medium text-[#4a4a5a] hover:text-[#1a1a2e] px-4 py-2 rounded-lg hover:bg-gray-50 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#293C97]/40"
           >
             Contact
-          </Link>
+          </Link> */}
 
           {/* Divider */}
-          <div className="w-px h-5 bg-gray-200 shrink-0" />
+          {/* <div className="w-px h-5 bg-gray-200 shrink-0" /> */}
 
           {/* Primary CTA */}
           <Link

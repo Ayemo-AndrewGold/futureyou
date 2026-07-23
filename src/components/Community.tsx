@@ -73,7 +73,7 @@ const Community = () => {
           data-aos="fade-left"
           data-aos-delay="200"
         >
-          <CommunityCard />
+          {/* <CommunityCard /> */}
         </div>
       </div>
 
