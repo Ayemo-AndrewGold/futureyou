@@ -336,13 +336,13 @@ const Header: React.FC = () => {
                   menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
                 }`}
               >
-                <Link
+                {/* <Link
                   href="/contactus"
                   onClick={closeMenu}
                   className="flex items-center justify-center text-sm font-semibold text-[#293C97] border-[1.5px] border-[#293C97]/30 py-3 rounded-xl hover:border-[#293C97] hover:bg-[#EEF0FA] transition-all duration-200"
                 >
                   Contact Us
-                </Link>
+                </Link> */}
                 <Link
                   href="/startjourney"
                   onClick={closeMenu}
