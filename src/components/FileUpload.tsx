@@ -9,8 +9,6 @@ const FileUpload: React.FC = () => {
     const file = e.target.files?.[0];
 
     if (!file) return;
-
-    console.log("Selected file:", file.name);
     // Handle file upload logic here
   };
 
@@ -21,7 +19,7 @@ const FileUpload: React.FC = () => {
         className="w-full h-[160px] flex flex-col justify-center items-center gap-3 px-4 py-3 border border-dashed border-blue-500 rounded-2xl cursor-pointer transition-all hover:bg-blue-50"
       >
         <Image
-          src="/images/uploadIcon.png"
+          src="/icons/uploadIcon.svg"
           alt="Upload file icon"
           width={40}
           height={40}

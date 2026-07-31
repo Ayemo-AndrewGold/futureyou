@@ -15,8 +15,7 @@ const Nav: React.FC = () => {
   // const toggleMenu = (): void => setMenuOpen((prev) => !prev);
   const closeMenu = (): void => setMenuOpen(false);
 
-    const toggleMenu = (): void => {
-    console.log("toggleMenu fired, current state:", menuOpen);
+  const toggleMenu = (): void => {
     setMenuOpen((prev) => !prev);
   };
 
@@ -51,7 +50,7 @@ const Nav: React.FC = () => {
         {/* Logo */}
         <Link href="/" onClick={closeMenu} className="shrink-0">
           <Image
-            src="/images/headerLogo.png"
+            src="/images/headerLogo.svg"
             alt="FutureYou Limited logo"
             width={150}
             height={50}

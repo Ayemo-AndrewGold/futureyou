@@ -19,7 +19,7 @@ const StartJourneyPageCard: React.FC = () => {
     if (!selectedCard) return;
 
     router.push(
-      `/bio-data?title=${encodeURIComponent(
+      `/biodata?title=${encodeURIComponent(
         selectedCard.title
       )}&pathUpClose=${encodeURIComponent(selectedCard.pathUpClose)}`
     );

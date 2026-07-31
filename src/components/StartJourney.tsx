@@ -75,7 +75,7 @@ const StartJourneyPageCard = () => {
             if (!selectedCard) return;
 
             router.push(
-              `/bio-data?title=${encodeURIComponent(
+              `/biodata?title=${encodeURIComponent(
                 selectedCard.title
               )}&path=${encodeURIComponent(selectedCard.pathUpClose)}`
             );

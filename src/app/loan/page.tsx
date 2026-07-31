@@ -29,7 +29,7 @@ const StartJourneyPage = () => {
     // Next.js router doesn't support passing state like react-router.
     // Pass via query param or sessionStorage instead — see note below.
     sessionStorage.setItem("journeySelection", JSON.stringify(selectedCard));
-    router.push("/bio-data");
+    router.push("/biodata");
   };
 
   return (

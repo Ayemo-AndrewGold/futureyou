@@ -1,13 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Eye, EyeOff, Lock, Mail, AlertCircle } from "lucide-react";
 import { saveAdminSession, getAdminSession } from "@/lib/adminAuth";
 
-export default function AdminLoginPage() {
+/* ── Inner component — safe to call useSearchParams here because
+   it is always rendered inside the Suspense boundary below.      */
+function LoginForm() {
   const router = useRouter();
   const params = useSearchParams();
   const from = params.get("from") ?? "/admin";
@@ -172,5 +174,15 @@ export default function AdminLoginPage() {
         </motion.div>
       </div>
     </div>
+  );
+}
+
+/* ── Page export — Suspense boundary makes useSearchParams safe
+   during static prerender (required by Next.js App Router).      */
+export default function AdminLoginPage() {
+  return (
+    <Suspense fallback={null}>
+      <LoginForm />
+    </Suspense>
   );
 }
