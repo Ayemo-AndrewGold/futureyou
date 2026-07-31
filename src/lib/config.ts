@@ -16,7 +16,7 @@ export const SITE_CONFIG = {
   },
 
   /** Portal/auth paths where floating widgets are hidden */
-  hiddenWidgetPaths: ["/portal", "/login", "/signup", "/register"],
+  hiddenWidgetPaths: ["/portal", "/login", "/signup", "/register", "/admin"],
 };
 export const MENU_ITEMS = [
   { name: "Home", href: "/" },

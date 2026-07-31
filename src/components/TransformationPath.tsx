@@ -25,7 +25,7 @@ const TransformationPath = () => {
 
         <p className="font-montserrat text-base sm:text-lg text-[#555] leading-relaxed max-w-2xl">
           Wherever you are today, your future can be different. Whether you're seeking personal 
-          growth, career advancement, business expansion, or financial support, 
+          growth, career advancement, business expansion, or loan support, 
           <b> Future You</b> provides the guidance, strategy, and resources to help you 
           move confidently toward your goals.
         </p>

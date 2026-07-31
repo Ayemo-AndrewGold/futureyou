@@ -5,9 +5,9 @@ import Link from "next/link";
 import { Play } from "lucide-react";
 
 const checklistItems = [
+  "Flexible Loan Services",
   "Personalized Coaching",
   "Strategic Business Consulting",
-  "Flexible Growth Capital",
   "Holistic Support for Lasting Success",
 ];
 
@@ -110,7 +110,7 @@ const About = () => {
 
           <p className="font-montserrat text-base text-[#555] leading-relaxed">
             Future You exists to help individuals and businesses move beyond limitations through 
-            coaching, consulting, and growth capital creating meaningful, lasting transformation.
+            flexible loan solutions, expert coaching, and strategic consulting creating meaningful, lasting transformation.
           </p>
         </div>
 

@@ -26,8 +26,8 @@ const Testimonials = () => {
         </h2>
 
         <p className="font-montserrat text-base sm:text-lg text-[#555] leading-relaxed max-w-2xl">
-          We help individuals and businesses move from potential to progress through expert 
-          coaching, strategic consulting, and growth capital.
+          We help individuals and businesses move from potential to progress through flexible loan solutions, expert 
+          coaching, and strategic consulting.
         </p>
       </div>
 

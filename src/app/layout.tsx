@@ -8,6 +8,7 @@ import AOSInit from "@/components/AosInit";
 import ScrollToTop from "@/components/ScrollToTop";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import EventPopup from "@/components/EventPopup";
+import NewsletterPopup from "@/components/NewsletterPopup";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -30,19 +31,23 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Future You Limited empowers individuals and businesses through expert coaching, strategic consulting, and growth capital—helping you unlock your potential and achieve lasting transformation.",
+    "Future You Limited empowers individuals and businesses through flexible loan solutions, expert coaching, and strategic consulting—helping you access the funding, guidance, and support needed to achieve lasting growth.",
 
   keywords: [
     "Future You Limited",
+    "Loan Services",
+    "SME Term Loan",
+    "Asset Financing",
+    "Payday Loan",
+    "LPO Financing",
     "Coaching",
     "Business Consulting",
-    "Growth Capital",
+    "Business Funding",
     "Leadership Development",
     "Business Growth",
     "Personal Development",
     "Career Development",
     "Entrepreneurship",
-    "Business Funding",
     "Soft Loans",
     "Mentorship",
     "Transformation",
@@ -75,7 +80,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Future You",
     description:
-      "Helping individuals and businesses become the future version of themselves through Coaching, Consulting & Growth Capital.",
+      "Helping individuals and businesses become the future version of themselves through Loan Services, Expert Coaching & Strategic Consulting.",
     url: "https://futureyoulimited.com",
     siteName: "Future You Limited",
     locale: "en_US",
@@ -119,6 +124,7 @@ export default function RootLayout({
         <ScrollToTop />
         <ChatWidget />
         <EventPopup />
+        {/* <NewsletterPopup /> */}
       </body>
     </html>
   );

@@ -123,7 +123,7 @@ const Hero = () => {
             className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-xs font-semibold px-4 py-2 rounded-full tracking-widest uppercase"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#7b8ef5] inline-block animate-pulse" />
-            Coaching · Consulting · Capital Solutions
+            Loan Services · Coaching · Consulting
           </motion.div> */}
 
           {/* Main headline */}
@@ -158,8 +158,8 @@ const Hero = () => {
             {...upAnim(0.44)}
             className="font-montserrat text-base sm:text-lg text-white/75 leading-relaxed max-w-[520px] mx-auto lg:mx-0"
           >
-            At FutureYou, we empower individuals, professionals, and businesses through
-            expert coaching, strategic consulting, and growth capital helping you unlock
+            At FutureYou, we empower individuals, professionals, and businesses through flexible loan solutions,
+            expert coaching, and strategic consulting helping you unlock
             your potential and build lasting success.
           </motion.p>
 

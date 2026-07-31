@@ -143,7 +143,7 @@
 //         </h2>
 
 //         <p className="relative text-white/55 text-[0.85rem] leading-relaxed mb-5">
-//           Get expert insights, inspiring stories, and exclusive updates on coaching, consulting, and growth capital, straight to your inbox.
+//           Get expert insights, inspiring stories, and exclusive updates on loan services, coaching, and consulting, straight to your inbox.
 //         </p>
 
 //         {/* Form */}

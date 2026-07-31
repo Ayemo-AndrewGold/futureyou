@@ -29,8 +29,7 @@ const AboutUsPage = () => {
           </h1>
 
           <p className="font-montserrat text-base sm:text-lg text-[#555] leading-relaxed max-w-2xl">
-            At Future You, we empower individuals and businesses through coaching, strategic consulting, 
-            and growth capital providing the guidance, resources, and support needed to achieve lasting transformation.
+            At Future You, we empower individuals and businesses through flexible loan services, expert coaching, and strategic consulting providing the guidance, resources, and support needed to achieve lasting transformation.
           </p>
         </section>
 

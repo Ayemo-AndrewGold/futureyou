@@ -59,25 +59,25 @@ export const navLinks = [
 
 export const coachCards = [
   {
+    id: "Loan Services",
+    title: "LOAN SERVICES",
+    text: "Flexible financing solutions — SME term loans, asset financing, payday loans, and LPO financing — designed to fuel business growth.",
+    img: loanImg,
+    label: "Loan Services",
+  },
+  {
     id: "Coaching",
     title: "COACHING",
     text: "Personalized guidance to help individuals and leaders unlock their full potential.",
-    img: loanImg,
-    label: "Loan",
+    img: growth,
+    label: "Coaching",
   },
   {
     id: "Consulting",
     title: "CONSULTING",
     text: "Practical business strategies that drive growth, efficiency, and long-term success.",
     img: mentorship,
-    label: "Mentorship",
-  },
-  {
-    id: "Growth Capital",
-    title: "GROWTH CAPITAL",
-    text: "Flexible funding designed to help businesses grow with confidence.",
-    img: growth,
-    label: "Growth Support",
+    label: "Consulting",
   },
 ];
 
@@ -90,7 +90,7 @@ export const transformCards = [
     id: 1,
     img: finEmpowered,
     title: "Business Growth → Financial Success",
-    text: "Access strategic coaching, business consulting, and growth capital to expand your business with confidence",
+    text: "Access flexible loan solutions, expert business consulting, and coaching to expand your business with confidence",
   },
   {
     id: 2,
@@ -130,25 +130,25 @@ export const transformCards = [
 
 export const StartJourneyCards = [
   {
-    id: "loan",
+    id: "loans",
     img: journeyIcon1,
+    title: "Loan Services",
+    text: "Access flexible financing solutions — SME term loans, asset financing, payday loans, and LPO financing — designed to fuel your next stage of growth.",
+    pathUpClose: "/services/sme-term-loan",
+  },
+  {
+    id: "coaching",
+    img: leafIcon,
     title: "Coaching",
     text: "Build confidence, gain clarity, and unlock your full potential through personalized coaching and mentorship.",
-    pathUpClose: "/path-up-close-business",
+    pathUpClose: "/coaching",
   },
   {
-    id: "growth",
-    img: leafIcon,
-    title: "Growth Capital",
-    text: "Access flexible funding designed to help individuals and businesses implement their next stage of growth.",
-    pathUpClose: "/path-up-close-growth",
-  },
-  {
-    id: "recovery",
+    id: "consulting",
     img: journeyIcon3,
-    title: "Transformation Pathways",
-    text: "Explore tailored pathways for career growth, entrepreneurship, leadership, and personal transformation.",
-    pathUpClose: "/path-up-close-recovery",
+    title: "Consulting",
+    text: "Strategic business consulting to help you improve performance, solve challenges, and achieve sustainable growth.",
+    pathUpClose: "/startjourney",
   },
   // {
   //   id: "career",
@@ -234,7 +234,7 @@ export const FutureYouJourneyCards = [
     id: 1,
     img: whereHeaded,
     title: 'Choose Your Transformation Path',
-    text: "Select the journey that best matches your goals whether it's personal growth, career advancement, business expansion, or access to growth capital.",
+    text: "Select the journey that best matches your goals whether it's personal growth, career advancement, business expansion, or accessing flexible loan solutions.",
     
   },
   {
@@ -255,7 +255,7 @@ export const FutureYouJourneyCards = [
     id: 4,
     img: applyRealSupport,
     title: 'Access the Right Support',
-    text: "As you make progress, you'll gain access to the services that best fit your needs from expert consulting and coaching to growth capital, funding opportunities, and strategic business support.",
+    text: "As you make progress, you'll gain access to the services that best fit your needs from flexible loan solutions and strategic consulting to expert coaching, funding opportunities, and business support.",
     
   },
   {
@@ -332,7 +332,7 @@ export const BlogCards = [
     img: blog2,
     icon: blogArrow,
     title: 'How Uche Went from Hustler to Investor-Ready in 90 Days',
-    text: 'This solopreneur got matched with a coach, structured his hustle, and secured ₦1.5M in growth capital....',
+    text: 'This solopreneur got matched with a coach, structured his hustle, and secured ₦1.5M in loan funding....',
     date: '10 April 2025',
     link: '/blog/build-confidence'
   },
@@ -424,11 +424,12 @@ export const adminNotifications = [
 ];
 
 export const AboutUsHelpTransform = [
+
   {
     id: 1,
-    img: whereHeaded,
-    title: 'Coaching',
-    text: 'Gain clarity, build confidence, and achieve your goals through one-on-one coaching tailored to your journey.',
+    img: matchedCoach,
+    title: 'Loan Services',
+    text: 'Access flexible loan solutions from SME term loans to LPO financing that help you implement your plans and accelerate sustainable growth.',
     
   },
   {
@@ -437,11 +438,11 @@ export const AboutUsHelpTransform = [
     title: 'Consulting',
     text: 'Strategic business, financial, and HR consulting designed to help you make better decisions and scale effectively.'
   },
-  {
+    {
     id: 3,
-    img: matchedCoach,
-    title: 'Growth Capital',
-    text: 'Access flexible funding solutions that help you implement your plans and accelerate sustainable growth.',
+    img: whereHeaded,
+    title: 'Coaching',
+    text: 'Gain clarity, build confidence, and achieve your goals through one-on-one coaching tailored to your journey.',
     
   },
 ]

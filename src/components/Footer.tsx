@@ -5,217 +5,275 @@ import { FaFacebook, FaLinkedin, FaTiktok, FaInstagram } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { subscribeToNewsletter } from "@/lib/api";
 import Image from "next/image";
-import Button from "./Button";
 import Link from "next/link";
 
-const Footer = () => {
-  const [showPrivacy, setShowPrivacy] = useState(false);
+/* ── Inline newsletter subscription ───────────────────────── */
+function NewsletterForm() {
   const [email, setEmail] = useState("");
 
   const handleSubscribe = async () => {
-    const trimmedEmail = email.trim();
-
-    if (!trimmedEmail) {
-      toast.error("Please enter your email address.");
-      return;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailRegex.test(trimmedEmail)) {
-      toast.error("Please enter a valid email address.");
-      return;
-    }
-
+    const trimmed = email.trim();
+    if (!trimmed) { toast.error("Please enter your email address."); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) { toast.error("Please enter a valid email address."); return; }
     try {
       await toast.promise(
-        subscribeToNewsletter({
-          email: trimmedEmail,
-        }),
+        subscribeToNewsletter({ email: trimmed }),
         {
-          loading: "Subscribing...",
+          loading: "Subscribing…",
           success: (res) => {
             setEmail("");
             return typeof res === "object" && res !== null && "message" in res
               ? (res as { message: string }).message
               : "Subscription successful!";
           },
-          error: (err) =>
-            err instanceof Error
-              ? err.message
-              : "Subscription failed. Please try again.",
+          error: (err) => err instanceof Error ? err.message : "Subscription failed. Please try again.",
         }
       );
-    } catch {
-      // toast.promise already handles errors
-    }
+    } catch { /* handled by toast.promise */ }
   };
 
   return (
-    <section
-      className="px-2 sm:px-16 pt-10 flex flex-col items-center gap-8 relative"
-      data-aos="fade-up"
+    <form
+      onSubmit={(e) => { e.preventDefault(); handleSubscribe(); }}
+      className="flex items-center gap-2 mt-5 w-full max-w-sm"
     >
-      <div className="bg-[#FFFFFF] w-full max-w-[1440px] py-5 px-3 sm:px-5 flex flex-wrap justify-between gap-8 rounded-lg relative">
+      <input
+        type="email"
+        autoComplete="email"
+        placeholder="Enter your email"
+        required
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        className="flex-1 min-w-0 bg-[#f7f8ff] border border-[#e0e3f5] focus:border-[#293C97]/40 rounded-lg px-4 py-2.5 text-[13px] text-[#0E0E1D] placeholder:text-[#aaa] outline-none transition-colors duration-200"
+      />
+      <button
+        type="submit"
+        className="shrink-0 bg-[#293C97] hover:bg-[#1e2d85] text-white text-[13px] font-semibold px-5 py-2.5 rounded-lg transition-colors duration-200 whitespace-nowrap"
+      >
+        Subscribe
+      </button>
+    </form>
+  );
+}
 
-        {/* Logo for small screens */}
-        <div className="block sm:hidden" data-aos="fade-up" data-aos-delay="100">
-          <Image
-            src="/images/headerLogo.svg"
-            width={120}
-            height={120}
-            alt="Future You logo"
-            className="object-contain"
-          />
+/* ── Shared: footer nav link ───────────────────────────────── */
+function FooterLink({ href, children, external = false }: { href: string; children: React.ReactNode; external?: boolean }) {
+  const cls = "group inline-flex items-center gap-1.5 text-[#555] hover:text-[#293C97] text-[13px] font-medium transition-colors duration-200 py-0.5";
+  if (external) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>
+        <span className="relative">
+          {children}
+          <span className="absolute -bottom-px left-0 w-0 h-px bg-[#293C97]/40 group-hover:w-full transition-all duration-300 rounded-full" />
+        </span>
+      </a>
+    );
+  }
+  return (
+    <Link href={href} className={cls}>
+      <span className="relative">
+        {children}
+          <span className="absolute -bottom-px left-0 w-0 h-px bg-[#293C97]/40 group-hover:w-full transition-all duration-300 rounded-full" />
+      </span>
+    </Link>
+  );
+}
+
+/* ── Social icons ──────────────────────────────────────────── */
+const SOCIALS = [
+  { icon: FaInstagram, href: "https://www.instagram.com/futureyoulimited", label: "Instagram", hoverColor: "hover:text-[#e1306c]" },
+  { icon: FaLinkedin,  href: "https://www.linkedin.com/company/futureyou-limited/", label: "LinkedIn", hoverColor: "hover:text-[#0a66c2]" },
+  { icon: FaTiktok,    href: "https://www.tiktok.com/@futureyoulimited", label: "TikTok", hoverColor: "hover:text-white" },
+  { icon: FaFacebook,  href: "https://www.facebook.com/share/16oRt3oVEa/", label: "Facebook", hoverColor: "hover:text-[#1877f2]" },
+];
+
+/* ═══════════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════════ */
+const Footer = () => {
+  const [showPrivacy, setShowPrivacy] = useState(false);
+
+  return (
+    <footer className="relative px-4 sm:px-8 lg:px-16 pt-12 pb-6 flex flex-col items-center">
+
+      {/* ── Main card ─────────────────────────────────────── */}
+      <div className="w-full max-w-[1440px] bg-white border border-gray-100 rounded-2xl shadow-sm px-6 sm:px-8 lg:px-10 py-10 sm:py-12">
+
+        {/* Top row: newsletter + logo + nav columns + contact */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.8fr_auto_1fr_1fr_1.2fr] gap-x-8 gap-y-10">
+
+          {/* Newsletter */}
+          <div>
+            {/* Logo shown only on mobile inside newsletter block */}
+            <div className="block sm:hidden mb-6">
+              <Image src="/images/headerLogo.svg" width={110} height={34} alt="FutureYou" className="object-contain" />
+            </div>
+            <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#293C97]/50 mb-3">Newsletter</p>
+            <h2 className="font-lato font-bold text-[#0E0E1D] text-lg sm:text-xl leading-snug">
+              Stay in the loop
+            </h2>
+            <p className="text-[13px] text-[#666] leading-relaxed mt-2.5 max-w-xs">
+              Practical insights, transformation stories, expert advice, and updates on loan services, coaching, and consulting delivered to your inbox.
+            </p>
+            <NewsletterForm />
+          </div>
+
+          {/* Logo — desktop / tablet */}
+          <div className="hidden sm:flex items-start justify-center pt-6 lg:pt-8 pl-2 lg:pl-4">
+            <Image src="/images/headerLogo.svg" width={100} height={32} alt="FutureYou" className="object-contain" />
+          </div>
+
+          {/* Explore */}
+          <div>
+            <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#293C97]/50 mb-5">Explore</p>
+            <ul className="flex flex-col gap-3">
+              <li><FooterLink href="/aboutus">About Future You</FooterLink></li>
+              <li><FooterLink href="/coaching">Coaching & Mentorship</FooterLink></li>
+              <li><FooterLink href="/startjourney">Apply for Support</FooterLink></li>
+              <li><FooterLink href="/career">Join Our Team</FooterLink></li>
+              <li><FooterLink href="/event">Enterprise Boost</FooterLink></li>
+            </ul>
+          </div>
+
+          {/* Help & Legal */}
+          <div>
+            <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#293C97]/50 mb-5">Help & Legal</p>
+            <ul className="flex flex-col gap-3">
+              <li><FooterLink href="/contactus">Contact Us</FooterLink></li>
+              <li><FooterLink href="/privacypolicy">Terms & Conditions</FooterLink></li>
+              <li>
+                <button
+                  onClick={() => setShowPrivacy(true)}
+                  className="group inline-flex items-center text-[#555] hover:text-[#293C97] text-[13px] font-medium transition-colors duration-200 py-0.5"
+                >
+                  <span className="relative">
+                    Privacy Policy
+                    <span className="absolute -bottom-px left-0 w-0 h-px bg-[#293C97]/40 group-hover:w-full transition-all duration-300 rounded-full" />
+                  </span>
+                </button>
+              </li>
+              <li><FooterLink href="#">FAQs</FooterLink></li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#293C97]/50 mb-5">Contact</p>
+            <ul className="flex flex-col gap-3 mb-5">
+              <li>
+                <a href="tel:08169159291"
+                  className="text-[13px] text-[#555] hover:text-[#293C97] font-medium transition-colors duration-200">
+                  08169159291
+                </a>
+              </li>
+              <li>
+                <a href="mailto:futureyoulimited@gmail.com" target="_blank"
+                  className="text-[13px] text-[#555] hover:text-[#293C97] font-medium transition-colors duration-200 break-all">
+                  futureyoulimited@gmail.com
+                </a>
+              </li>
+            </ul>
+            <div className="space-y-1 mb-5">
+              <p className="text-[11px] font-bold text-[#293C97]/50 uppercase tracking-widest">Business Hours</p>
+              <p className="text-[13px] text-[#666]">Mon – Fri: 9:00 AM – 6:00 PM</p>
+              <p className="text-[13px] text-[#666]">Saturday: 10:00 AM – 2:00 PM</p>
+            </div>
+            <a
+              href="tel:08169159291"
+              className="inline-flex items-center gap-2 bg-[#0E0E1D] hover:bg-[#1a1a2e] text-white text-[13px] font-semibold px-5 py-2.5 rounded-lg transition-all duration-200 shadow-sm"
+            >
+              Request a Call
+            </a>
+          </div>
         </div>
 
-        {/* Newsletter block */}
-        <div className="block lg:w-[40%] w-full" data-aos="fade-right">
-          <h1 className="text-[#293C97] font-semibold text-2xl sm:text-3xl">
-            Newsletter
-          </h1>
-          <p className="text-[14px] mb-3 mt-3">
-            Get practical insights, transformation stories, expert advice, and updates on coaching,
-            consulting, and growth capital delivered straight to your inbox.
+        {/* Divider */}
+        <div className="mt-10 mb-8 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+
+        {/* Bottom row: social + address */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+
+          {/* Social icons */}
+          <div className="flex items-center gap-4">
+            {SOCIALS.map(({ icon: Icon, href, label, hoverColor }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Visit FutureYou on ${label}`}
+                className={`text-[#aaa] ${hoverColor} transition-all duration-200 hover:scale-110`}
+              >
+                <Icon className="w-[18px] h-[18px]" />
+              </a>
+            ))}
+          </div>
+
+          {/* Address */}
+          <p className="text-[12px] text-[#aaa] leading-relaxed max-w-xs sm:text-right">
+            Blk F3 Suite 256 Eastline HFP Complex,<br className="hidden sm:block" />
+            Lekki-Epe Expressway, Lagos
           </p>
+        </div>
+      </div>
 
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleSubscribe();
-            }}
-            className="flex justify-between items-center border border-[#293C97] rounded-lg p-2 w-full"
+      {/* ── Tagline + copyright ─────────────────────────── */}
+      <div className="w-full max-w-[1440px] mt-8 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 px-1">
+        <h2 className="font-lato font-bold text-white text-[1.1rem] sm:text-[1.3rem] leading-snug">
+          Helping individuals and businesses<br />become who they were meant to be
+        </h2>
+        <div className="flex items-center gap-4 shrink-0">
+          <p className="text-white/35 text-[12px]">© 2026 Future You Limited. All rights reserved.</p>
+          <button
+            onClick={() => setShowPrivacy(true)}
+            className="text-white/35 hover:text-white text-[12px] transition-colors duration-200"
           >
-            <input
-              type="email"
-              autoComplete="email"
-              placeholder="Enter your email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 outline-none px-4 py-2 text-sm text-[#0E0E1D]"
-            />
-            <Button
-              type="submit"
-              label="Subscribe"
-              bgcolor="bg-[#293C97] text-white"
-              className="py-2 px-4 text-[13px] font-semibold"
-            />
-          </form>
-        </div>
-
-        {/* Logo for larger screens */}
-        <div className="hidden sm:block relative w-32 h-12" data-aos="fade-up" data-aos-delay="200">
-          <Image
-            src="/images/headerLogo.svg"
-            alt="Future You logo"
-            fill
-            className="object-contain"
-          />
-        </div>
-
-        {/* Explore links */}
-        <div className="text-[13px] font-semibold w-[45%] sm:w-auto" data-aos="fade-up" data-aos-delay="300">
-          <ul>
-            <li className="mb-4 text-[#1B1819] font-normal"><a href="#">Explore</a></li>
-            <li><a href="/aboutus">About Future You</a></li>
-            <li><a href="/coaching">Coaching & Mentorship</a></li>
-            {/* <li><a href="/learning-hub">Learning Hub</a></li> */}
-            <li><a href="/startjourney">Apply for Support</a></li>
-            {/* <li><a href="/co-working">Co-Working Space</a></li> */}
-            <li><a href="/career">Join Our Team</a></li>
-          </ul>
-        </div>
-
-        {/* Help links */}
-        <div className="text-[13px] font-semibold w-[40%] sm:w-auto" data-aos="fade-up" data-aos-delay="400">
-          <ul className="text-[#0E0E1D]">
-            <li className="mb-4 text-[#1B1819] font-normal"><a href="#">Help & Legal</a></li>
-            <li><a href="#">FAQs</a></li>
-            <li><Link href="/contactus" className="hover:text-[#293C97] transition-colors duration-300">Contact Us</Link></li>
-            <li><Link href="/privacypolicy" className="hover:text-[#293C97] transition-colors duration-300">Terms and Conditions</Link></li>
-            <li>
-              <button onClick={() => setShowPrivacy(true)} className="hover:text-[#293C97] transition-colors duration-300">
-                Privacy Policy
-              </button>
-            </li>
-          </ul>
-        </div>
-
-        {/* Contact + Call button */}
-        <div className="text-[13px] w-full sm:w-auto" data-aos="fade-left" data-aos-delay="500">
-          <a href="tel:08169159291">
-            <Button
-              label="Request a Call"
-              bgcolor="bg-[#0E0E1D]"
-              color="text-white"
-              className="py-3 px-5 mb-4 text-sm"
-            />
-          </a>
-          <ul className="font-semibold">
-            <li><a href="tel:08169159291">08169159291</a></li>
-            <li><a href="mailto:futureyoulimited@gmail.com" target="_blank">futureyoulimited@gmail.com</a></li>
-          </ul>
-          <h1 className="font-bold">Business Hours:</h1>
-          <p><span className="font-bold">Monday:</span> Friday: 9:00 AM – 6:00 PM</p>
-          <p><span className="font-bold">Saturday:</span> 10:00 AM – 2:00 PM</p>
-        </div>
-
-        {/* Social icons & address */}
-        <div className="w-full flex flex-col sm:flex-row justify-center sm:justify-between items-center gap-5 sm:gap-0 text-[14px] mt-4" data-aos="zoom-in" data-aos-delay="600">
-          <div className="flex gap-5">
-            <a href="https://www.instagram.com/futureyoulimited" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition" aria-label="Visit FutureYou on Instagram"><FaInstagram className="w-6 h-6" /></a>
-            <a href="https://www.linkedin.com/company/futureyou-limited/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition" aria-label="Visit FutureYou on LinkedIn"><FaLinkedin className="w-6 h-6" /></a>
-            <a href="https://www.tiktok.com/@futureyoulimited" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition" aria-label="Visit FutureYou on TikTok"><FaTiktok className="w-6 h-6" /></a>
-            <a href="https://www.facebook.com/share/16oRt3oVEa/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition" aria-label="Visit FutureYou on Facebook"><FaFacebook className="w-6 h-6" /></a>
-          </div>
-
-          <div id="address" className="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-10">
-            <p className="text-[#0E0E1D]">Blk F3 Suite 256 Eastline HFP Complex, Lekki-Epe Expressway, Lagos.</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom message */}
-      <div className="text-start w-full max-w-[1440px] flex flex-col gap-4">
-        <h1 className="text-[#fff] font-semibold text-[1.3rem] sm:text-2xl leading-none">
-          Helping individuals and businesses <br /> become who they were meant to be
-        </h1>
-      </div>
-
-      {/* Bottom bar */}
-      <div className="flex flex-row sm:flex-row justify-between text-white w-full text-[13px]">
-        <p className="text-[#fff]">2026 Future You. All rights reserved.</p>
-        <p className="text-end">
-          <button onClick={() => setShowPrivacy(true)} className="hover:underline">
             Privacy
           </button>
-        </p>
+        </div>
       </div>
 
-      {/* Privacy Modal */}
+      {/* ── Privacy modal ───────────────────────────────── */}
       {showPrivacy && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white rounded-2xl shadow-lg max-w-lg w-full p-6 relative">
-            <button onClick={() => setShowPrivacy(false)} className="absolute top-3 right-3 text-gray-600 hover:text-red-500">✕</button>
-            <h2 className="text-xl font-semibold mb-4">Privacy Policy</h2>
-            <p className="text-gray-700 text-sm leading-relaxed">
-              FutureYou values your privacy. We collect limited personal and usage information to provide and improve our services. Your data is never sold and is protected with appropriate security measures. By using our services, you agree to our data practices.
-              <br /><br />
+        <div
+          className="fixed inset-0 flex items-center justify-center bg-black/55 backdrop-blur-[3px] z-[99999] p-4"
+          onClick={() => setShowPrivacy(false)}
+        >
+          <div
+            className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-7 relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setShowPrivacy(false)}
+              aria-label="Close privacy policy"
+              className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full text-gray-400 hover:bg-gray-100 hover:text-gray-700 transition-colors duration-150"
+            >
+              <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </button>
+            <h3 className="font-lato font-bold text-[#0E0E1D] text-lg mb-4">Privacy Policy</h3>
+            <p className="text-[14px] text-[#555] leading-relaxed">
+              FutureYou values your privacy. We collect limited personal and usage information
+              to provide and improve our services. Your data is never sold and is protected
+              with appropriate security measures. By using our services, you agree to our
+              data practices.
+            </p>
+            <div className="mt-5">
               <Link
                 href="/privacypolicy"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-500 hover:underline"
                 onClick={() => setShowPrivacy(false)}
+                className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#293C97] hover:text-[#1e2d85] transition-colors duration-150"
               >
-                Read Full Privacy Policy
+                Read full Privacy Policy →
               </Link>
-            </p>
+            </div>
           </div>
         </div>
       )}
-    </section>
+    </footer>
   );
 };
 
