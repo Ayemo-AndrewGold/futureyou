@@ -8,7 +8,6 @@ import AOSInit from "@/components/AosInit";
 import ScrollToTop from "@/components/ScrollToTop";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import EventPopup from "@/components/EventPopup";
-import NewsletterPopup from "@/components/NewsletterPopup";
 
 const lato = Lato({
   subsets: ["latin"],
