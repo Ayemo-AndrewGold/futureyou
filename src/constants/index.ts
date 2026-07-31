@@ -61,7 +61,7 @@ export const coachCards = [
   {
     id: "Loan Services",
     title: "LOAN SERVICES",
-    text: "Flexible financing solutions — SME term loans, asset financing, payday loans, and LPO financing — designed to fuel business growth.",
+    text: "Flexible financing solutions SME term loans, asset financing, payday loans, and LPO financing designed to fuel business growth.",
     img: loanImg,
     label: "Loan Services",
   },
