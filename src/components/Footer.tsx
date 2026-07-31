@@ -94,10 +94,10 @@ const Footer = () => {
   const [showPrivacy, setShowPrivacy] = useState(false);
 
   return (
-    <footer className="relative px-4 sm:px-8 lg:px-16 pt-12 pb-6 flex flex-col items-center">
+    <footer className="relative px-3 sm:px-8 lg:px-16 pt-12 pb-6 flex flex-col items-center">
 
       {/* ── Main card ─────────────────────────────────────── */}
-      <div className="w-full max-w-[1440px] bg-white border border-gray-100 rounded-2xl shadow-sm px-6 sm:px-8 lg:px-10 py-10 sm:py-12">
+      <div className="w-full max-w-[1440px] bg-white border border-gray-100 rounded-2xl shadow-sm px-2 sm:px-8 lg:px-10 py-10 sm:py-12">
 
         {/* Top row: newsletter + logo + nav columns + contact */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.8fr_auto_1fr_1fr_1.2fr] gap-x-8 gap-y-10">
