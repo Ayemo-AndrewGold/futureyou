@@ -46,9 +46,9 @@ export const navLinks = [
   { href: "/", label: "Home" },
   { href: "/startjourney", label: "Services" },
   // { href: "/coaching", label: "Coaching" },
-  { href: "/blog", label: "Blog" },
-  { href: "/aboutus", label: "About" },
-  { href: "/contactus", label: "Contact" },
+  { href: "/aboutus", label: "Company" },
+  { href: "/blog", label: "Newsroom" },
+  // { href: "/contactus", label: "Contact" },
   { href: "/career", label: "Careers" },
   { href: "/event", label: "Event" },
 ];

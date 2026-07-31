@@ -82,6 +82,33 @@ const PROFESSIONAL_ITEMS = [
   },
 ];
 
+/* ─── About dropdown items ───────────────────────────────────────
+   Two sub-pages beneath the About nav item.
+──────────────────────────────────────────────────────────────── */
+const ABOUT_ITEMS = [
+  {
+    label: "About Us",
+    href:  "/aboutus",
+    desc:  "Our mission, vision, and team",
+    icon: (
+      <svg viewBox="0 0 10 10" fill="none" stroke="#293C97" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"  className="w-[25px] h-[25px]">
+        <circle cx="5" cy="3" r="1.5" />
+      </svg>
+    ),
+  },
+  {
+    label: "Contact Us",
+    href:  "/contactus",
+    desc:  "Our contact information and support",
+    icon: (
+      <svg viewBox="0 0 20 20" fill="currentColor" className="w-[15px] h-[15px]">
+        <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+        <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd" />
+      </svg>
+    ),
+  },
+];
+
 /* ─── Icon map: small inline SVGs per nav item ───────────────────
    Keeps the mobile drawer rich without an extra icon dependency.
 ──────────────────────────────────────────────────────────────── */
@@ -149,11 +176,17 @@ const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
   const pathname = usePathname();
   const desktopDropdownRef = useRef<HTMLLIElement>(null);
+  const desktopAboutRef = useRef<HTMLLIElement>(null);
 
   const toggleMenu = () => setMenuOpen((p) => !p);
-  const closeMenu = () => { setMenuOpen(false); setMobileServicesOpen(false); };
+  const closeMenu = () => {
+    setMenuOpen(false);
+    setMobileServicesOpen(false);
+    setMobileAboutOpen(false);
+  };
 
   useEffect(() => { setMounted(true); }, []);
 
@@ -163,10 +196,13 @@ const Header: React.FC = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* Close desktop dropdown on Escape */
+  /* Close desktop dropdowns on Escape */
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") desktopDropdownRef.current?.blur();
+      if (e.key === "Escape") {
+        desktopDropdownRef.current?.blur();
+        desktopAboutRef.current?.blur();
+      }
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
@@ -411,7 +447,7 @@ const Header: React.FC = () => {
                       </div>
 
                       {/* ── Footer CTA ── */}
-                      <div className="mx-3 mb-3 mt-0.5 bg-gradient-to-r from-[#EEF0FA] to-[#f4f5fd] rounded-xl px-4 py-2.5 flex items-center justify-between">
+                      {/* <div className="mx-3 mb-3 mt-0.5 bg-gradient-to-r from-[#EEF0FA] to-[#f4f5fd] rounded-xl px-4 py-2.5 flex items-center justify-between">
                         <span className="text-[12px] font-semibold text-[#293C97]">Explore all services</span>
                         <Link
                           href="/startjourney"
@@ -422,7 +458,132 @@ const Header: React.FC = () => {
                             <path d="M2 5h6M5 2l3 3-3 3" />
                           </svg>
                         </Link>
+                      </div> */}
+                    </div>
+                  </div>
+                </li>
+              );
+            }
+
+            /* ── About: hover + focus-within dropdown ── */
+            if (label === "Company") {
+              return (
+                <li
+                  key={label}
+                  ref={desktopAboutRef}
+                  className="relative group"
+                  onKeyDown={(e) => {
+                    if (e.key === "Escape") {
+                      (e.currentTarget.querySelector("button") as HTMLElement)?.focus();
+                    }
+                  }}
+                >
+                  <button
+                    className={`group/btn relative inline-flex flex-col items-center px-4 py-2 text-[0.875rem] font-medium tracking-[-0.01em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#293C97]/40 rounded-lg ${
+                      isActive
+                        ? "text-[#293C97]"
+                        : "text-[#4a4a5a] hover:text-[#1a1a2e] group-hover:text-[#1a1a2e]"
+                    }`}
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <span className="flex items-center gap-1.5">
+                      {label}
+                      <svg
+                        viewBox="0 0 12 12"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="w-2.5 h-2.5 transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180"
+                      >
+                        <path d="M2 4l4 4 4-4" />
+                      </svg>
+                    </span>
+                    <span
+                      className={`absolute bottom-0.5 h-[1.5px] rounded-full bg-[#293C97] transition-all duration-300 ease-out ${
+                        isActive
+                          ? "w-4 opacity-100"
+                          : "w-0 opacity-0 group-hover:w-3 group-hover:opacity-60"
+                      }`}
+                    />
+                  </button>
+
+                  <div
+                    className="
+                      absolute top-full left-1/2 -translate-x-1/2 mt-1.5 w-[240px]
+                      opacity-0 invisible translate-y-2 pointer-events-none
+                      group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:pointer-events-auto
+                      focus-within:opacity-100 focus-within:visible focus-within:translate-y-0 focus-within:pointer-events-auto
+                      transition-all duration-200 ease-out
+                      z-50
+                    "
+                    role="menu"
+                    aria-label="About submenu"
+                  >
+                    <div className="absolute -top-1.5 left-0 right-0 h-2" />
+                    <div className="bg-white rounded-2xl border border-gray-100 shadow-[0_12px_40px_rgba(0,0,0,0.10),0_2px_8px_rgba(0,0,0,0.06)] overflow-hidden">
+                      <div className="px-3 pt-3.5 pb-3">
+                        <div className="flex items-center gap-2 px-2 mb-2">
+                          {/* <div className="w-4 h-4 rounded-md bg-[#f4f5fd] flex items-center justify-center shrink-0">
+                            <svg viewBox="0 0 20 20" fill="currentColor" className="w-[15px] h-[15px]">
+                             <path fillRule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 01-1 1h-2a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clipRule="evenodd" />
+                            </svg>
+                          </div> */}
+                          <span className="text-[10.5px] font-bold tracking-[0.16em] uppercase text-[#555]">
+                            Our Company
+                          </span>
+                        </div>
+                        <ul role="none" className="space-y-0.5">
+                          {ABOUT_ITEMS.map((item) => {
+                            const itemActive = pathname === item.href;
+                            return (
+                              <li key={item.label} role="none">
+                                <Link
+                                  href={item.href}
+                                  role="menuitem"
+                                  className={`group/item flex items-center gap-3 px-2.5 py-2.5 rounded-xl transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#293C97]/35 ${
+                                    itemActive
+                                      ? "bg-[#EEF0FA] text-[#293C97]"
+                                      : "hover:bg-[#f4f5fd] text-[#2a2a3a] hover:text-[#293C97]"
+                                  }`}
+                                >
+                                  {/* <span
+                                    className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-150 ${
+                                      itemActive
+                                        ? "bg-[#293C97] text-white"
+                                        : "bg-gray-100 text-gray-500 group-hover/item:bg-[#EEF0FA] group-hover/item:text-[#293C97]"
+                                    }`}
+                                  >
+                                    {item.icon}
+                                  </span> */}
+                                  <div className="flex flex-col min-w-0">
+                                    <span className="text-[13.5px] font-semibold leading-tight tracking-[-0.01em]">
+                                      {item.label}
+                                    </span>
+                                    <span className="text-[11.5px] text-[#888] group-hover/item:text-[#293C97]/55 transition-colors duration-150 mt-0.5 leading-snug">
+                                      {item.desc}
+                                    </span>
+                                  </div>
+                                </Link>
+                              </li>
+                            );
+                          })}
+                        </ul>
                       </div>
+                      {/* <div className="mx-3 mb-3 mt-0.5 bg-gradient-to-r from-[#EEF0FA] to-[#f4f5fd] rounded-xl px-4 py-2.5 flex items-center justify-between">
+                        <span className="text-[12px] font-semibold text-[#293C97]">Learn more about us</span>
+                        <Link
+                          href="/aboutus"
+                          className="inline-flex items-center gap-1 text-[11.5px] font-bold text-white bg-[#293C97] hover:bg-[#1e2d85] px-3 py-1.5 rounded-lg transition-colors duration-150"
+                        >
+                          Visit
+                          <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-2.5 h-2.5">
+                            <path d="M2 5h6M5 2l3 3-3 3" />
+                          </svg>
+                        </Link>
+                      </div> */}
                     </div>
                   </div>
                 </li>
@@ -562,9 +723,9 @@ const Header: React.FC = () => {
               </div>
 
               {/* Section label */}
-              <p className="px-5 pt-5 pb-2 text-[10px] font-bold text-gray-400 tracking-[0.18em] uppercase select-none">
+              {/* <p className="px-5 pt-5 pb-2 text-[10px] font-bold text-gray-400 tracking-[0.18em] uppercase select-none">
                 Navigation
-              </p>
+              </p> */}
 
               {/* Nav links */}
               <nav className="flex flex-col gap-0.5 px-3 flex-1 overflow-y-auto">
@@ -691,6 +852,83 @@ const Header: React.FC = () => {
                                 </ul>
                               </div>
                             </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    );
+                  }
+
+                  /* ── About: accordion in mobile drawer ── */
+                  if (label === "About") {
+                    return (
+                      <div key={label}>
+                        <button
+                          type="button"
+                          onClick={() => setMobileAboutOpen((o) => !o)}
+                          style={{ transitionDelay: menuOpen ? `${80 + index * 50}ms` : "0ms" }}
+                          className={`w-full flex items-center gap-3 text-[0.9rem] font-semibold py-3 px-3.5 rounded-xl transition-all duration-300 ease-out ${
+                            menuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
+                          } ${
+                            isActive
+                              ? "text-[#293C97] bg-[#EEF0FA]"
+                              : "text-[#2a2a3a] hover:text-[#293C97] hover:bg-[#f4f5fd]"
+                          }`}
+                        >
+                          <span className={`flex items-center justify-center w-8 h-8 rounded-lg transition-colors duration-200 shrink-0 ${
+                            isActive ? "bg-[#293C97] text-white" : "bg-gray-100 text-gray-500"
+                          }`}>
+                            {NAV_ICONS["About"]}
+                          </span>
+                          <span className="flex-1 text-left">About</span>
+                          <svg
+                            viewBox="0 0 12 12"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className={`w-3.5 h-3.5 text-[#293C97]/50 transition-transform duration-200 shrink-0 ${
+                              mobileAboutOpen ? "rotate-180" : ""
+                            }`}
+                          >
+                            <path d="M2 4l4 4 4-4" />
+                          </svg>
+                        </button>
+
+                        <AnimatePresence initial={false}>
+                          {mobileAboutOpen && (
+                            <motion.ul
+                              key="about-sub"
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
+                              className="overflow-hidden pl-5 pr-1 mt-0.5 space-y-0.5"
+                            >
+                              {ABOUT_ITEMS.map((item) => {
+                                const itemActive = pathname === item.href;
+                                return (
+                                  <li key={item.label}>
+                                    <Link
+                                      href={item.href}
+                                      onClick={closeMenu}
+                                      className={`flex items-center gap-3 py-2.5 px-3 rounded-xl text-[0.875rem] font-semibold transition-all duration-150 ${
+                                        itemActive
+                                          ? "text-[#293C97] bg-[#EEF0FA]"
+                                          : "text-[#2a2a3a] hover:text-[#293C97] hover:bg-[#f4f5fd]"
+                                      }`}
+                                    >
+                                      <span className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-150 ${
+                                        itemActive ? "bg-[#293C97] text-white" : "bg-gray-100 text-gray-500"
+                                      }`}>
+                                        {item.icon}
+                                      </span>
+                                      {item.label}
+                                    </Link>
+                                  </li>
+                                );
+                              })}
+                            </motion.ul>
                           )}
                         </AnimatePresence>
                       </div>
