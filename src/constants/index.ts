@@ -133,7 +133,7 @@ export const StartJourneyCards = [
     id: "loans",
     img: journeyIcon1,
     title: "Loan Services",
-    text: "Access flexible financing solutions SME term loans, asset financing, payday loans, and LPO financing — designed to fuel your next stage of growth.",
+    text: "Access flexible financing solutions SME term loans, asset financing, payday loans, and LPO financing designed to fuel your next stage of growth.",
     pathUpClose: "/services/sme-term-loan",
   },
   {
