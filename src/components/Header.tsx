@@ -134,6 +134,12 @@ const NAV_ICONS: Record<string, React.ReactNode> = {
       <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
     </svg>
   ),
+  /* "Company" is the current navLink label — reuses the About icon */
+  Company: (
+    <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 shrink-0">
+      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+    </svg>
+  ),
   Contact: (
     <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 shrink-0">
       <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
@@ -465,7 +471,7 @@ const Header: React.FC = () => {
               );
             }
 
-            /* ── About: hover + focus-within dropdown ── */
+            /* ── Company: hover + focus-within dropdown ── */
             if (label === "Company") {
               return (
                 <li
@@ -858,8 +864,8 @@ const Header: React.FC = () => {
                     );
                   }
 
-                  /* ── About: accordion in mobile drawer ── */
-                  if (label === "About") {
+                  /* ── Company (About): accordion in mobile drawer ── */
+                  if (label === "Company") {
                     return (
                       <div key={label}>
                         <button
@@ -877,9 +883,9 @@ const Header: React.FC = () => {
                           <span className={`flex items-center justify-center w-8 h-8 rounded-lg transition-colors duration-200 shrink-0 ${
                             isActive ? "bg-[#293C97] text-white" : "bg-gray-100 text-gray-500"
                           }`}>
-                            {NAV_ICONS["About"]}
+                            {NAV_ICONS[label] ?? NAV_ICONS["About"]}
                           </span>
-                          <span className="flex-1 text-left">About</span>
+                          <span className="flex-1 text-left">Company</span>
                           <svg
                             viewBox="0 0 12 12"
                             fill="none"
@@ -897,38 +903,40 @@ const Header: React.FC = () => {
 
                         <AnimatePresence initial={false}>
                           {mobileAboutOpen && (
-                            <motion.ul
+                            <motion.div
                               key="about-sub"
                               initial={{ height: 0, opacity: 0 }}
                               animate={{ height: "auto", opacity: 1 }}
                               exit={{ height: 0, opacity: 0 }}
                               transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
-                              className="overflow-hidden pl-5 pr-1 mt-0.5 space-y-0.5"
+                              className="overflow-hidden"
                             >
-                              {ABOUT_ITEMS.map((item) => {
-                                const itemActive = pathname === item.href;
-                                return (
-                                  <li key={item.label}>
-                                    <Link
-                                      href={item.href}
-                                      onClick={closeMenu}
-                                      className={`flex items-center gap-3 py-2.5 px-3 rounded-xl text-[0.875rem] font-semibold transition-all duration-150 ${
-                                        itemActive
-                                          ? "text-[#293C97] bg-[#EEF0FA]"
-                                          : "text-[#2a2a3a] hover:text-[#293C97] hover:bg-[#f4f5fd]"
-                                      }`}
-                                    >
-                                      <span className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-150 ${
-                                        itemActive ? "bg-[#293C97] text-white" : "bg-gray-100 text-gray-500"
-                                      }`}>
-                                        {item.icon}
-                                      </span>
-                                      {item.label}
-                                    </Link>
-                                  </li>
-                                );
-                              })}
-                            </motion.ul>
+                              <ul className="pl-5 pr-1 mt-0.5 pb-1 space-y-0.5">
+                                {ABOUT_ITEMS.map((item) => {
+                                  const itemActive = pathname === item.href;
+                                  return (
+                                    <li key={item.label}>
+                                      <Link
+                                        href={item.href}
+                                        onClick={closeMenu}
+                                        className={`flex items-center gap-3 py-2.5 px-3 rounded-xl text-[0.875rem] font-semibold transition-all duration-150 ${
+                                          itemActive
+                                            ? "text-[#293C97] bg-[#EEF0FA]"
+                                            : "text-[#2a2a3a] hover:text-[#293C97] hover:bg-[#f4f5fd]"
+                                        }`}
+                                      >
+                                        <span className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-150 ${
+                                          itemActive ? "bg-[#293C97] text-white" : "bg-gray-100 text-gray-500"
+                                        }`}>
+                                          {item.icon}
+                                        </span>
+                                        {item.label}
+                                      </Link>
+                                    </li>
+                                  );
+                                })}
+                              </ul>
+                            </motion.div>
                           )}
                         </AnimatePresence>
                       </div>
