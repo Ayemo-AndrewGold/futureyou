@@ -2,8 +2,10 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import NewsletterSignup from "@/components/NewsletterSignup";
 import { motion, AnimatePresence } from "framer-motion";
 import QRCode from "react-qr-code";
 import {
@@ -14,8 +16,18 @@ import {
 } from "lucide-react";
 
 /* ─────────────────────────────────────────────────────────────
-   Constants
+   EVENT CONFIGURATION — single source of truth
+   ─────────────────────────────────────────────────────────────
+   To reactivate the event:
+     1. Set  active: true
+     2. Update  date and deadline to the new confirmed dates
+   Everything else restores automatically.
 ───────────────────────────────────────────────────────────── */
+export const EVENT_CONFIG = {
+  /** Set to true when a new date is confirmed to restore the full event page. */
+  active: false,
+  status: "postponed" as "active" | "postponed" | "coming-soon",
+} as const;
 const REGISTRATION_URL = "https://bit.ly/TFUEBP";
 const FLYER_URL =
   "https://res.cloudinary.com/yaovkmpi/image/upload/v1784807464/IMG-20260722-WA0020_xl4kzx.jpg";
@@ -190,9 +202,291 @@ const FAQS = [
 ];
 
 /* ═══════════════════════════════════════════════════════════════
+   POSTPONED VIEW
+   Shown when EVENT_CONFIG.active === false.
+   The full event page is preserved below and restores automatically
+   when active is set back to true.
+═══════════════════════════════════════════════════════════════ */
+function PostponedView() {
+  return (
+    <div className="w-full overflow-x-hidden bg-white text-[#0E0E1D]">
+      <Header />
+
+      {/* ── Hero ─────────────────────────────────────────────── */}
+      <section className="relative min-h-[100svh] flex items-center overflow-hidden pt-[72px]">
+        {/* Background */}
+        <div className="absolute inset-0 bg-[#06091e]" />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #06091e 50%, #0d1340 100%)" }} />
+        {/* Glows */}
+        <div className="pointer-events-none absolute -top-40 right-[10%] w-[600px] h-[600px] rounded-full bg-[#293C97]/20 blur-[150px]" />
+        <div className="pointer-events-none absolute bottom-[-80px] left-[-60px] w-[500px] h-[500px] rounded-full bg-[#4a5fd4]/10 blur-[120px]" />
+        {/* Dot grid */}
+        <div className="pointer-events-none absolute inset-0 opacity-[0.03]"
+          style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
+        {/* Horizontal rule accent */}
+        <div className="pointer-events-none absolute top-[72px] left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+        <div className="relative z-10 w-full max-w-screen-xl mx-auto px-5 sm:px-10 lg:px-16 py-24 lg:py-32 flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
+
+          {/* Left — text ────────────────────────────────────── */}
+          <div className="w-full lg:w-[55%] flex flex-col items-center lg:items-start text-center lg:text-left gap-8">
+
+            {/* Status badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: E, delay: 0.05 }}
+              className="inline-flex items-center gap-2.5 bg-amber-500/10 border border-amber-400/25 px-4 py-2 rounded-full"
+            >
+              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse shrink-0" />
+              <span className="text-amber-300 text-[11px] font-bold tracking-[0.2em] uppercase">Event Postponed</span>
+            </motion.div>
+
+            {/* Headline */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: E, delay: 0.12 }}
+              className="space-y-2"
+            >
+              <h1 className="font-lato font-extrabold text-[2.8rem] sm:text-[3.6rem] lg:text-[4.2rem] xl:text-[4.8rem] text-white leading-[1.04] tracking-[-0.02em]">
+                Our Next Event
+              </h1>
+              <h1 className="font-lato font-extrabold text-[2.8rem] sm:text-[3.6rem] lg:text-[4.2rem] xl:text-[4.8rem] leading-[1.04] tracking-[-0.02em]">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#818cf8] via-[#a5b4fc] to-[#c7d2fe]">
+                  Is Coming Soon
+                </span>
+              </h1>
+            </motion.div>
+
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, ease: E, delay: 0.22 }}
+              className="font-montserrat text-[16px] sm:text-[17px] text-white/60 leading-[1.8] max-w-[500px] mx-auto lg:mx-0"
+            >
+              The Future You Enterprise Boost Programme has been postponed. A new date will
+              be announced shortly. Stay connected to be the first to know when registrations reopen.
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: E, delay: 0.32 }}
+              className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto"
+            >
+              {/* Primary — newsletter anchor */}
+              <a
+                href="#stay-updated"
+                className="group relative overflow-hidden inline-flex items-center justify-center gap-2 bg-[#293C97] hover:bg-[#1e2d85] text-white font-bold text-sm px-8 py-4 rounded-xl transition-all duration-200 shadow-lg shadow-[#293C97]/30 hover:shadow-[#293C97]/50 hover:-translate-y-px w-full sm:w-auto"
+              >
+                <span className="absolute inset-0 translate-x-[-110%] group-hover:translate-x-[110%] transition-transform duration-500 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 pointer-events-none" />
+                Stay Updated
+                <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5 duration-200" />
+              </a>
+              {/* Secondary */}
+              <Link
+                href="/startjourney"
+                className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/14 backdrop-blur-sm text-white/85 font-semibold text-sm px-8 py-4 rounded-xl border border-white/15 hover:border-white/30 transition-all duration-200 w-full sm:w-auto"
+              >
+                Explore Our Programmes
+              </Link>
+            </motion.div>
+
+            {/* Trust signals */}
+            <motion.div
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, ease: E, delay: 0.44 }}
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2"
+            >
+              {["Free Notification", "No Commitment", "Be First to Know"].map(tag => (
+                <div key={tag} className="flex items-center gap-1.5 text-white/35 text-xs font-medium">
+                  <CheckCircle size={11} className="text-[#818cf8]/60" />
+                  {tag}
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Right — framed flyer (dimmed / muted for postponed state) ── */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.75, ease: E, delay: 0.3 }}
+            className="w-full lg:w-[45%] flex justify-center lg:justify-end items-center"
+          >
+            <div className="relative w-full max-w-[340px] sm:max-w-[380px]">
+              {/* Glow */}
+              <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-[#293C97]/20 via-[#7b8ef5]/10 to-transparent blur-2xl pointer-events-none" />
+              {/* Frame */}
+              <div className="relative rounded-[20px] p-[2px] bg-gradient-to-br from-white/20 via-white/5 to-white/0 shadow-[0_24px_60px_rgba(0,0,0,0.5)]">
+                <div className="relative overflow-hidden rounded-[18px]">
+                  <Image
+                    src={FLYER_URL}
+                    alt="Future You Enterprise Boost Programme — Coming Soon"
+                    width={520} height={680}
+                    className="w-full h-auto object-cover block opacity-60 grayscale-[25%]"
+                    priority
+                    sizes="(max-width: 768px) 80vw, 400px"
+                  />
+                  {/* Overlay with "Coming Back Soon" badge */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#06091e]/80 via-[#06091e]/20 to-transparent" />
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2.5 rounded-xl">
+                      <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse shrink-0" />
+                      <span className="text-white text-[12px] font-bold tracking-wide">New Date Coming Soon</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.5 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 text-white/25 select-none"
+        >
+          <span className="text-[10px] uppercase tracking-[0.2em] font-medium">Scroll</span>
+          <motion.div
+            animate={{ y: [0, 5, 0] }}
+            transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
+            className="w-5 h-8 rounded-full border border-white/20 flex items-start justify-center pt-1.5"
+          >
+            <div className="w-1 h-1.5 rounded-full bg-white/40" />
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* ── About the programme (preserved reference) ─────────── */}
+      <section className="py-20 sm:py-28 bg-[#fafafa]">
+        <div className="max-w-screen-xl mx-auto px-5 sm:px-10 lg:px-16">
+
+          {/* Section header */}
+          <motion.div {...up()} className="text-center mb-14 max-w-2xl mx-auto">
+            <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-200/60 px-4 py-2 rounded-full mb-5">
+              <span className="text-amber-600 text-[10px] font-bold tracking-[0.2em] uppercase">Coming Back Soon</span>
+            </div>
+            <h2 className="font-lato font-extrabold text-[1.9rem] sm:text-[2.5rem] lg:text-[2.8rem] text-[#0E0E1D] leading-[1.1] tracking-[-0.02em] mt-2 mb-5">
+              Future You Enterprise Boost Programme
+            </h2>
+            <p className="font-montserrat text-[16px] text-[#666] leading-[1.8] max-w-xl mx-auto">
+              This event has been postponed. A new date will be announced soon. The programme
+              remains one of our flagship initiatives — everything you need to know is preserved below.
+            </p>
+          </motion.div>
+
+          {/* Programme snapshot grid */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+            {GAINS.map(({ icon: Icon, title, desc }, i) => (
+              <motion.div key={title} {...up(i * 0.05)}
+                className="bg-white border border-gray-100 rounded-2xl p-6 hover:border-[#293C97]/15 hover:shadow-md transition-all duration-300">
+                <div className="w-10 h-10 rounded-xl bg-[#EEF0FA] flex items-center justify-center mb-4">
+                  <Icon size={18} className="text-[#293C97]" />
+                </div>
+                <h3 className="font-lato font-bold text-[0.9375rem] text-[#0E0E1D] mb-2 leading-snug">{title}</h3>
+                <p className="font-montserrat text-sm text-[#777] leading-relaxed">{desc}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Audience pills */}
+          <motion.div {...up(0.1)} className="text-center">
+            <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-[#999] mb-4">For creative & product businesses in Lagos</p>
+            <div className="flex flex-wrap justify-center gap-2">
+              {AUDIENCE.map(label => (
+                <span key={label}
+                  className="text-[12px] font-semibold text-[#555] bg-white border border-gray-200 px-4 py-2 rounded-full">
+                  {label}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── What's next ────────────────────────────────────────── */}
+      <section className="py-20 sm:py-28 bg-white">
+        <div className="max-w-screen-xl mx-auto px-5 sm:px-10 lg:px-16">
+          <motion.div {...up()} className="text-center mb-14">
+            <p className="text-[11px] font-bold tracking-[0.22em] uppercase text-[#293C97]/70 mb-4">While You Wait</p>
+            <h2 className="font-lato font-extrabold text-[1.9rem] sm:text-[2.5rem] lg:text-[2.8rem] text-[#0E0E1D] leading-[1.1] tracking-[-0.02em] mt-1">
+              Explore What We Offer
+            </h2>
+            <p className="font-montserrat text-[15px] text-[#666] leading-[1.8] mt-4 max-w-lg mx-auto">
+              While we prepare for our next event, discover our programmes, services, and resources
+              designed to help you grow.
+            </p>
+          </motion.div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {[
+              {
+                icon: BookOpen,
+                label: "Coaching",
+                desc: "Personalized coaching to help individuals and leaders unlock their full potential.",
+                href: "/coaching",
+                accent: "#293C97",
+              },
+              {
+                icon: TrendingUp,
+                label: "Loan Services",
+                desc: "Flexible financing solutions — SME term loans, asset financing, and more.",
+                href: "/startjourney",
+                accent: "#0ea5e9",
+              },
+              {
+                icon: Target,
+                label: "Consulting",
+                desc: "Strategic consulting to help organizations improve performance and achieve growth.",
+                href: "/startjourney",
+                accent: "#8b5cf6",
+              },
+            ].map(({ icon: Icon, label, desc, href, accent }, i) => (
+              <motion.div key={label} {...up(i * 0.08)}>
+                <Link href={href}
+                  className="group flex flex-col gap-5 bg-white border border-gray-100 hover:border-[#293C97]/20 rounded-2xl p-7 hover:shadow-lg transition-all duration-300 h-full">
+                  <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 transition-colors duration-300 group-hover:opacity-90"
+                    style={{ backgroundColor: `${accent}15` }}>
+                    <Icon size={20} style={{ color: accent }} />
+                  </div>
+                  <div>
+                    <h3 className="font-lato font-bold text-[1rem] text-[#0E0E1D] mb-2 leading-snug group-hover:text-[#293C97] transition-colors duration-200">{label}</h3>
+                    <p className="font-montserrat text-sm text-[#777] leading-relaxed">{desc}</p>
+                  </div>
+                  <div className="mt-auto flex items-center gap-1.5 text-[12px] font-semibold text-[#293C97]/60 group-hover:text-[#293C97] transition-colors duration-200">
+                    Learn more
+                    <ArrowRight size={13} className="transition-transform group-hover:translate-x-0.5 duration-200" />
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Newsletter signup ───────────────────────────────────── */}
+      <div id="stay-updated">
+        <NewsletterSignup />
+      </div>
+
+      {/* ── Footer ─────────────────────────────────────────────── */}
+      <div className="relative w-full overflow-hidden pb-3">
+        <Image src="/images/footer.webp" alt="" fill
+          className="object-cover object-top pointer-events-none select-none" loading="lazy" />
+        <div className="relative z-10"><Footer /></div>
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
    PAGE
 ═══════════════════════════════════════════════════════════════ */
 export default function EventPage() {
+  // ── Single toggle: flip EVENT_CONFIG.active to true to restore the full event page ──
+  if (!EVENT_CONFIG.active) return <PostponedView />;
+
+  // ── Full live event page (preserved exactly as-is) ─────────────────────────────────
   const time = useCountdown(DEADLINE);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [sticky, setSticky] = useState(false);

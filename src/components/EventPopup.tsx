@@ -10,54 +10,37 @@ import QRCode from "react-qr-code";
 const REGISTRATION_URL = "https://bit.ly/TFUEBP";
 const FLYER_SRC = "https://res.cloudinary.com/yaovkmpi/image/upload/v1784807464/IMG-20260722-WA0020_xl4kzx.jpg";
 
+import { EVENT_CONFIG } from "@/app/event/page";
+
 /*
   Display logic — "show up to 3 times across page loads, then stop":
-
-  localStorage key "fy_popup_show_count" stores how many times the popup
-  has actually been SHOWN (not just dismissed). We increment it the moment
-  the popup becomes visible, so each page load that qualifies counts once
-  regardless of how the user closes it.
-
-  ┌─────────────────────────────────────────────────────────────────┐
-  │ count = 0  → show popup  → increment to 1                      │
-  │ count = 1  → show popup  → increment to 2                      │
-  │ count = 2  → show popup  → increment to 3                      │
-  │ count ≥ 3  → do not show popup                                  │
-  └─────────────────────────────────────────────────────────────────┘
-
-  Closing the popup (any button, including Apply Now / Learn More)
-  does NOT touch the counter — that was already incremented when
-  the popup appeared. Closing only hides it for this page session.
+  ...unchanged...
 */
 const STORAGE_KEY = "fy_popup_show_count";
 const MAX_SHOWS   = 3;
-const SHOW_DELAY  = 6000; // ms
+const SHOW_DELAY  = 6000;
 
 export default function EventPopup() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    // Read current show count from localStorage
+    // Do not show the popup when the event is postponed
+    if (!EVENT_CONFIG.active) return;
+
     let count = 0;
     try {
       count = parseInt(localStorage.getItem(STORAGE_KEY) ?? "0", 10) || 0;
-    } catch { /* localStorage unavailable — treat as 0 */ }
+    } catch { /* localStorage unavailable */ }
 
-    // Already shown the maximum number of times — never show again
     if (count >= MAX_SHOWS) return;
 
     const timer = setTimeout(() => {
-      // Increment BEFORE showing so even a hard-refresh after the tab
-      // crashes still counts this display
-      try {
-        localStorage.setItem(STORAGE_KEY, String(count + 1));
-      } catch { /* ignore */ }
-
+      try { localStorage.setItem(STORAGE_KEY, String(count + 1)); } catch { /* ignore */ }
       setOpen(true);
     }, SHOW_DELAY);
 
     return () => clearTimeout(timer);
-  }, []); // runs once per page load — correct behaviour
+  }, []);
 
   // Closing only hides the popup for this session.
   // The counter is NOT modified here — it was already incremented above.
