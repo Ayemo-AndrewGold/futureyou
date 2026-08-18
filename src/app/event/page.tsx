@@ -24,15 +24,18 @@ import {
    Everything else restores automatically.
 ───────────────────────────────────────────────────────────── */
 export const EVENT_CONFIG = {
-  /** Set to true when a new date is confirmed to restore the full event page. */
-  active: false,
-  status: "postponed" as "active" | "postponed" | "coming-soon",
+  /** Set to false to show the postponed state. Set to true when event is live. */
+  active: true,
+  status: "active" as "active" | "postponed" | "coming-soon",
 } as const;
 const REGISTRATION_URL = "https://bit.ly/TFUEBP";
 const FLYER_URL =
-  "https://res.cloudinary.com/yaovkmpi/image/upload/v1784807464/IMG-20260722-WA0020_xl4kzx.jpg";
-const DEADLINE = new Date("2026-08-10T23:59:59");
-const TRAINING_DATE = "10 – 11 August 2026";
+  "https://res.cloudinary.com/yaovkmpi/image/upload/v1787059250/You_asked_we_extended_it_The_Future_You_Enterprise_Boost_Programme_registration_deadline_has_nuq1br.jpg";
+const VIDEO_URL =
+  "https://res.cloudinary.com/yaovkmpi/video/upload/v1787059275/Are_you_ready_to_take_your_business_to_the_next_level_The_Future_You_Enterprise_Boost_Programm_or5wlf.mp4";
+const DEADLINE    = new Date("2026-08-21T23:59:59");
+const TRAINING_DATE = "4 – 5 September 2026";
+const VENUE       = "Simply Afrikan Place, Fola Osibo Street, Lekki";
 
 /* ─────────────────────────────────────────────────────────────
    Animation primitives
@@ -181,24 +184,26 @@ const PHASES = [
 ];
 
 const DETAILS = [
-  { icon: Calendar,  label: "Training",          value: "10 – 11 August 2026" },
-  { icon: MapPin,    label: "Location",           value: "Lagos State, Nigeria" },
-  { icon: Users,     label: "For",                value: "Creative & Product Businesses" },
-  { icon: Clock,     label: "Coaching",           value: "4 Weeks Post-Training" },
-  { icon: BarChart2, label: "Deadline",           value: "10 August 2026" },
+  { icon: Calendar,  label: "Training",   value: "4 – 5 September 2026" },
+  { icon: MapPin,    label: "Venue",       value: "Simply Afrikan Place, Fola Osibo Street, Lekki" },
+  { icon: Users,     label: "For",         value: "Creative & Product Businesses" },
+  { icon: Clock,     label: "Coaching",    value: "4 Weeks Post-Training" },
+  { icon: BarChart2, label: "Deadline",    value: "21 August 2026" },
 ];
 
 const FAQS = [
   { q: "Who can apply?",
     a: "Existing founders of creative and product-based businesses in Lagos State — fashion, beauty, haircare, food, furniture, arts & crafts, printing & branding, jewellery, leather works, and more." },
-  { q: "Is the programme free to join?",
-    a: "Visit the registration link for full details on fees and available spots: bit.ly/TFUEBP" },
+  { q: "Is registration free?",
+    a: "Yes — registration is completely free. Simply scan the QR code or visit bit.ly/TFUEBP to register." },
   { q: "Where will the training take place?",
-    a: "In Lagos State. Exact venue details are communicated to registered participants after application." },
+    a: "Simply Afrikan Place, Fola Osibo Street, Lekki, Lagos State." },
   { q: "What happens after the two-day training?",
     a: "You enter a structured four-week coaching and accountability programme with weekly sessions, progress reviews, and mentor access." },
+  { q: "Is there a grant pool?",
+    a: "Yes — participants stand a chance to access a grant pool of up to ₦750,000 based on performance during the programme." },
   { q: "How do I apply?",
-    a: "Click any Apply Now button on this page, or go directly to https://bit.ly/TFUEBP to complete your application." },
+    a: "Click any Apply Now button on this page, scan the QR code, or go directly to https://bit.ly/TFUEBP to complete your free registration." },
 ];
 
 /* ═══════════════════════════════════════════════════════════════
@@ -571,7 +576,7 @@ export default function EventPage() {
               <span className="text-white/20 hidden sm:inline">|</span>
               <div className="flex items-center gap-2 text-white/70 text-sm font-medium">
                 <MapPin size={15} className="text-[#818cf8]" />
-                Lagos State, Nigeria
+                Simply Afrikan Place, Lekki, Lagos
               </div>
             </motion.div>
 
@@ -596,7 +601,7 @@ export default function EventPage() {
             {/* Trust strip */}
             <motion.div {...up(0.44)}
               className="flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 pt-1">
-              {["Expert-Led", "Free to Apply", "Lagos-Based", "Limited Spaces"].map((tag) => (
+              {["Expert-Led", "Registration Free", "₦750k Grant Pool", "Lekki, Lagos"].map((tag) => (
                 <div key={tag} className="flex items-center gap-1.5 text-white/40 text-xs font-medium">
                   <CheckCircle size={12} className="text-[#818cf8]/70" />
                   {tag}
@@ -622,7 +627,7 @@ export default function EventPage() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-8">
             <div>
               <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-gray-400 mb-1">Application Deadline</p>
-              <p className="font-lato font-extrabold text-2xl sm:text-3xl text-[#0E0E1D] tracking-tight">10 August 2026</p>
+              <p className="font-lato font-extrabold text-2xl sm:text-3xl text-[#0E0E1D] tracking-tight">21 August 2026</p>
             </div>
 
             {/* Timer */}
@@ -647,6 +652,47 @@ export default function EventPage() {
 
             <ApplyBtn size="md" />
           </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════
+          VIDEO AD — programme promo
+      ════════════════════════════════════════ */}
+      <section className="py-16 sm:py-20 bg-[#06091e] relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 opacity-[0.03]"
+          style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
+        <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[200px] rounded-full bg-[#293C97]/20 blur-[100px]" />
+        <div className="relative z-10 max-w-screen-xl mx-auto px-5 sm:px-10 lg:px-16">
+          <motion.div {...up()} className="text-center mb-10">
+            <p className="text-[11px] font-bold tracking-[0.22em] uppercase text-[#818cf8]/70 mb-3">See It In Action</p>
+            <h2 className="font-lato font-extrabold text-[1.75rem] sm:text-[2.2rem] text-white leading-tight tracking-tight">
+              Are You Ready to Level Up?
+            </h2>
+          </motion.div>
+          <motion.div {...up(0.1)}
+            className="relative max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-[0_24px_64px_rgba(0,0,0,0.6)] ring-1 ring-white/10"
+          >
+            {/* Glow behind video */}
+            <div className="absolute -inset-4 rounded-3xl bg-[#293C97]/20 blur-2xl pointer-events-none -z-10" />
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              className="w-full h-auto block"
+              onLoadedMetadata={(e) => { e.currentTarget.playbackRate = 1; }}
+            >
+              <source src={VIDEO_URL} type="video/mp4" />
+            </video>
+          </motion.div>
+          <motion.div {...up(0.15)} className="text-center mt-8">
+            <a href={REGISTRATION_URL} target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-white text-[#293C97] font-bold text-sm px-8 py-3.5 rounded-xl hover:bg-[#EEF0FA] transition-all duration-200 shadow-lg">
+              Register Free — Limited Spaces
+              <ArrowRight size={14} />
+            </a>
+          </motion.div>
         </div>
       </section>
 
@@ -690,6 +736,20 @@ export default function EventPage() {
                     <span className="font-montserrat text-sm text-[#333] font-medium">{item}</span>
                   </div>
                 ))}
+              </motion.div>
+
+              {/* Grant pool highlight */}
+              <motion.div {...up(0.24)}
+                className="flex items-center gap-4 bg-gradient-to-r from-[#EEF0FA] to-[#f4f5fd] border border-[#293C97]/15 rounded-2xl px-5 py-4">
+                <div className="w-10 h-10 rounded-xl bg-[#293C97] flex items-center justify-center shrink-0">
+                  <TrendingUp size={18} className="text-white" />
+                </div>
+                <div>
+                  <p className="font-lato font-bold text-[#0E0E1D] text-sm leading-tight">
+                    Stand a chance to access a Grant Pool of up to
+                  </p>
+                  <p className="font-lato font-extrabold text-[#293C97] text-xl tracking-tight mt-0.5">₦750,000</p>
+                </div>
               </motion.div>
 
               <motion.div {...up(0.25)}>
@@ -1003,7 +1063,7 @@ export default function EventPage() {
                 </motion.div>
               </div>
 
-              <p className="text-white/20 text-xs mt-10 font-medium">Lagos State, Nigeria</p>
+              <p className="text-white/25 text-xs mt-6 font-medium">Applications close 21 August 2026 · Lekki, Lagos State, Nigeria</p>
             </motion.div>
           </div>
         </section>

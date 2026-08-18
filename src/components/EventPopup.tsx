@@ -8,7 +8,7 @@ import { X, ArrowRight, Calendar, MapPin } from "lucide-react";
 import QRCode from "react-qr-code";
 
 const REGISTRATION_URL = "https://bit.ly/TFUEBP";
-const FLYER_SRC = "https://res.cloudinary.com/yaovkmpi/image/upload/v1784807464/IMG-20260722-WA0020_xl4kzx.jpg";
+const FLYER_SRC = "https://res.cloudinary.com/yaovkmpi/image/upload/v1787059250/You_asked_we_extended_it_The_Future_You_Enterprise_Boost_Programme_registration_deadline_has_nuq1br.jpg";
 
 import { EVENT_CONFIG } from "@/app/event/page";
 
@@ -105,7 +105,7 @@ export default function EventPopup() {
                     </h3>
                   </div>
                   <span className="shrink-0 bg-[#293C97] text-white text-[11px] font-bold px-3 py-1.5 rounded-xl shadow-lg">
-                    Aug 2026
+                    Sept 2026
                   </span>
                 </div>
               </div>
@@ -115,7 +115,7 @@ export default function EventPopup() {
                 <div className="flex flex-wrap gap-3 mb-4">
                   <div className="flex items-center gap-1.5 text-[12px] text-[#555] font-medium">
                     <Calendar size={13} className="text-[#293C97]" />
-                    10 – 11 August 2026
+                    4 – 5 September 2026
                   </div>
                   <div className="flex items-center gap-1.5 text-[12px] text-[#555] font-medium">
                     <MapPin size={13} className="text-[#293C97]" />
