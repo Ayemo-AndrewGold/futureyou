@@ -193,15 +193,15 @@ const DETAILS = [
 
 const FAQS = [
   { q: "Who can apply?",
-    a: "Existing founders of creative and product-based businesses in Lagos State — fashion, beauty, haircare, food, furniture, arts & crafts, printing & branding, jewellery, leather works, and more." },
+    a: "Existing founders of creative and product-based businesses in Lagos State; fashion, beauty, haircare, food, furniture, arts & crafts, printing & branding, jewellery, leather works, and more." },
   { q: "Is registration free?",
-    a: "Yes — registration is completely free. Simply scan the QR code or visit bit.ly/TFUEBP to register." },
+    a: "Yes registration is completely free. Simply scan the QR code or visit bit.ly/TFUEBP to register." },
   { q: "Where will the training take place?",
     a: "Simply Afrikan Place, Fola Osibo Street, Lekki, Lagos State." },
   { q: "What happens after the two-day training?",
     a: "You enter a structured four-week coaching and accountability programme with weekly sessions, progress reviews, and mentor access." },
   { q: "Is there a grant pool?",
-    a: "Yes — participants stand a chance to access a grant pool of up to ₦750,000 based on performance during the programme." },
+    a: "Yes participants stand a chance to access a grant pool of up to ₦750,000 based on performance during the programme." },
   { q: "How do I apply?",
     a: "Click any Apply Now button on this page, scan the QR code, or go directly to https://bit.ly/TFUEBP to complete your free registration." },
 ];
@@ -541,7 +541,7 @@ export default function EventPage() {
               <span className="text-white/80 text-[11px] font-bold tracking-[0.2em] uppercase">Lagos · August 2026</span>
             </motion.div> */}
 
-            {/* Headline */}
+            {/*----------------- Headline    ---------------------------- */}
             <motion.div {...up(0.12)} className="space-y-1">
               <h1 className="font-lato font-extrabold text-[2.75rem] sm:text-[3.5rem] lg:text-[4rem] xl:text-[4.6rem] text-white leading-[1.04] tracking-[-0.02em]">
                 Future You
@@ -585,7 +585,7 @@ export default function EventPage() {
             {...up(0.39)}
             className="flex flex-row gap-2 sm:gap-3 w-full sm:w-auto"
             >
-            <div className="flex-1">
+            <div>
                 <ApplyBtn size="md" />
             </div>
 
@@ -686,13 +686,13 @@ export default function EventPage() {
               <source src={VIDEO_URL} type="video/mp4" />
             </video>
           </motion.div>
-          <motion.div {...up(0.15)} className="text-center mt-8">
+          {/* <motion.div {...up(0.15)} className="text-center mt-8">
             <a href={REGISTRATION_URL} target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-white text-[#293C97] font-bold text-sm px-8 py-3.5 rounded-xl hover:bg-[#EEF0FA] transition-all duration-200 shadow-lg">
-              Register Free — Limited Spaces
+              Limited Spaces
               <ArrowRight size={14} />
             </a>
-          </motion.div>
+          </motion.div> */}
         </div>
       </section>
 
@@ -739,7 +739,7 @@ export default function EventPage() {
               </motion.div>
 
               {/* Grant pool highlight */}
-              <motion.div {...up(0.24)}
+              {/* <motion.div {...up(0.24)}
                 className="flex items-center gap-4 bg-gradient-to-r from-[#EEF0FA] to-[#f4f5fd] border border-[#293C97]/15 rounded-2xl px-5 py-4">
                 <div className="w-10 h-10 rounded-xl bg-[#293C97] flex items-center justify-center shrink-0">
                   <TrendingUp size={18} className="text-white" />
@@ -750,12 +750,12 @@ export default function EventPage() {
                   </p>
                   <p className="font-lato font-extrabold text-[#293C97] text-xl tracking-tight mt-0.5">₦750,000</p>
                 </div>
-              </motion.div>
+              </motion.div> */}
 
-              <motion.div {...up(0.25)}>
+              {/* <motion.div {...up(0.25)}>
                 <ApplyBtn size="md" />
-              </motion.div>
-            </div>
+              </motion.div> */}
+            </div> 
           </div>
         </div>
       </section>
