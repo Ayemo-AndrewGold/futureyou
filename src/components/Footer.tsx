@@ -169,7 +169,7 @@ const Footer = () => {
               <li>
                 <a href="mailto:futureyoulimited@gmail.com" target="_blank"
                   className="text-[13px] text-[#555] hover:text-[#293C97] font-medium transition-colors duration-200 break-all">
-                  futureyoulimited@gmail.com
+                  info@futureyoulimited.com 
                 </a>
               </li>
             </ul>
