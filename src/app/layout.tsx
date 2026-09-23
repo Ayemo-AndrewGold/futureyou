@@ -6,8 +6,8 @@ import { Lato, Montserrat } from "next/font/google";
 import ChatWidget from "@/components/ChatWidget";
 import AOSInit from "@/components/AosInit";
 import ScrollToTop from "@/components/ScrollToTop";
-import AnnouncementBar from "@/components/AnnouncementBar";
-import EventPopup from "@/components/EventPopup";
+// import AnnouncementBar from "@/components/AnnouncementBar";
+// import EventPopup from "@/components/EventPopup";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -122,8 +122,8 @@ export default function RootLayout({
         <AOSInit />
         <ScrollToTop />
         <ChatWidget />
-       <EventPopup />
-       <AnnouncementBar />
+       {/* <EventPopup /> */}
+       {/* <AnnouncementBar /> */}
        {/* <NewsletterPopup />  */}
       </body>
     </html>

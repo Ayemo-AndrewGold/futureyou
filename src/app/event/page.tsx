@@ -27,15 +27,21 @@ export const EVENT_CONFIG = {
   /** Set to false to show the postponed state. Set to true when event is live. */
   active: true,
   status: "active" as "active" | "postponed" | "coming-soon",
+  /**
+   * Set to true when registration closes.
+   * All Apply/Register buttons become disabled automatically.
+   * Set back to false if registration ever reopens.
+   */
+  registrationClosed: true,
 } as const;
 const REGISTRATION_URL = "https://bit.ly/TFUEBP";
 const FLYER_URL =
   "https://res.cloudinary.com/yaovkmpi/image/upload/v1787059250/You_asked_we_extended_it_The_Future_You_Enterprise_Boost_Programme_registration_deadline_has_nuq1br.jpg";
 const VIDEO_URL =
   "https://res.cloudinary.com/yaovkmpi/video/upload/v1787059275/Are_you_ready_to_take_your_business_to_the_next_level_The_Future_You_Enterprise_Boost_Programm_or5wlf.mp4";
-const DEADLINE    = new Date("2026-08-21T23:59:59");
+const DEADLINE      = new Date("2026-08-21T23:59:59");
 const TRAINING_DATE = "4 – 5 September 2026";
-const VENUE       = "Simply Afrikan Place, Fola Osibo Street, Lekki";
+const VENUE         = "Simply Afrikan Place, Fola Osibo Street, Lekki";
 
 /* ─────────────────────────────────────────────────────────────
    Animation primitives
@@ -98,6 +104,31 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 ───────────────────────────────────────────────────────────── */
 function ApplyBtn({ size = "md", white = false }: { size?: "sm" | "md" | "lg"; white?: boolean }) {
   const pad = size === "lg" ? "px-10 py-5 text-base" : size === "sm" ? "px-5 py-2.5 text-xs" : "px-7 py-3.5 text-sm";
+
+  /* ── Registration closed — disabled pill ── */
+  if (EVENT_CONFIG.registrationClosed) {
+    return (
+      <span
+        className={`inline-flex items-center gap-2 font-bold rounded-xl cursor-not-allowed select-none ${pad} ${
+          white
+            ? "bg-white/30 text-white/50 border border-white/20"
+            : "bg-gray-100 text-gray-400 border border-gray-200"
+        }`}
+        title="Registration has closed"
+        aria-disabled="true"
+        role="button"
+      >
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+          className={`${size === "lg" ? "w-5 h-5" : "w-3.5 h-3.5"} shrink-0`}>
+          <rect x="3" y="7" width="10" height="7" rx="1.5" />
+          <path d="M5 7V5a3 3 0 016 0v2" />
+        </svg>
+        Registration Closed
+      </span>
+    );
+  }
+
+  /* ── Registration open — normal active button ── */
   const base = white
     ? "bg-white text-[#293C97] hover:bg-[#EEF0FA] shadow-xl"
     : "bg-[#293C97] text-white hover:bg-[#1e2d85] shadow-lg shadow-[#293C97]/25";
@@ -188,7 +219,7 @@ const DETAILS = [
   { icon: MapPin,    label: "Venue",       value: "Simply Afrikan Place, Fola Osibo Street, Lekki" },
   { icon: Users,     label: "For",         value: "Creative & Product Businesses" },
   { icon: Clock,     label: "Coaching",    value: "4 Weeks Post-Training" },
-  { icon: BarChart2, label: "Deadline",    value: "21 August 2026" },
+  { icon: BarChart2, label: "Status",      value: "Registration Closed · Event Starts 4 Sept" },
 ];
 
 const FAQS = [
@@ -538,7 +569,7 @@ export default function EventPage() {
             {/* <motion.div {...up(0.05)}
               className="inline-flex items-center gap-2.5 border border-white/15 bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full">
               <span className="w-1.5 h-1.5 rounded-full bg-[#7b8ef5] animate-pulse" />
-              <span className="text-white/80 text-[11px] font-bold tracking-[0.2em] uppercase">Lagos · August 2026</span>
+              <span className="text-white/80 text-[11px] font-bold tracking-[0.2em] uppercase">Starting Tomorrow · 4 Sept 2026</span>
             </motion.div> */}
 
             {/*----------------- Headline    ---------------------------- */}
@@ -601,7 +632,7 @@ export default function EventPage() {
             {/* Trust strip */}
             <motion.div {...up(0.44)}
               className="flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 pt-1">
-              {["Expert-Led", "Registration Free", "₦750k Grant Pool", "Lekki, Lagos"].map((tag) => (
+              {["Expert-Led", "Registration Closed", "Starting Tomorrow", "Lekki, Lagos"].map((tag) => (
                 <div key={tag} className="flex items-center gap-1.5 text-white/40 text-xs font-medium">
                   <CheckCircle size={12} className="text-[#818cf8]/70" />
                   {tag}
@@ -626,8 +657,8 @@ export default function EventPage() {
         <div className="max-w-screen-xl mx-auto px-5 sm:px-10 lg:px-16 py-10 sm:py-12">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-8">
             <div>
-              <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-gray-400 mb-1">Application Deadline</p>
-              <p className="font-lato font-extrabold text-2xl sm:text-3xl text-[#0E0E1D] tracking-tight">21 August 2026</p>
+              <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-gray-400 mb-1">Registration Closed</p>
+              <p className="font-lato font-extrabold text-2xl sm:text-3xl text-[#0E0E1D] tracking-tight">Event Starts Tomorrow</p>
             </div>
 
             {/* Timer */}
@@ -1000,7 +1031,7 @@ export default function EventPage() {
 
           <div className="relative z-10 max-w-3xl mx-auto px-5 sm:px-10 text-center">
             <motion.div {...up()}>
-              <p className="text-[11px] font-bold tracking-[0.22em] uppercase text-[#818cf8]/70 mb-6">Limited Spaces Available</p>
+              <p className="text-[11px] font-bold tracking-[0.22em] uppercase text-[#818cf8]/70 mb-6">Registration Closed</p>
               <h2 className="font-lato font-extrabold text-[2.4rem] sm:text-[3.2rem] lg:text-[3.8rem] text-white leading-[1.06] tracking-[-0.02em] mb-6">
                 Ready to build something<br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#818cf8] to-[#c7d2fe]">that lasts?</span>
@@ -1092,7 +1123,7 @@ export default function EventPage() {
             <div className="hidden sm:flex items-center justify-between gap-6 max-w-screen-xl mx-auto px-8 py-4">
               <div>
                 <p className="font-lato font-bold text-white text-[13px] leading-tight">Future You Enterprise Boost Programme</p>
-                <p className="text-white/40 text-xs mt-0.5">{TRAINING_DATE} · Lagos State · Limited spaces</p>
+                <p className="text-white/40 text-xs mt-0.5">{TRAINING_DATE} · Simply Afrikan Place, Lekki · Registration Closed</p>
               </div>
               <ApplyBtn size="sm" />
             </div>

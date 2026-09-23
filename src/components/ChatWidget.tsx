@@ -9,7 +9,7 @@ const PRIMARY_DARK = "#1e2d85";
 const BACKGROUND = "#F7F8FC";
 const BORDER = "#E5E7F2";
 
-const WHATSAPP_NUMBER = "2348124106198";
+const WHATSAPP_NUMBER = "2348169159291";
 
 interface ChatMessage {
   id: number;
@@ -45,7 +45,7 @@ export default function ChatWidget() {
         ...prev,
         {
           id: Date.now() + 1,
-          text: "Thanks for reaching out! Tap below to continue this on WhatsApp — our team will respond right away.",
+          text: "Thanks for reaching out! Tap below to continue this on WhatsApp our team will respond right away.",
           sender: "bot",
         },
       ]);

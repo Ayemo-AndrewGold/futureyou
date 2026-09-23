@@ -8,19 +8,17 @@ import { EVENT_CONFIG } from "@/app/event/page";
 
 /* ── Marquee text — swaps based on event status ──────────────── */
 const ACTIVE_MARQUEE = [
-  "🚀 Register Free — Future You Enterprise Boost Programme",
+  "🎉 Future You Enterprise Boost Programme — Starting Tomorrow!",
   "·",
-  "4th & 5th September 2026 · Lekki, Lagos",
+  "4th & 5th September 2026 · Simply Afrikan Place, Lekki",
   "·",
-  "2-Day Intensive Business Training",
+  "Registration is now closed",
   "·",
-  "4 Weeks Coaching & Accountability",
+  "We look forward to seeing our participants",
   "·",
   "Grant Pool of up to ₦750,000",
   "·",
-  "Registration Deadline — 21 August 2026",
-  "·",
-  "Limited Spaces Available",
+  "2-Day Intensive Training + 4 Weeks Coaching",
   "·",
 ];
 
@@ -117,7 +115,7 @@ export default function AnnouncementBar() {
                 href="/event"
                 className="inline-flex items-center gap-1 bg-white text-[#293C97] font-bold text-[11px] sm:text-[12px] px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-md hover:bg-[#EEF0FA] transition-colors duration-150 shadow-sm whitespace-nowrap"
               >
-                {isPostponed ? "Learn More" : "Apply Now"}
+                {isPostponed ? "Learn More" : EVENT_CONFIG.registrationClosed ? "View Event" : "Apply Now"}
               </a>
 
               <button
