@@ -14,7 +14,7 @@ import {
   HiOutlineLockClosed,
 } from "react-icons/hi";
 
-const WHATSAPP_NUMBER = "2348124106198";
+const WHATSAPP_NUMBER = "2348169159291";
 
 const steps = [
   { number: 1, label: "Journey" },

@@ -16,7 +16,7 @@ import Image from "next/image";
 
 import  Footer from "@/components/Footer";
 
-const WHATSAPP_NUMBER = "2348124106198";
+const WHATSAPP_NUMBER = "2348169159291";
 
 interface ContactForm {
   name: string;
